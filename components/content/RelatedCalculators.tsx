@@ -1,0 +1,49 @@
+import Link from "next/link";
+
+interface RelatedCalculatorLink {
+  href: string;
+  title: string;
+  description: string;
+}
+
+/**
+ * Add an entry here whenever a new device-specific page ships (e.g.
+ * /starlink-power-calculator) so it shows up on the homepage automatically —
+ * keeps niche-page links centralized instead of scattered through prose.
+ */
+const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
+  {
+    href: "/cpap-power-calculator",
+    title: "CPAP Power Station Calculator",
+    description: "CPAP-specific wattages, camping and outage planning, and a dedicated FAQ.",
+  },
+  {
+    href: "/refrigerator-power-calculator",
+    title: "Refrigerator Power Station Calculator",
+    description: "Compressor cycling, startup surge, and energy-label based sizing for refrigerators.",
+  },
+];
+
+export function RelatedCalculators() {
+  return (
+    <div>
+      <h2 className="font-display text-2xl font-semibold text-ink">Specialized calculators</h2>
+      <p className="mt-3 text-ink/75">
+        Looking for guidance on a specific device? These dedicated calculators cover device-specific
+        wattages, presets, and FAQs.
+      </p>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        {RELATED_CALCULATORS.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="block rounded-2xl border border-line bg-white p-5 transition-colors hover:border-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          >
+            <p className="font-display text-base font-semibold text-ink">{item.title}</p>
+            <p className="mt-1 text-sm text-ink/60">{item.description}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}

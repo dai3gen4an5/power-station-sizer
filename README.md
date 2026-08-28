@@ -65,14 +65,28 @@ components/content/
   InverterEfficiencyInfo.tsx, BatteryReserveInfo.tsx
   FaqSection.tsx     Generic FAQ accordion + FAQPage JSON-LD, shared by every page's FAQ
   Faq.tsx            Homepage FAQ content, wraps FaqSection
+  RelatedCalculators.tsx   "Specialized calculators" links, rendered on the homepage —
+                           add an entry here whenever a new niche page ships
 
 components/content/cpap/
   CpapPowerUsage.tsx, CpapBatterySizing.tsx, CpapWithoutHumidifier.tsx,
   CpapWithHumidifier.tsx, CpapCampingPower.tsx, CpapOutageBackup.tsx,
   CpapCalculationExample.tsx, CpapExampleTable.tsx, CpapFaq.tsx
-  Content for /cpap-power-calculator. Numbers shown in these components are
-  computed with the real functions from lib/calculator/calculations.ts, never
-  hand-typed, so they can't drift out of sync with the calculator itself.
+  Content for /cpap-power-calculator.
+
+components/content/refrigerator/
+  RefrigeratorWattUsage.tsx, RefrigeratorCyclingExplainer.tsx,
+  RefrigeratorSurgeVsRunning.tsx, RefrigeratorDailyWh.tsx,
+  RefrigeratorEnergyLabelMethod.tsx, RefrigeratorSizingGuide.tsx,
+  RefrigeratorRuntimeExplainer.tsx, RefrigeratorOutageUse.tsx,
+  RefrigeratorVsFreezer.tsx, RefrigeratorSolarCharging.tsx,
+  RefrigeratorSurgeNotice.tsx, RefrigeratorCalculationExample.tsx,
+  RefrigeratorExampleTable.tsx, RefrigeratorFaq.tsx
+  Content for /refrigerator-power-calculator.
+
+Numbers shown in every cpap/ and refrigerator/ component are computed with the real functions from
+lib/calculator/calculations.ts, never hand-typed, so they can't drift out of sync with the calculator
+itself.
 
 components/layout/
   SiteHeader.tsx, SiteFooter.tsx (rendered once, in app/layout.tsx)
@@ -83,9 +97,9 @@ tested and reused anywhere.
 
 ## Adding a new device-specific landing page
 
-`/cpap-power-calculator` (`app/cpap-power-calculator/page.tsx`) is the reference implementation of this
-pattern — copy its structure for future niche pages such as `/refrigerator-power-calculator`,
-`/starlink-power-calculator`, `/power-station-runtime-calculator`, and `/solar-charge-time-calculator`.
+`/cpap-power-calculator` and `/refrigerator-power-calculator` are the reference implementations of this
+pattern — copy their structure for future niche pages such as `/starlink-power-calculator`,
+`/power-station-runtime-calculator`, and `/solar-charge-time-calculator`.
 
 `PowerStationCalculator` accepts optional props so a niche page can customize it without forking any
 calculator logic:
@@ -93,18 +107,21 @@ calculator logic:
 - `initialDevices?: Device[]` — pre-fill the device list (e.g. a CPAP machine instead of a refrigerator).
 - `initialSettings?: Partial<CalculatorSettings>` — override `days`, `inverterEfficiency`, and/or
   `batteryReserve`; any field left out falls back to `DEFAULT_SETTINGS`.
-- `presets?: DevicePreset[]` — swap in page-specific quick-add buttons (e.g. CPAP power profiles) instead
-  of the shared common-device list.
+- `presets?: DevicePreset[]` — swap in page-specific quick-add buttons (e.g. CPAP power profiles, or
+  refrigerator/freezer size profiles) instead of the shared common-device list.
 - `presetsNote?: string` — override the disclaimer shown below the preset buttons.
 
 None of these props touch `lib/calculator/calculations.ts` — the math, size-class rounding, and runtime
 estimate stay identical everywhere. Keep page-specific device lists and presets defined locally in the
-page file (as `app/cpap-power-calculator/page.tsx` does), not inside `lib/calculator/`, so niche
-configuration never leaks into the shared engine.
+page file (as `app/cpap-power-calculator/page.tsx` and `app/refrigerator-power-calculator/page.tsx` do),
+not inside `lib/calculator/`, so niche configuration never leaks into the shared engine.
 
 For a page-specific FAQ, reuse `components/content/FaqSection.tsx` rather than duplicating the accordion
 markup or JSON-LD shape — pass it your own `items` array and the page's `path` (see
-`components/content/cpap/CpapFaq.tsx`).
+`components/content/cpap/CpapFaq.tsx` or `components/content/refrigerator/RefrigeratorFaq.tsx`).
+
+When a new niche page ships, also add it to `RELATED_CALCULATORS` in
+`components/content/RelatedCalculators.tsx` (shown on the homepage) and to `app/sitemap.ts`.
 
 ```tsx
 import { PowerStationCalculator } from "@/components/calculator/PowerStationCalculator";

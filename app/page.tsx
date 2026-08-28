@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PowerStationCalculator } from "@/components/calculator/PowerStationCalculator";
 import { BatteryReserveInfo } from "@/components/content/BatteryReserveInfo";
 import { Faq } from "@/components/content/Faq";
 import { HowItWorks } from "@/components/content/HowItWorks";
 import { InverterEfficiencyInfo } from "@/components/content/InverterEfficiencyInfo";
+import { RelatedCalculators } from "@/components/content/RelatedCalculators";
 import { WattHoursExplainer } from "@/components/content/WattHoursExplainer";
 import { WattsVsWattHours } from "@/components/content/WattsVsWattHours";
 
@@ -52,13 +52,7 @@ export default function HomePage() {
         <InverterEfficiencyInfo />
         <BatteryReserveInfo />
         <Faq />
-        <p className="text-ink/75">
-          Need a battery size just for a CPAP machine? Our{" "}
-          <Link href="/cpap-power-calculator" className="font-medium text-brand hover:underline">
-            CPAP Power Station Calculator
-          </Link>{" "}
-          covers CPAP-specific wattages, camping and outage planning, and a dedicated FAQ.
-        </p>
+        <RelatedCalculators />
       </section>
     </>
   );
