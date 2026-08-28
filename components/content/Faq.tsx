@@ -1,9 +1,4 @@
-import { absoluteUrl } from "@/lib/site";
-
-interface FaqItem {
-  question: string;
-  answer: string;
-}
+import { FaqSection, type FaqItem } from "./FaqSection";
 
 const FAQ_ITEMS: FaqItem[] = [
   {
@@ -34,43 +29,5 @@ const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export function Faq() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntityOfPage: absoluteUrl("/"),
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  return (
-    <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Frequently asked questions</h2>
-      <div className="mt-4 divide-y divide-line rounded-2xl border border-line bg-white">
-        {FAQ_ITEMS.map((item) => (
-          <details key={item.question} className="group p-5">
-            <summary className="cursor-pointer list-none font-medium text-ink">
-              <span className="flex items-center justify-between gap-4">
-                {item.question}
-                <span className="shrink-0 text-lg text-ink/40 transition-transform group-open:rotate-45">
-                  +
-                </span>
-              </span>
-            </summary>
-            <p className="mt-3 text-sm text-ink/70">{item.answer}</p>
-          </details>
-        ))}
-      </div>
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-    </div>
-  );
+  return <FaqSection items={FAQ_ITEMS} path="/" />;
 }

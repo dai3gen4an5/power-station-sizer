@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { calculateResults } from "@/lib/calculator/calculations";
 import { BLANK_DEVICE_DEFAULTS, DEFAULT_DEVICE, DEFAULT_SETTINGS } from "@/lib/calculator/constants";
-import type { Device, DevicePreset } from "@/lib/calculator/types";
+import type { CalculatorSettings, Device, DevicePreset } from "@/lib/calculator/types";
 import { DeviceList } from "./DeviceList";
 import { PresetButtons } from "./PresetButtons";
 import { ResultsPanel } from "./ResultsPanel";
@@ -21,15 +21,37 @@ export interface PowerStationCalculatorProps {
    * can pre-fill the calculator for their specific use case.
    */
   initialDevices?: Device[];
+  /**
+   * Optional starting settings (days, inverter efficiency, battery reserve).
+   * Any field left unspecified falls back to DEFAULT_SETTINGS, so a niche
+   * page only needs to override what's different for its use case.
+   */
+  initialSettings?: Partial<CalculatorSettings>;
+  /**
+   * Optional page-specific quick-add presets (e.g. CPAP power profiles).
+   * Defaults to the shared common-device presets inside PresetButtons.
+   */
+  presets?: DevicePreset[];
+  /** Optional override for the disclaimer shown below the preset buttons. */
+  presetsNote?: string;
 }
 
-export function PowerStationCalculator({ initialDevices }: PowerStationCalculatorProps) {
+export function PowerStationCalculator({
+  initialDevices,
+  initialSettings,
+  presets,
+  presetsNote,
+}: PowerStationCalculatorProps) {
   const [devices, setDevices] = useState<Device[]>(() =>
     initialDevices && initialDevices.length > 0 ? initialDevices : [{ ...DEFAULT_DEVICE }]
   );
-  const [days, setDays] = useState(DEFAULT_SETTINGS.days);
-  const [inverterEfficiency, setInverterEfficiency] = useState(DEFAULT_SETTINGS.inverterEfficiency);
-  const [batteryReserve, setBatteryReserve] = useState(DEFAULT_SETTINGS.batteryReserve);
+  const [days, setDays] = useState(initialSettings?.days ?? DEFAULT_SETTINGS.days);
+  const [inverterEfficiency, setInverterEfficiency] = useState(
+    initialSettings?.inverterEfficiency ?? DEFAULT_SETTINGS.inverterEfficiency
+  );
+  const [batteryReserve, setBatteryReserve] = useState(
+    initialSettings?.batteryReserve ?? DEFAULT_SETTINGS.batteryReserve
+  );
 
   const results = useMemo(
     () => calculateResults(devices, { days, inverterEfficiency, batteryReserve }),
@@ -75,7 +97,7 @@ export function PowerStationCalculator({ initialDevices }: PowerStationCalculato
             </button>
 
             <div className="mt-6 border-t border-line pt-5">
-              <PresetButtons onAdd={addPresetDevice} />
+              <PresetButtons onAdd={addPresetDevice} presets={presets} note={presetsNote} />
             </div>
           </div>
 

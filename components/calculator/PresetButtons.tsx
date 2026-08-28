@@ -5,16 +5,29 @@ import type { DevicePreset } from "@/lib/calculator/types";
 
 interface PresetButtonsProps {
   onAdd: (preset: DevicePreset) => void;
+  /**
+   * Optional page-specific preset list (e.g. CPAP power profiles on
+   * /cpap-power-calculator). Defaults to the shared common-device presets.
+   */
+  presets?: DevicePreset[];
+  /**
+   * Optional override for the disclaimer shown below the preset buttons.
+   * Defaults to the generic "wattages vary" note.
+   */
+  note?: string;
 }
 
-export function PresetButtons({ onAdd }: PresetButtonsProps) {
+const DEFAULT_NOTE =
+  "Wattages shown are typical examples. Actual power draw varies by brand and model — check your device's label or manual for its exact figure.";
+
+export function PresetButtons({ onAdd, presets = DEVICE_PRESETS, note = DEFAULT_NOTE }: PresetButtonsProps) {
   return (
     <div>
       <span className="mb-2 block text-xs font-medium uppercase tracking-wide text-ink/50">
         Quick add a common device
       </span>
       <div className="flex flex-wrap gap-2">
-        {DEVICE_PRESETS.map((preset) => (
+        {presets.map((preset) => (
           <button
             key={preset.name}
             type="button"
@@ -25,10 +38,7 @@ export function PresetButtons({ onAdd }: PresetButtonsProps) {
           </button>
         ))}
       </div>
-      <p className="mt-2 text-xs text-ink/45">
-        Wattages shown are typical examples. Actual power draw varies by brand and model — check your
-        device&apos;s label or manual for its exact figure.
-      </p>
+      <p className="mt-2 text-xs text-ink/45">{note}</p>
     </div>
   );
 }

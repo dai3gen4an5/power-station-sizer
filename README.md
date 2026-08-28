@@ -62,7 +62,17 @@ components/calculator/
 
 components/content/
   HowItWorks.tsx, WattHoursExplainer.tsx, WattsVsWattHours.tsx,
-  InverterEfficiencyInfo.tsx, BatteryReserveInfo.tsx, Faq.tsx
+  InverterEfficiencyInfo.tsx, BatteryReserveInfo.tsx
+  FaqSection.tsx     Generic FAQ accordion + FAQPage JSON-LD, shared by every page's FAQ
+  Faq.tsx            Homepage FAQ content, wraps FaqSection
+
+components/content/cpap/
+  CpapPowerUsage.tsx, CpapBatterySizing.tsx, CpapWithoutHumidifier.tsx,
+  CpapWithHumidifier.tsx, CpapCampingPower.tsx, CpapOutageBackup.tsx,
+  CpapCalculationExample.tsx, CpapExampleTable.tsx, CpapFaq.tsx
+  Content for /cpap-power-calculator. Numbers shown in these components are
+  computed with the real functions from lib/calculator/calculations.ts, never
+  hand-typed, so they can't drift out of sync with the calculator itself.
 
 components/layout/
   SiteHeader.tsx, SiteFooter.tsx (rendered once, in app/layout.tsx)
@@ -73,38 +83,47 @@ tested and reused anywhere.
 
 ## Adding a new device-specific landing page
 
-`PowerStationCalculator` accepts an optional `initialDevices` prop, so a focused page can pre-fill the
-calculator with one relevant device instead of the default refrigerator. For example, a future
-`app/cpap-power-calculator/page.tsx` could look like:
+`/cpap-power-calculator` (`app/cpap-power-calculator/page.tsx`) is the reference implementation of this
+pattern — copy its structure for future niche pages such as `/refrigerator-power-calculator`,
+`/starlink-power-calculator`, `/power-station-runtime-calculator`, and `/solar-charge-time-calculator`.
+
+`PowerStationCalculator` accepts optional props so a niche page can customize it without forking any
+calculator logic:
+
+- `initialDevices?: Device[]` — pre-fill the device list (e.g. a CPAP machine instead of a refrigerator).
+- `initialSettings?: Partial<CalculatorSettings>` — override `days`, `inverterEfficiency`, and/or
+  `batteryReserve`; any field left out falls back to `DEFAULT_SETTINGS`.
+- `presets?: DevicePreset[]` — swap in page-specific quick-add buttons (e.g. CPAP power profiles) instead
+  of the shared common-device list.
+- `presetsNote?: string` — override the disclaimer shown below the preset buttons.
+
+None of these props touch `lib/calculator/calculations.ts` — the math, size-class rounding, and runtime
+estimate stay identical everywhere. Keep page-specific device lists and presets defined locally in the
+page file (as `app/cpap-power-calculator/page.tsx` does), not inside `lib/calculator/`, so niche
+configuration never leaks into the shared engine.
+
+For a page-specific FAQ, reuse `components/content/FaqSection.tsx` rather than duplicating the accordion
+markup or JSON-LD shape — pass it your own `items` array and the page's `path` (see
+`components/content/cpap/CpapFaq.tsx`).
 
 ```tsx
 import { PowerStationCalculator } from "@/components/calculator/PowerStationCalculator";
 
-const cpapDevice = {
-  id: "cpap",
-  name: "CPAP Machine",
-  watts: 40,
-  hoursPerDay: 8,
-  quantity: 1,
-};
+const cpapDevice = { id: "cpap-machine", name: "CPAP Machine", watts: 40, hoursPerDay: 8, quantity: 1 };
 
 export default function CpapCalculatorPage() {
   return (
     <>
       <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
         <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
-          What Size Power Station Do I Need for a CPAP?
+          CPAP Power Station Calculator
         </h1>
       </section>
-      <PowerStationCalculator initialDevices={[cpapDevice]} />
+      <PowerStationCalculator initialDevices={[cpapDevice]} initialSettings={{ days: 1 }} />
     </>
   );
 }
 ```
-
-Repeat this pattern for `/refrigerator-power-calculator`, `/starlink-power-calculator`,
-`/power-station-runtime-calculator`, and `/solar-charge-time-calculator` — each page supplies its own
-copy, metadata, and FAQ content, while reusing the same calculator engine and UI.
 
 ## Monetization (not yet implemented)
 
