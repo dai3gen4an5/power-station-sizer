@@ -12,7 +12,8 @@ npm run dev
 
 Then open http://localhost:3000.
 
-Before deploying, update the placeholder domain (`https://www.powerstationsizer.com`) in:
+The production URL is currently set to the Vercel deployment domain, `https://power-station-sizer.vercel.app`,
+since the custom domain isn't connected yet. Once it is, update the `SITE_URL` constant in:
 - `app/layout.tsx` (`SITE_URL`)
 - `app/sitemap.ts`
 - `app/robots.ts`

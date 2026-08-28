@@ -22,8 +22,8 @@ const mono = IBM_Plex_Mono({
   weight: ["500", "600"],
 });
 
-// TODO: replace with the real production domain before launch.
-const SITE_URL = "https://www.powerstationsizer.com";
+// TODO: replace with the real custom domain once it is connected.
+const SITE_URL = "https://power-station-sizer.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
