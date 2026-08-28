@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
-
-// TODO: replace with the real custom domain once it is connected.
-const SITE_URL = "https://power-station-sizer.vercel.app";
+import { absoluteUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -21,9 +22,6 @@ const mono = IBM_Plex_Mono({
   variable: "--font-mono",
   weight: ["500", "600"],
 });
-
-// TODO: replace with the real custom domain once it is connected.
-const SITE_URL = "https://power-station-sizer.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

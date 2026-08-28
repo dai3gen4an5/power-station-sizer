@@ -1,12 +1,10 @@
 import type { MetadataRoute } from "next";
-
-// TODO: replace with the real custom domain once it is connected.
-const SITE_URL = "https://power-station-sizer.vercel.app";
+import { absoluteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: SITE_URL,
+      url: absoluteUrl("/"),
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,

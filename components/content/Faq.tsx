@@ -1,3 +1,5 @@
+import { absoluteUrl } from "@/lib/site";
+
 interface FaqItem {
   question: string;
   answer: string;
@@ -35,6 +37,7 @@ export function Faq() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    mainEntityOfPage: absoluteUrl("/"),
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.question,

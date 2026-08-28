@@ -12,17 +12,38 @@ npm run dev
 
 Then open http://localhost:3000.
 
-The production URL is currently set to the Vercel deployment domain, `https://power-station-sizer.vercel.app`,
-since the custom domain isn't connected yet. Once it is, update the `SITE_URL` constant in:
-- `app/layout.tsx` (`SITE_URL`)
-- `app/sitemap.ts`
-- `app/robots.ts`
+## Production URL configuration
+
+Every sitemap entry, `robots.txt` directive, `metadataBase`, canonical URL, OpenGraph URL, and
+structured-data URL in this project is derived from a single source of truth: `SITE_URL`, exported from
+`lib/site.ts`. Nothing else in the codebase hard-codes a production hostname — that's what caused the
+sitemap/canonical mismatch this setup replaces.
+
+`SITE_URL` resolves in this order:
+
+1. **Custom domain** — set the `NEXT_PUBLIC_SITE_URL` environment variable in the Vercel dashboard:
+   ```
+   NEXT_PUBLIC_SITE_URL=https://yourdomain.com
+   ```
+   Once set, all sitemap, robots, canonical, OpenGraph, and structured-data URLs update automatically —
+   no code changes needed.
+2. **Vercel preview/production deployments** — if `NEXT_PUBLIC_SITE_URL` isn't set, Vercel's own
+   `VERCEL_PROJECT_PRODUCTION_URL` environment variable is used automatically (Vercel sets this for you;
+   it has no `https://` prefix, so `lib/site.ts` adds one).
+3. **Local development** — if neither is set, `http://localhost:3000` is used automatically.
+
+To change the production domain, set (or update) `NEXT_PUBLIC_SITE_URL` in Vercel's project settings —
+never edit a URL string directly in the source.
 
 ## Architecture
 
 Everything runs client-side — there is no API or backend.
 
 ```
+lib/site.ts
+  SITE_URL           Single source of truth for the production URL (see above)
+  absoluteUrl(path)  Resolves a path against SITE_URL
+
 lib/calculator/
   types.ts          Device, CalculatorSettings, CalculatorResults, DevicePreset types
   constants.ts       Default settings, default device, size classes
