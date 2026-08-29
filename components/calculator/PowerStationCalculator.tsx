@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { calculateResults } from "@/lib/calculator/calculations";
 import { BLANK_DEVICE_DEFAULTS, DEFAULT_DEVICE, DEFAULT_SETTINGS } from "@/lib/calculator/constants";
 import type { CalculatorSettings, Device, DevicePreset } from "@/lib/calculator/types";
+import { ProductRecommendations } from "@/components/recommendations/ProductRecommendations";
 import { DeviceList } from "./DeviceList";
 import { PresetButtons } from "./PresetButtons";
 import { ResultsPanel } from "./ResultsPanel";
@@ -34,6 +35,12 @@ export interface PowerStationCalculatorProps {
   presets?: DevicePreset[];
   /** Optional override for the disclaimer shown below the preset buttons. */
   presetsNote?: string;
+  /**
+   * Whether to render the shared product-recommendation section below the result.
+   * Defaults to true; a page that isn't about picking a power station size can
+   * opt out without affecting any calculator logic.
+   */
+  showRecommendations?: boolean;
 }
 
 export function PowerStationCalculator({
@@ -41,6 +48,7 @@ export function PowerStationCalculator({
   initialSettings,
   presets,
   presetsNote,
+  showRecommendations = true,
 }: PowerStationCalculatorProps) {
   const [devices, setDevices] = useState<Device[]>(() =>
     initialDevices && initialDevices.length > 0 ? initialDevices : [{ ...DEFAULT_DEVICE }]
@@ -75,46 +83,56 @@ export function PowerStationCalculator({
   }
 
   return (
-    <section id="calculator" className="mx-auto max-w-5xl px-4 pb-16 pt-2 sm:px-6">
-      <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-        <div className="space-y-6">
-          <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-            <h2 className="font-display text-lg font-semibold text-ink">Your devices</h2>
-            <p className="mt-1 text-sm text-ink/60">
-              List everything you want to power. We&apos;ll add up the watt-hours automatically.
-            </p>
+    <>
+      <section id="calculator" className="mx-auto max-w-5xl px-4 pb-16 pt-2 sm:px-6">
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+          <div className="space-y-6">
+            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+              <h2 className="font-display text-lg font-semibold text-ink">Your devices</h2>
+              <p className="mt-1 text-sm text-ink/60">
+                List everything you want to power. We&apos;ll add up the watt-hours automatically.
+              </p>
 
-            <div className="mt-5">
-              <DeviceList devices={devices} onChange={updateDevice} onRemove={removeDevice} />
+              <div className="mt-5">
+                <DeviceList devices={devices} onChange={updateDevice} onRemove={removeDevice} />
+              </div>
+
+              <button
+                type="button"
+                onClick={addBlankDevice}
+                className="mt-4 inline-flex items-center gap-2 rounded-lg border border-dashed border-ink/25 px-4 py-2 text-sm font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              >
+                + Add another device
+              </button>
+
+              <div className="mt-6 border-t border-line pt-5">
+                <PresetButtons onAdd={addPresetDevice} presets={presets} note={presetsNote} />
+              </div>
             </div>
 
-            <button
-              type="button"
-              onClick={addBlankDevice}
-              className="mt-4 inline-flex items-center gap-2 rounded-lg border border-dashed border-ink/25 px-4 py-2 text-sm font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-            >
-              + Add another device
-            </button>
-
-            <div className="mt-6 border-t border-line pt-5">
-              <PresetButtons onAdd={addPresetDevice} presets={presets} note={presetsNote} />
-            </div>
+            <SettingsPanel
+              days={days}
+              inverterEfficiency={inverterEfficiency}
+              batteryReserve={batteryReserve}
+              onDaysChange={setDays}
+              onEfficiencyChange={setInverterEfficiency}
+              onReserveChange={setBatteryReserve}
+            />
           </div>
 
-          <SettingsPanel
-            days={days}
-            inverterEfficiency={inverterEfficiency}
-            batteryReserve={batteryReserve}
-            onDaysChange={setDays}
-            onEfficiencyChange={setInverterEfficiency}
-            onReserveChange={setBatteryReserve}
-          />
+          <div className="lg:sticky lg:top-6">
+            <ResultsPanel results={results} inverterEfficiency={inverterEfficiency} batteryReserve={batteryReserve} />
+          </div>
         </div>
+      </section>
 
-        <div className="lg:sticky lg:top-6">
-          <ResultsPanel results={results} inverterEfficiency={inverterEfficiency} batteryReserve={batteryReserve} />
-        </div>
-      </div>
-    </section>
+      {showRecommendations && (
+        <ProductRecommendations
+          recommendedCapacityWh={results.recommendedCapacityWh}
+          recommendedSizeClass={results.recommendedSizeClass}
+          className="pb-4"
+        />
+      )}
+    </>
   );
 }
