@@ -14,7 +14,11 @@ export function RefrigeratorSolarCharging() {
           stretch of low sunlight coincides with an extended outage.
         </p>
         <p>
-          If you&apos;re also running Starlink off-grid, see our{" "}
+          To estimate how long a panel would take to top the battery back up, use the{" "}
+          <Link href="/solar-charge-time-calculator" className="font-medium text-brand hover:underline">
+            Solar Charge Time Calculator
+          </Link>
+          . If you&apos;re also running Starlink off-grid, see our{" "}
           <Link href="/starlink-power-calculator" className="font-medium text-brand hover:underline">
             Starlink Power Station Calculator
           </Link>{" "}

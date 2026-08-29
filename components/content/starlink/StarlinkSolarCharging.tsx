@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function StarlinkSolarCharging() {
   return (
     <div>
@@ -9,9 +11,12 @@ export function StarlinkSolarCharging() {
         battery will gradually drain over consecutive days even if it holds up fine for a single day.
         Actual solar input depends on panel wattage, available sun hours, weather, panel angle, and
         charging losses, and most power stations also cap how fast they&apos;ll accept a charge, so it
-        isn&apos;t possible to promise a specific number of sun-hours that will work for every setup. A
-        dedicated solar charge time calculator is a natural addition down the road for working through
-        those numbers in more depth.
+        isn&apos;t possible to promise a specific number of sun-hours that will work for every setup. The{" "}
+        <Link href="/solar-charge-time-calculator" className="font-medium text-brand hover:underline">
+          Solar Charge Time Calculator
+        </Link>{" "}
+        works through those numbers — charge energy, real-world panel input, and peak sun hours — in more
+        depth.
       </p>
     </div>
   );

@@ -16,3 +16,9 @@ export function formatHours(hours: number): string {
   const label = hours === 1 ? "hour" : "hours";
   return `${trimDecimal(hours)} ${label}`;
 }
+
+export function formatDays(days: number): string {
+  if (!Number.isFinite(days) || days <= 0) return "0 days";
+  const value = trimDecimal(days);
+  return `${value} ${value === "1" ? "day" : "days"}`;
+}

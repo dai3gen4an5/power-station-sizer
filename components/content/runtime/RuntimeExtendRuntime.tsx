@@ -12,7 +12,11 @@ export function RuntimeExtendRuntime() {
             <span className="font-medium text-ink">Recharge with solar.</span> A panel that keeps up
             with your daily consumption effectively removes the runtime limit for as long as the sun
             cooperates. Sustained multi-day use comes down to whether daily solar input matches daily
-            draw.
+            draw — the{" "}
+            <Link href="/solar-charge-time-calculator" className="font-medium text-brand hover:underline">
+              Solar Charge Time Calculator
+            </Link>{" "}
+            estimates how long a panel needs to refill the battery.
           </li>
           <li>
             <span className="font-medium text-ink">Run devices on DC.</span> Powering a fridge, fan, or

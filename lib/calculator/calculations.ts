@@ -1,5 +1,11 @@
 import { SIZE_CLASSES_WH } from "./constants";
-import type { CalculatorResults, CalculatorSettings, Device } from "./types";
+import type {
+  CalculatorResults,
+  CalculatorSettings,
+  Device,
+  SolarChargeInput,
+  SolarChargeResults,
+} from "./types";
 
 function clamp(value: number, min: number, max: number): number {
   if (!Number.isFinite(value)) return min;
@@ -83,4 +89,52 @@ export function estimateRuntimeHours(
 
   if (averageHourlyLoadW <= 0) return 0;
   return usableWh / averageHourlyLoadW;
+}
+
+/** Watt-hours of charge needed to move the battery from currentPercent to targetPercent. */
+export function getSolarChargeEnergyWh(
+  capacityWh: number,
+  currentPercent: number,
+  targetPercent: number
+): number {
+  const capacity = Math.max(0, Number.isFinite(capacityWh) ? capacityWh : 0);
+  const delta = clamp(targetPercent, 0, 100) - clamp(currentPercent, 0, 100);
+  return capacity * (Math.max(0, delta) / 100);
+}
+
+/** Solar panel rated watts scaled down by a real-world efficiency / derating factor. */
+export function getEffectiveSolarInputW(panelWatts: number, solarEfficiencyPercent: number): number {
+  const watts = Math.max(0, Number.isFinite(panelWatts) ? panelWatts : 0);
+  const efficiency = clamp(solarEfficiencyPercent, 1, 100) / 100;
+  return watts * efficiency;
+}
+
+/** Ideal charge time in hours — charge energy divided by effective solar input. */
+export function estimateSolarChargeHours(chargeEnergyWh: number, effectiveSolarInputW: number): number {
+  if (chargeEnergyWh <= 0 || effectiveSolarInputW <= 0) return 0;
+  return chargeEnergyWh / effectiveSolarInputW;
+}
+
+/** Approximate number of days to reach the target, given usable peak sun hours per day. */
+export function estimateSolarChargeDays(chargeHours: number, peakSunHoursPerDay: number): number {
+  if (chargeHours <= 0 || peakSunHoursPerDay <= 0) return 0;
+  return chargeHours / peakSunHoursPerDay;
+}
+
+/** Runs a full solar charge time estimate from a single input object. */
+export function calculateSolarChargeTime(input: SolarChargeInput): SolarChargeResults {
+  const chargeEnergyWh = getSolarChargeEnergyWh(
+    input.capacityWh,
+    input.currentPercent,
+    input.targetPercent
+  );
+  const effectiveSolarInputW = getEffectiveSolarInputW(input.panelWatts, input.solarEfficiency);
+  const chargeHours = estimateSolarChargeHours(chargeEnergyWh, effectiveSolarInputW);
+  const peakSunHours = input.peakSunHoursPerDay;
+  const chargeDays =
+    typeof peakSunHours === "number" && peakSunHours > 0
+      ? estimateSolarChargeDays(chargeHours, peakSunHours)
+      : null;
+
+  return { chargeEnergyWh, effectiveSolarInputW, chargeHours, chargeDays };
 }

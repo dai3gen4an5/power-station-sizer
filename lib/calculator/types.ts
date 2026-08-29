@@ -37,3 +37,29 @@ export interface DevicePreset {
   hoursPerDay: number;
   quantity: number;
 }
+
+export interface SolarChargeInput {
+  /** Power station battery capacity, in watt-hours. */
+  capacityWh: number;
+  /** Current battery charge level, as a percentage, e.g. 20 for 20%. */
+  currentPercent: number;
+  /** Target battery charge level, as a percentage, e.g. 100 for 100%. */
+  targetPercent: number;
+  /** Combined rated power of the solar panel(s), in watts. */
+  panelWatts: number;
+  /** Real-world solar efficiency / derating, as a percentage, e.g. 70 for 70%. */
+  solarEfficiency: number;
+  /** Optional usable peak sun hours per day, used to estimate a rough day count. */
+  peakSunHoursPerDay?: number;
+}
+
+export interface SolarChargeResults {
+  /** Watt-hours of charge needed to move from currentPercent to targetPercent. */
+  chargeEnergyWh: number;
+  /** Panel rated watts scaled down by the real-world efficiency factor. */
+  effectiveSolarInputW: number;
+  /** Ideal charge time in hours: chargeEnergyWh / effectiveSolarInputW. */
+  chargeHours: number;
+  /** Approximate days to reach the target given peak sun hours/day, or null when not provided. */
+  chargeDays: number | null;
+}

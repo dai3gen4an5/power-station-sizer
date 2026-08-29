@@ -18,6 +18,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",
   },
   {
+    href: "/solar-charge-time-calculator",
+    title: "Solar Charge Time Calculator",
+    description: "Estimate how long solar panels take to charge a power station from capacity, charge level, panel watts, and peak sun hours.",
+  },
+  {
     href: "/cpap-power-calculator",
     title: "CPAP Power Station Calculator",
     description: "CPAP-specific wattages, camping and outage planning, and a dedicated FAQ.",
