@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function RefrigeratorRuntimeExplainer() {
   return (
     <div>
@@ -11,7 +13,11 @@ export function RefrigeratorRuntimeExplainer() {
         settings. For a refrigerator specifically, treat the result as an approximation rather than an
         exact countdown — compressor cycling and occasional startup surges mean actual runtime can vary
         from the average-based estimate, especially if the refrigerator&apos;s compressor runs more than
-        usual on a hot day or with frequent door openings.
+        usual on a hot day or with frequent door openings. The{" "}
+        <Link href="/power-station-runtime-calculator" className="font-medium text-brand hover:underline">
+          Power Station Runtime Calculator
+        </Link>{" "}
+        explains the underlying formula and the efficiency and reserve losses in more depth.
       </p>
     </div>
   );

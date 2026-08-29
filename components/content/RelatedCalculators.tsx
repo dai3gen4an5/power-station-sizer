@@ -13,6 +13,11 @@ interface RelatedCalculatorLink {
  */
 const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
   {
+    href: "/power-station-runtime-calculator",
+    title: "Power Station Runtime Calculator",
+    description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",
+  },
+  {
     href: "/cpap-power-calculator",
     title: "CPAP Power Station Calculator",
     description: "CPAP-specific wattages, camping and outage planning, and a dedicated FAQ.",
