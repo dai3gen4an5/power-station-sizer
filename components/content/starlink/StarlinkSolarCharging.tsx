@@ -16,7 +16,11 @@ export function StarlinkSolarCharging() {
           Solar Charge Time Calculator
         </Link>{" "}
         works through those numbers — charge energy, real-world panel input, and peak sun hours — in more
-        depth.
+        depth, and the{" "}
+        <Link href="/solar-panel-size-calculator" className="font-medium text-brand hover:underline">
+          Solar Panel Size Calculator
+        </Link>{" "}
+        goes the other way, from a recharge deadline to the panel wattage it needs.
       </p>
     </div>
   );

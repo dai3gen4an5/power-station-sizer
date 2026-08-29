@@ -23,6 +23,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Estimate how long solar panels take to charge a power station from capacity, charge level, panel watts, and peak sun hours.",
   },
   {
+    href: "/solar-panel-size-calculator",
+    title: "Solar Panel Size Calculator",
+    description: "Work out how many watts of solar panel you need to recharge a power station within a set number of days or peak sun hours.",
+  },
+  {
     href: "/cpap-power-calculator",
     title: "CPAP Power Station Calculator",
     description: "CPAP-specific wattages, camping and outage planning, and a dedicated FAQ.",

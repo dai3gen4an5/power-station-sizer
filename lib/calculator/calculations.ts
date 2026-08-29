@@ -5,6 +5,8 @@ import type {
   Device,
   SolarChargeInput,
   SolarChargeResults,
+  SolarPanelSizeInput,
+  SolarPanelSizeResults,
 } from "./types";
 
 function clamp(value: number, min: number, max: number): number {
@@ -137,4 +139,59 @@ export function calculateSolarChargeTime(input: SolarChargeInput): SolarChargeRe
       : null;
 
   return { chargeEnergyWh, effectiveSolarInputW, chargeHours, chargeDays };
+}
+
+/** Peak sun hours available across a number of days at a given daily figure. */
+export function getAvailablePeakSunHours(days: number, peakSunHoursPerDay: number): number {
+  return Math.max(0, days) * Math.max(0, peakSunHoursPerDay);
+}
+
+/** Effective solar watts needed to replace chargeEnergyWh within availablePeakSunHours. */
+export function getRequiredSolarInputW(chargeEnergyWh: number, availablePeakSunHours: number): number {
+  if (chargeEnergyWh <= 0 || availablePeakSunHours <= 0) return 0;
+  return chargeEnergyWh / availablePeakSunHours;
+}
+
+/** Panel nameplate rating needed to sustain requiredSolarInputW once derated. */
+export function getRequiredPanelWatts(
+  requiredSolarInputW: number,
+  solarEfficiencyPercent: number
+): number {
+  if (requiredSolarInputW <= 0) return 0;
+  const efficiency = clamp(solarEfficiencyPercent, 1, 100) / 100;
+  return requiredSolarInputW / efficiency;
+}
+
+/**
+ * Rounds a required panel wattage up to a sensible shopping size (next 50 W),
+ * so the suggestion carries a little headroom over the bare requirement.
+ */
+export function suggestedPanelWatts(requiredPanelWatts: number): number {
+  if (requiredPanelWatts <= 0) return 0;
+  return Math.ceil(requiredPanelWatts / 50) * 50;
+}
+
+/** Rough daily energy a panel collects — effective input watts x peak sun hours. */
+export function getSolarHarvestWh(
+  panelWatts: number,
+  solarEfficiencyPercent: number,
+  peakSunHours: number
+): number {
+  const effective = getEffectiveSolarInputW(panelWatts, solarEfficiencyPercent);
+  if (effective <= 0 || peakSunHours <= 0) return 0;
+  return effective * Math.max(0, peakSunHours);
+}
+
+/** Works backward from a recharge deadline to the solar panel rating it needs. */
+export function calculateSolarPanelSize(input: SolarPanelSizeInput): SolarPanelSizeResults {
+  const chargeEnergyWh = getSolarChargeEnergyWh(
+    input.capacityWh,
+    input.currentPercent,
+    input.targetPercent
+  );
+  const availablePeakSunHours = Math.max(0, input.availablePeakSunHours);
+  const requiredSolarInputW = getRequiredSolarInputW(chargeEnergyWh, availablePeakSunHours);
+  const requiredPanelWatts = getRequiredPanelWatts(requiredSolarInputW, input.solarEfficiency);
+
+  return { chargeEnergyWh, availablePeakSunHours, requiredSolarInputW, requiredPanelWatts };
 }

@@ -63,3 +63,30 @@ export interface SolarChargeResults {
   /** Approximate days to reach the target given peak sun hours/day, or null when not provided. */
   chargeDays: number | null;
 }
+
+export interface SolarPanelSizeInput {
+  /** Power station battery capacity, in watt-hours. */
+  capacityWh: number;
+  /** Current battery charge level, as a percentage, e.g. 20 for 20%. */
+  currentPercent: number;
+  /** Target battery charge level, as a percentage, e.g. 100 for 100%. */
+  targetPercent: number;
+  /**
+   * Peak sun hours available to finish the recharge. A direct hours figure,
+   * or days multiplied by peak sun hours per day.
+   */
+  availablePeakSunHours: number;
+  /** Real-world solar efficiency / derating, as a percentage, e.g. 70 for 70%. */
+  solarEfficiency: number;
+}
+
+export interface SolarPanelSizeResults {
+  /** Watt-hours of charge needed to move from currentPercent to targetPercent. */
+  chargeEnergyWh: number;
+  /** Peak sun hours available to complete the recharge. */
+  availablePeakSunHours: number;
+  /** Effective solar watts that must be sustained across those hours. */
+  requiredSolarInputW: number;
+  /** Panel nameplate rating needed to deliver that effective input after derating. */
+  requiredPanelWatts: number;
+}

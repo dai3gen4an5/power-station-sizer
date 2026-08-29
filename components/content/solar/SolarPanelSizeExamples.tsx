@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { calculateSolarChargeTime } from "@/lib/calculator/calculations";
 import { DEFAULT_SOLAR_CHARGE_INPUT, SOLAR_PANEL_CLASSES_W } from "@/lib/calculator/constants";
 import { formatDays, formatHours, formatWh } from "@/lib/utils/format";
@@ -35,7 +36,12 @@ export function SolarPanelSizeExamples() {
       <p className="mt-3 text-ink/75">
         Charging a {formatWh(EXAMPLE_CAPACITY_WH)} power station from {FROM_PERCENT}% to {TO_PERCENT}% (
         {formatWh(rows[0].chargeEnergyWh)}) at {solarEfficiency}% real-world efficiency. The day column
-        assumes {peakSunHoursPerDay} peak sun hours per day.
+        assumes {peakSunHoursPerDay} peak sun hours per day. If you have a recharge deadline in mind and
+        want the panel wattage that meets it, the{" "}
+        <Link href="/solar-panel-size-calculator" className="font-medium text-brand hover:underline">
+          Solar Panel Size Calculator
+        </Link>{" "}
+        solves this table in reverse.
       </p>
       <div className="mt-4 overflow-x-auto rounded-2xl border border-line">
         <table className="w-full min-w-[560px] border-collapse text-left text-sm">

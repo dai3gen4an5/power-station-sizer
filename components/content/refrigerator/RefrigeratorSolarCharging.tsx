@@ -18,7 +18,12 @@ export function RefrigeratorSolarCharging() {
           <Link href="/solar-charge-time-calculator" className="font-medium text-brand hover:underline">
             Solar Charge Time Calculator
           </Link>
-          . If you&apos;re also running Starlink off-grid, see our{" "}
+          , or the{" "}
+          <Link href="/solar-panel-size-calculator" className="font-medium text-brand hover:underline">
+            Solar Panel Size Calculator
+          </Link>{" "}
+          to find the panel wattage that keeps up with a day of fridge use. If you&apos;re also running
+          Starlink off-grid, see our{" "}
           <Link href="/starlink-power-calculator" className="font-medium text-brand hover:underline">
             Starlink Power Station Calculator
           </Link>{" "}

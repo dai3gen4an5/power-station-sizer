@@ -16,6 +16,16 @@ export const DEFAULT_SOLAR_CHARGE_INPUT: SolarChargeInput = {
   peakSunHoursPerDay: 5,
 };
 
+/** Starting values for the solar panel size calculator UI (recharge target expressed in days). */
+export const DEFAULT_SOLAR_PANEL_SIZE_INPUT = {
+  capacityWh: 1000,
+  currentPercent: 20,
+  targetPercent: 100,
+  rechargeDays: 1,
+  peakSunHoursPerDay: 5,
+  solarEfficiency: 70,
+};
+
 export const DEFAULT_SETTINGS: CalculatorSettings = {
   days: 1,
   inverterEfficiency: 85,
