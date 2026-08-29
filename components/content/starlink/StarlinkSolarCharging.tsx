@@ -1,0 +1,18 @@
+export function StarlinkSolarCharging() {
+  return (
+    <div>
+      <h2 className="font-display text-2xl font-semibold text-ink">Solar charging for Starlink</h2>
+      <p className="mt-3 text-ink/75">
+        Solar panels can help sustain Starlink&apos;s power draw over multiple days by recharging the
+        battery during daylight hours. The basic question is whether your daily solar energy recovered can
+        keep up with your daily Starlink watt-hour use — if solar input consistently falls short, the
+        battery will gradually drain over consecutive days even if it holds up fine for a single day.
+        Actual solar input depends on panel wattage, available sun hours, weather, panel angle, and
+        charging losses, and most power stations also cap how fast they&apos;ll accept a charge, so it
+        isn&apos;t possible to promise a specific number of sun-hours that will work for every setup. A
+        dedicated solar charge time calculator is a natural addition down the road for working through
+        those numbers in more depth.
+      </p>
+    </div>
+  );
+}

@@ -22,6 +22,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     title: "Refrigerator Power Station Calculator",
     description: "Compressor cycling, startup surge, and energy-label based sizing for refrigerators.",
   },
+  {
+    href: "/starlink-power-calculator",
+    title: "Starlink Power Station Calculator",
+    description: "Starlink-specific wattage examples, AC vs DC efficiency, and solar recharge planning.",
+  },
 ];
 
 export function RelatedCalculators() {
@@ -32,7 +37,7 @@ export function RelatedCalculators() {
         Looking for guidance on a specific device? These dedicated calculators cover device-specific
         wattages, presets, and FAQs.
       </p>
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {RELATED_CALCULATORS.map((item) => (
           <Link
             key={item.href}
