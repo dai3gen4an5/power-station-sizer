@@ -4,6 +4,7 @@ import { InfoPageLayout } from "@/components/content/InfoPageLayout";
 import {
   AFFILIATE_DISCLOSURE_POINTS,
   AFFILIATE_LINKS_ACTIVE,
+  AMAZON_ASSOCIATES_DISCLOSURE,
   SHORT_AFFILIATE_DISCLOSURE,
 } from "@/lib/recommendations/disclosure";
 
@@ -77,6 +78,19 @@ export default function AffiliateDisclosurePage() {
           <p>
             The short and full versions are generated from the same source, so they stay in step if
             affiliate links are switched on later.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 className="font-display text-2xl font-semibold text-ink">Amazon Associates</h2>
+        <div className="mt-3 space-y-3 text-ink/75">
+          <p>
+            This site participates in the Amazon Associates Program. Where a recommendation card
+            links to Amazon, it is shown with this statement:
+          </p>
+          <p className="rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink/70">
+            {AMAZON_ASSOCIATES_DISCLOSURE}
           </p>
         </div>
       </div>

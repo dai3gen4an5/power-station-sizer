@@ -7,6 +7,9 @@ import {
 
 export type RecommendationLinkType = "affiliate" | "plain" | "disabled";
 
+/** Affiliate network an active affiliate link belongs to (`null` when not affiliate). */
+export type AffiliateNetwork = "amazon" | "other" | null;
+
 export interface ResolvedProductLink {
   /** Usable href, or `null` when the card must render as non-clickable. */
   href: string | null;
@@ -16,6 +19,22 @@ export interface ResolvedProductLink {
    * `sponsored` for affiliate links so search engines see them correctly.
    */
   rel: string;
+  /** Which affiliate network `href` belongs to, when `type === "affiliate"`. */
+  network: AffiliateNetwork;
+}
+
+/**
+ * Read-only check: does this URL point at Amazon (including `amzn.to` SiteStripe
+ * short links)? Used only to decide which disclosure text to show — the URL is
+ * never expanded or rewritten.
+ */
+export function isAmazonAffiliateUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+    return host === "amzn.to" || host === "amazon.com" || /(^|\.)amazon\.[a-z]{2,}(\.[a-z]{2,})?$/.test(host);
+  } catch {
+    return false;
+  }
 }
 
 function firstNonEmpty(...values: Array<string | undefined>): string | null {
@@ -35,25 +54,48 @@ function firstNonEmpty(...values: Array<string | undefined>): string | null {
  */
 export function resolveProductLink(product: ProductEntry): ResolvedProductLink {
   if (!AFFILIATE_LINKS_ENABLED || !product.enabled) {
-    return { href: null, type: "disabled", rel: "" };
+    return { href: null, type: "disabled", rel: "", network: null };
   }
 
   const affiliateHref = firstNonEmpty(product.affiliateUrl);
   if (affiliateHref) {
-    return { href: affiliateHref, type: "affiliate", rel: "sponsored noopener noreferrer" };
+    return {
+      href: affiliateHref,
+      type: "affiliate",
+      rel: "sponsored noopener noreferrer",
+      network: isAmazonAffiliateUrl(affiliateHref) ? "amazon" : "other",
+    };
   }
 
   const plainHref = firstNonEmpty(product.url);
   if (plainHref) {
-    return { href: plainHref, type: "plain", rel: "noopener noreferrer" };
+    return { href: plainHref, type: "plain", rel: "noopener noreferrer", network: null };
   }
 
-  return { href: null, type: "disabled", rel: "" };
+  return { href: null, type: "disabled", rel: "", network: null };
 }
 
-/** True when at least one product in the list currently resolves to a real link. */
+/** True when at least one product in the list currently resolves to a real link (affiliate or plain). */
 export function hasAnyActiveLink(products: ProductEntry[]): boolean {
   return products.some((product) => resolveProductLink(product).href !== null);
+}
+
+/**
+ * True when at least one product in the list resolves to an active *affiliate*
+ * link. This — not the global master switch — is what the inline disclosure
+ * keys on, so a capacity class with only placeholder cards never claims to
+ * carry affiliate links.
+ */
+export function hasActiveAffiliateLink(products: ProductEntry[]): boolean {
+  return products.some((product) => resolveProductLink(product).type === "affiliate");
+}
+
+/** True when at least one product in the list resolves to an active Amazon affiliate link. */
+export function hasActiveAmazonLink(products: ProductEntry[]): boolean {
+  return products.some((product) => {
+    const link = resolveProductLink(product);
+    return link.type === "affiliate" && link.network === "amazon";
+  });
 }
 
 /**

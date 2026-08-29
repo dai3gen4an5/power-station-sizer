@@ -1,21 +1,41 @@
-import { SHORT_AFFILIATE_DISCLOSURE } from "@/lib/recommendations/disclosure";
+import {
+  AMAZON_ASSOCIATES_DISCLOSURE,
+  shortAffiliateDisclosure,
+} from "@/lib/recommendations/disclosure";
 
 interface AffiliateDisclosureProps {
   className?: string;
+  /** Whether the section this renders in currently has an active affiliate link. */
+  hasActiveAffiliateLink?: boolean;
+  /** Whether the section this renders in currently has an active Amazon affiliate link. */
+  hasActiveAmazonLink?: boolean;
 }
 
 /**
- * Site-wide affiliate disclosure shown inline with the recommendation cards.
+ * Disclosure shown inline with the recommendation cards.
  *
- * The wording lives in lib/recommendations/disclosure.ts (derived from
- * AFFILIATE_LINKS_ENABLED) and is shared with the full /affiliate-disclosure
- * page, so the two can never contradict each other. While no affiliate link is
- * active it says links *may become* affiliate links, not that they already are.
+ * Wording is driven by the section it appears in, not the global master switch:
+ *   - a class with an active affiliate link says so;
+ *   - a class with only placeholder cards does not claim to have affiliate links;
+ *   - a class with an active Amazon link also shows the exact Amazon Associates
+ *     statement.
+ * The wording is shared with the /affiliate-disclosure page via
+ * lib/recommendations/disclosure.ts so the two cannot drift apart.
  */
-export function AffiliateDisclosure({ className }: AffiliateDisclosureProps) {
+export function AffiliateDisclosure({
+  className,
+  hasActiveAffiliateLink = false,
+  hasActiveAmazonLink = false,
+}: AffiliateDisclosureProps) {
   return (
-    <p className={`text-xs leading-relaxed text-ink/55 ${className ?? ""}`}>
-      <span className="font-medium text-ink/70">Disclosure:</span> {SHORT_AFFILIATE_DISCLOSURE}
-    </p>
+    <div className={`space-y-1 text-xs leading-relaxed text-ink/55 ${className ?? ""}`}>
+      <p>
+        <span className="font-medium text-ink/70">Disclosure:</span>{" "}
+        {shortAffiliateDisclosure(hasActiveAffiliateLink)}
+      </p>
+      {hasActiveAmazonLink ? (
+        <p className="text-ink/70">{AMAZON_ASSOCIATES_DISCLOSURE}</p>
+      ) : null}
+    </div>
   );
 }

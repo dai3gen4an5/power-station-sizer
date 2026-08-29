@@ -21,8 +21,10 @@
  */
 
 /** Master switch for the whole recommendation layer's affiliate behavior.
- *  Keep this `false` until at least one real, approved affiliate link is live. */
-export const AFFILIATE_LINKS_ENABLED = false;
+ *  Turned on once at least one real, approved affiliate link is live below.
+ *  Per-section disclosure still depends on whether the *shown* class actually
+ *  has an active affiliate link — see components/recommendations. */
+export const AFFILIATE_LINKS_ENABLED = true;
 
 export type CapacityClassId = "500wh" | "1000wh" | "2000wh" | "3000wh-plus";
 
@@ -97,7 +99,15 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
     reason:
       "Your estimate lands near 1,000Wh, a common size for a night of use or a few devices at once.",
     products: [
-      family("jackery", "Jackery", "Explorer 1000 family"),
+      // First live affiliate link: Amazon Associates SiteStripe short link.
+      // Do not expand, rewrite, or re-shorten this URL.
+      {
+        brand: "jackery",
+        brandName: "Jackery",
+        productName: "Jackery Explorer 1000 v2",
+        affiliateUrl: "https://amzn.to/4wWx2Ue",
+        enabled: true,
+      },
       family("ecoflow", "EcoFlow", "RIVER 2 Pro / DELTA 2 family"),
       family("bluetti", "BLUETTI", "EB70 / AC70 family"),
     ],

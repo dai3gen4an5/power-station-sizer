@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { AffiliateDisclosure } from "./AffiliateDisclosure";
 import {
   emitRecommendationClick,
+  hasActiveAffiliateLink,
+  hasActiveAmazonLink,
   hasAnyActiveLink,
   recommendationDataAttributes,
   resolveProductLink,
@@ -44,7 +46,10 @@ export function ProductRecommendations({
   // Nothing to recommend yet (e.g. an empty calculator) — render nothing.
   if (!capacityClass) return null;
 
-  const anyActiveLink = hasAnyActiveLink([...capacityClass.products]);
+  const products = [...capacityClass.products];
+  const anyActiveLink = hasAnyActiveLink(products);
+  const sectionHasAffiliateLink = hasActiveAffiliateLink(products);
+  const sectionHasAmazonLink = hasActiveAmazonLink(products);
 
   return (
     <section
@@ -136,7 +141,11 @@ export function ProductRecommendations({
           input &mdash; against the devices you plan to run before buying.
         </p>
 
-        <AffiliateDisclosure className="mt-3" />
+        <AffiliateDisclosure
+          className="mt-3"
+          hasActiveAffiliateLink={sectionHasAffiliateLink}
+          hasActiveAmazonLink={sectionHasAmazonLink}
+        />
       </div>
     </section>
   );
