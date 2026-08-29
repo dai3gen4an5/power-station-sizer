@@ -86,7 +86,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
     reason:
       "Your estimate rounds to about 500Wh, which suits a single small device or a short top-up.",
     products: [
-      family("jackery", "Jackery", "Explorer 300 / 500 family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "jackery",
+        brandName: "Jackery",
+        productName: "Jackery Explorer 500 v2",
+        affiliateUrl: "https://amzn.to/3ULg6T7",
+        enabled: true,
+      },
       family("ecoflow", "EcoFlow", "RIVER 2 / RIVER family"),
       family("bluetti", "BLUETTI", "EB3A / EB55 family"),
     ],
@@ -120,7 +127,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
     reason:
       "Your estimate points to roughly the 2,000Wh class, which covers a full day or a heavier load.",
     products: [
-      family("jackery", "Jackery", "Explorer 2000 family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "jackery",
+        brandName: "Jackery",
+        productName: "Jackery Explorer 2000 v2",
+        affiliateUrl: "https://amzn.to/4d7s3c4",
+        enabled: true,
+      },
       family("ecoflow", "EcoFlow", "DELTA 2 Max / DELTA Max family"),
       family("bluetti", "BLUETTI", "AC200 family"),
     ],
@@ -133,7 +147,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
     reason:
       "Your estimate is above 2,000Wh, so look at 3,000Wh-and-larger units, often with expandable batteries.",
     products: [
-      family("jackery", "Jackery", "Explorer 3000 family and larger"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "jackery",
+        brandName: "Jackery",
+        productName: "Jackery HomePower 3000",
+        affiliateUrl: "https://amzn.to/3UulYA8",
+        enabled: true,
+      },
       family("ecoflow", "EcoFlow", "DELTA Pro family"),
       family("bluetti", "BLUETTI", "AC300 / AC500 family"),
     ],
