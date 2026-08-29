@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { MetaHTMLAttributes } from "react";
 import { PowerStationCalculator } from "@/components/calculator/PowerStationCalculator";
 import { BatteryReserveInfo } from "@/components/content/BatteryReserveInfo";
 import { Faq } from "@/components/content/Faq";
@@ -30,9 +31,20 @@ export const metadata: Metadata = {
   },
 };
 
+// Impact.com site-ownership verification tag. Kept as a raw element (React hoists
+// it into <head>) because Impact requires the non-standard `value` attribute,
+// which the Next.js Metadata API cannot emit — it only produces `content`. The
+// name/value strings must stay exactly as provided by Impact.
+const impactSiteVerificationMeta: MetaHTMLAttributes<HTMLMetaElement> & { value: string } = {
+  name: "impact-site-verification",
+  value: "b1f7cad1-fa52-43f9-9507-19fd92f3b9e4",
+};
+
 export default function HomePage() {
   return (
     <>
+      <meta {...impactSiteVerificationMeta} />
+
       <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
         <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
           What Size Power Station Do I Need?
