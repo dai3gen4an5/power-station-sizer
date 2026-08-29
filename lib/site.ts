@@ -29,3 +29,14 @@ export const SITE_URL: string =
 export function absoluteUrl(path = "/"): string {
   return new URL(path, SITE_URL).toString();
 }
+
+/**
+ * Optional public contact address for the /contact page.
+ *
+ * Set `NEXT_PUBLIC_CONTACT_EMAIL` in the host environment (e.g. the Vercel
+ * dashboard) to turn on a real `mailto:` link. While it is unset this is `null`
+ * and /contact shows a plain-text fallback instead of a broken link — no address
+ * is ever hard-coded in the repo.
+ */
+export const CONTACT_EMAIL: string | null =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || null;
