@@ -94,7 +94,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         affiliateUrl: "https://amzn.to/3ULg6T7",
         enabled: true,
       },
-      family("ecoflow", "EcoFlow", "RIVER 2 / RIVER family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "ecoflow",
+        brandName: "EcoFlow",
+        productName: "EcoFlow RIVER 2 Max 500",
+        affiliateUrl: "https://amzn.to/4gK4pnj",
+        enabled: true,
+      },
       family("bluetti", "BLUETTI", "EB3A / EB55 family"),
     ],
   },
@@ -115,7 +122,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         affiliateUrl: "https://amzn.to/4wWx2Ue",
         enabled: true,
       },
-      family("ecoflow", "EcoFlow", "RIVER 2 Pro / DELTA 2 family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "ecoflow",
+        brandName: "EcoFlow",
+        productName: "EcoFlow DELTA 3 Classic",
+        affiliateUrl: "https://amzn.to/4zM42RC",
+        enabled: true,
+      },
       family("bluetti", "BLUETTI", "EB70 / AC70 family"),
     ],
   },
@@ -135,7 +149,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         affiliateUrl: "https://amzn.to/4d7s3c4",
         enabled: true,
       },
-      family("ecoflow", "EcoFlow", "DELTA 2 Max / DELTA Max family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "ecoflow",
+        brandName: "EcoFlow",
+        productName: "EcoFlow DELTA 3 Max",
+        affiliateUrl: "https://amzn.to/46wIOty",
+        enabled: true,
+      },
       family("bluetti", "BLUETTI", "AC200 family"),
     ],
   },
@@ -155,7 +176,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         affiliateUrl: "https://amzn.to/3UulYA8",
         enabled: true,
       },
-      family("ecoflow", "EcoFlow", "DELTA Pro family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "ecoflow",
+        brandName: "EcoFlow",
+        productName: "EcoFlow DELTA 3 Ultra",
+        affiliateUrl: "https://amzn.to/3SCc7Yk",
+        enabled: true,
+      },
       family("bluetti", "BLUETTI", "AC300 / AC500 family"),
     ],
   },
