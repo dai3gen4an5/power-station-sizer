@@ -22,3 +22,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# legacy generated project ZIP bundles (old ZIP-based workflow)
+/power-station-sizer-*.zip
