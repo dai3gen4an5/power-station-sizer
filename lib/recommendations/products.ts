@@ -130,7 +130,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         affiliateUrl: "https://amzn.to/4zM42RC",
         enabled: true,
       },
-      family("bluetti", "BLUETTI", "EB70 / AC70 family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "bluetti",
+        brandName: "BLUETTI",
+        productName: "BLUETTI Elite 100 V2",
+        affiliateUrl: "https://amzn.to/4gECyVw",
+        enabled: true,
+      },
     ],
   },
   {
@@ -157,7 +164,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         affiliateUrl: "https://amzn.to/46wIOty",
         enabled: true,
       },
-      family("bluetti", "BLUETTI", "AC200 family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "bluetti",
+        brandName: "BLUETTI",
+        productName: "BLUETTI AC200L",
+        affiliateUrl: "https://amzn.to/4ck9AJf",
+        enabled: true,
+      },
     ],
   },
   {
@@ -184,7 +198,14 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         affiliateUrl: "https://amzn.to/3SCc7Yk",
         enabled: true,
       },
-      family("bluetti", "BLUETTI", "AC300 / AC500 family"),
+      // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
+      {
+        brand: "bluetti",
+        brandName: "BLUETTI",
+        productName: "BLUETTI Elite 300",
+        affiliateUrl: "https://amzn.to/4cONKh0",
+        enabled: true,
+      },
     ],
   },
 ] as const;
