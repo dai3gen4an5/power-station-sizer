@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function OutagePriorityAppliances() {
   return (
     <div>
@@ -13,7 +15,11 @@ export function OutagePriorityAppliances() {
           <li>
             <span className="font-medium text-ink">Medical equipment first.</span> A CPAP or other
             prescribed device is the priority for anyone who depends on it. It usually draws little
-            power, so it is inexpensive to back up.
+            power, so it is inexpensive to back up &mdash; the{" "}
+            <Link href="/cpap-power-calculator" className="font-medium text-brand hover:underline">
+              CPAP Power Station Calculator
+            </Link>{" "}
+            covers CPAP wattages and overnight sizing in detail.
           </li>
           <li>
             <span className="font-medium text-ink">Food safety.</span> A refrigerator or freezer is
