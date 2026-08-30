@@ -14,9 +14,12 @@ export function CpapOutageBackup() {
         </p>
         <p>
           If you&apos;re also backing up a refrigerator, Wi-Fi router, or other devices during the same
-          outage, use the full{" "}
-          <Link href="/" className="font-medium text-brand hover:underline">
-            Power Station Size Calculator
+          outage, use the{" "}
+          <Link
+            href="/home-power-outage-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Home Power Outage Calculator
           </Link>{" "}
           to add them all to one estimate.
         </p>

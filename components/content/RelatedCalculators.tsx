@@ -13,6 +13,11 @@ interface RelatedCalculatorLink {
  */
 const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
   {
+    href: "/home-power-outage-calculator",
+    title: "Home Power Outage Calculator",
+    description: "Add the essentials you need during a blackout — refrigerator, Wi-Fi, lights, CPAP — to size a power station for the outage.",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",

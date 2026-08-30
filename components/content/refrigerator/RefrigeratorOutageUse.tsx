@@ -18,11 +18,14 @@ export function RefrigeratorOutageUse() {
           <Link href="/cpap-power-calculator" className="font-medium text-brand hover:underline">
             CPAP Power Station Calculator
           </Link>{" "}
-          for CPAP-specific guidance, or add every device to the full{" "}
-          <Link href="/" className="font-medium text-brand hover:underline">
-            Power Station Size Calculator
+          for CPAP-specific guidance, or use the{" "}
+          <Link
+            href="/home-power-outage-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Home Power Outage Calculator
           </Link>{" "}
-          for one combined estimate.
+          to add every essential to one combined outage estimate.
         </p>
       </div>
     </div>
