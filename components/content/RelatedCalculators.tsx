@@ -28,6 +28,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Size a power station for tent or car camping — portable fridge, camp lights, phones, laptop, CPAP, Starlink — over one to three nights.",
   },
   {
+    href: "/sump-pump-power-calculator",
+    title: "Sump Pump Backup Power Calculator",
+    description: "Battery capacity plus the continuous and startup / surge output a power station needs to run a sump pump through an outage.",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",

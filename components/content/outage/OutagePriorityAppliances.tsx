@@ -27,6 +27,18 @@ export function OutagePriorityAppliances() {
             often enough to keep food cold.
           </li>
           <li>
+            <span className="font-medium text-ink">Water and flood protection.</span> If a storm
+            outage could flood a basement, a sump pump is a priority &mdash; but it is a motor load,
+            so a power station needs the right startup output, not just watt-hours. The{" "}
+            <Link
+              href="/sump-pump-power-calculator"
+              className="font-medium text-brand hover:underline"
+            >
+              Sump Pump Backup Power Calculator
+            </Link>{" "}
+            covers running versus starting watts.
+          </li>
+          <li>
             <span className="font-medium text-ink">Communication and light.</span> Phone charging,
             a Wi-Fi router and a handful of LED bulbs together draw very little and keep you informed
             and safe.
