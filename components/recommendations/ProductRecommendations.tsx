@@ -18,6 +18,17 @@ interface ProductRecommendationsProps {
   recommendedCapacityWh: number;
   /** Nearest common size class, or null when above the largest known size. */
   recommendedSizeClass: number | null;
+  /**
+   * Continuous AC output the load needs, in watts. Pass it from calculators that
+   * compute one (microwave, AC, sump / well pump). Omit / 0 on capacity-only
+   * pages — the continuous-output filter is then skipped.
+   */
+  requiredContinuousOutputW?: number;
+  /**
+   * Startup / surge output the load needs, in watts. Pass it only when the user
+   * has supplied a real figure; omit / 0 leaves the surge filter off.
+   */
+  requiredSurgeOutputW?: number;
   className?: string;
 }
 
@@ -29,8 +40,9 @@ interface ProductRecommendationsProps {
  *   - nothing, for an empty calculator;
  *   - a neutral, non-affiliate note when the recommended capacity is larger than
  *     every single unit listed — so an undersized unit is never linked;
- *   - otherwise the eligible product families for that capacity, where "eligible"
- *     means the unit's nominal capacity meets or exceeds the recommended capacity.
+ *   - a neutral, non-affiliate note when capacity fits but no listed unit has a
+ *     confirmed continuous / surge output rating high enough for the load;
+ *   - otherwise the product families that clear every supplied requirement.
  *
  * No calculator math is duplicated here, and the calculator's own size-class
  * rounding is untouched.
@@ -38,11 +50,18 @@ interface ProductRecommendationsProps {
 export function ProductRecommendations({
   recommendedCapacityWh,
   recommendedSizeClass,
+  requiredContinuousOutputW,
+  requiredSurgeOutputW,
   className,
 }: ProductRecommendationsProps) {
   const pathname = usePathname() || "/";
 
-  const state = getRecommendationState({ recommendedCapacityWh, recommendedSizeClass });
+  const state = getRecommendationState({
+    recommendedCapacityWh,
+    recommendedSizeClass,
+    requiredContinuousOutputW,
+    requiredSurgeOutputW,
+  });
 
   // Nothing to recommend yet (e.g. an empty calculator) — render nothing.
   if (state.kind === "empty") return null;
@@ -83,6 +102,54 @@ export function ProductRecommendations({
             Before buying, verify total usable capacity, continuous output, surge capability,
             voltage, outlet configuration, and battery-expansion limits against the devices you plan
             to run. Enough capacity alone does not confirm a unit can start and run them.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  // Capacity fits this range, but no listed unit has a confirmed output rating
+  // high enough for this load. Show a neutral note with the watts to shop for —
+  // never an affiliate card whose output has not been verified for the load.
+  if (state.kind === "output-unconfirmed") {
+    const continuousW = Math.round(state.requiredContinuousOutputW);
+    const surgeW = Math.round(state.requiredSurgeOutputW);
+    return (
+      <section
+        className={sectionClassName}
+        aria-labelledby="product-recommendations-heading"
+      >
+        <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+          <h2
+            id="product-recommendations-heading"
+            className="font-display text-base font-semibold text-ink"
+          >
+            Check the power station&apos;s output rating
+          </h2>
+          <p className="mt-2 text-sm text-ink/70">
+            Products in this range can cover the roughly{" "}
+            <span className="font-semibold text-ink">{formatWh(state.recommendedWh)}</span> of battery
+            capacity this load needs, but the listed units do not have a confirmed continuous AC
+            output rating high enough for it, so no specific product is shown.
+          </p>
+          <p className="mt-3 text-sm text-ink/70">
+            Look for a power station with at least{" "}
+            <span className="font-semibold text-ink">{continuousW}&nbsp;W</span> of continuous AC
+            output
+            {surgeW > 0 ? (
+              <>
+                {" "}
+                and at least{" "}
+                <span className="font-semibold text-ink">{surgeW}&nbsp;W</span> of startup / surge
+                output
+              </>
+            ) : null}
+            , plus enough battery capacity.
+          </p>
+          <p className="mt-3 text-xs leading-relaxed text-ink/55">
+            Confirm the unit&apos;s rated continuous output, its surge / peak rating, its AC voltage,
+            and its outlet type against this load&apos;s specifications before buying. Enough
+            capacity alone does not confirm a unit can start and run it.
           </p>
         </div>
       </section>

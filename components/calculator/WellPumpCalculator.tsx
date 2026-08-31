@@ -360,6 +360,8 @@ export function WellPumpCalculator() {
       <ProductRecommendations
         recommendedCapacityWh={result.recommendedWh}
         recommendedSizeClass={result.sizeClass}
+        requiredContinuousOutputW={result.requiredContinuousW}
+        requiredSurgeOutputW={result.requiredSurgeW}
         className="pb-2"
       />
 

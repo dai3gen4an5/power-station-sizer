@@ -135,9 +135,16 @@ export default function MethodologyPage() {
         </ul>
         <p className="mt-3 text-ink/75">
           These are ranges to compare within, not endorsements, and they are listed in a fixed order.
-          If your recommended capacity is larger than every single unit listed, the section shows a
-          neutral note pointing to expandable or whole-home systems instead of linking an undersized
-          unit.
+        </p>
+        <p className="mt-3 text-ink/75">
+          Product recommendations are filtered separately from the calculator&apos;s size classes. A
+          listed product is only shown when it satisfies the known battery-capacity requirement and,
+          when the calculator supplies them, the known continuous-output and startup / surge
+          requirements. An unknown specification is never treated as confirmed compatibility. If your
+          recommended capacity is larger than every single unit listed, or no listed unit has a
+          confirmed output rating high enough for the load, the section shows a neutral note &mdash;
+          pointing to expandable or whole-home systems, or stating the output rating to look for
+          &mdash; instead of linking a product that may be undersized.
         </p>
       </div>
 

@@ -52,6 +52,31 @@ export interface ProductEntry {
    * math, and it is independent of the calculator's own size-class rounding.
    */
   capacityWh: number;
+  /**
+   * Manufacturer-published RATED CONTINUOUS AC OUTPUT, in watts, for this exact
+   * unit. Optional and deliberately UNSET on every entry below: these are
+   * comparison *families*, not single verified SKUs, so a per-SKU output rating
+   * cannot be stated without guessing. While it is undefined the recommendation
+   * layer treats the unit's continuous output as *unconfirmed* — never as a
+   * pass — whenever a calculator supplies a continuous-output requirement.
+   * Populate it only from an official spec sheet for the precise SKU an
+   * affiliate link points to. Never infer it from `capacityWh` or a class label.
+   */
+  continuousOutputW?: number;
+  /**
+   * Manufacturer-published RATED SURGE / PEAK AC OUTPUT, in watts, for this
+   * exact unit. Optional and UNSET for the same reason as `continuousOutputW`.
+   * Undefined = unconfirmed (never a pass) when a startup / surge requirement is
+   * supplied. Never inferred from `continuousOutputW` or a fixed multiplier.
+   */
+  surgeOutputW?: number;
+  /**
+   * AC output voltages the unit provides, e.g. `[120]` or `[120, 240]`, from
+   * the manufacturer spec. Optional and UNSET. Reserved for a future
+   * voltage-aware check; an undefined value is never used to assume voltage
+   * compatibility today.
+   */
+  acVoltageV?: number[];
   /** Per-product switch. A card stays non-clickable until this is `true` (and a URL exists). */
   enabled: boolean;
 }
