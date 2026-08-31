@@ -10,7 +10,8 @@ import {
   recommendationDataAttributes,
   resolveProductLink,
 } from "@/lib/recommendations/links";
-import { selectCapacityClassForResult } from "@/lib/recommendations/selectClass";
+import { getRecommendationState } from "@/lib/recommendations/eligibility";
+import { formatWh } from "@/lib/utils/format";
 
 interface ProductRecommendationsProps {
   /** Recommended capacity from the calculator, in watt-hours. */
@@ -23,13 +24,16 @@ interface ProductRecommendationsProps {
 /**
  * Site-wide "here are power stations in your size range" section.
  *
- * Renders right after the calculator result, never above it. Picks one of four
- * capacity classes from the recommended capacity via `selectCapacityClass`
- * (a pure function — no calculator math is duplicated here).
+ * Renders right after the calculator result, never above it. A pure function
+ * (`getRecommendationState`) decides what to show:
+ *   - nothing, for an empty calculator;
+ *   - a neutral, non-affiliate note when the recommended capacity is larger than
+ *     every single unit listed — so an undersized unit is never linked;
+ *   - otherwise the eligible product families for that capacity, where "eligible"
+ *     means the unit's nominal capacity meets or exceeds the recommended capacity.
  *
- * While no affiliate link is active every card is a non-clickable placeholder;
- * nothing links to a dummy URL. When links go live (see lib/recommendations/products.ts)
- * the same cards become real anchors with `rel="sponsored noopener noreferrer"`.
+ * No calculator math is duplicated here, and the calculator's own size-class
+ * rounding is untouched.
  */
 export function ProductRecommendations({
   recommendedCapacityWh,
@@ -38,22 +42,62 @@ export function ProductRecommendations({
 }: ProductRecommendationsProps) {
   const pathname = usePathname() || "/";
 
-  const capacityClass = selectCapacityClassForResult({
-    recommendedCapacityWh,
-    recommendedSizeClass,
-  });
+  const state = getRecommendationState({ recommendedCapacityWh, recommendedSizeClass });
 
   // Nothing to recommend yet (e.g. an empty calculator) — render nothing.
-  if (!capacityClass) return null;
+  if (state.kind === "empty") return null;
 
-  const products = [...capacityClass.products];
+  const sectionClassName = `mx-auto max-w-5xl px-4 sm:px-6 ${className ?? ""}`;
+
+  // The recommended capacity is larger than every single unit currently listed.
+  // Show a neutral, link-free note rather than an undersized affiliate card.
+  if (state.kind === "no-match") {
+    return (
+      <section
+        className={sectionClassName}
+        aria-labelledby="product-recommendations-heading"
+      >
+        <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+          <h2
+            id="product-recommendations-heading"
+            className="font-display text-base font-semibold text-ink"
+          >
+            Larger than a single listed power station
+          </h2>
+          <p className="mt-2 text-sm text-ink/70">
+            Your estimated capacity requirement is about{" "}
+            <span className="font-semibold text-ink">{formatWh(state.recommendedWh)}</span>, which is
+            larger than the single-unit power stations currently listed here.
+          </p>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-ink/70">
+            <li>
+              Consider an expandable power station with add-on battery modules, or a larger
+              whole-home system.
+            </li>
+            <li>
+              Or reduce and recharge the load &mdash; run the device in shorter blocks, cut standby
+              draw, or add solar to extend runtime.
+            </li>
+          </ul>
+          <p className="mt-3 text-xs leading-relaxed text-ink/55">
+            Before buying, verify total usable capacity, continuous output, surge capability,
+            voltage, outlet configuration, and battery-expansion limits against the devices you plan
+            to run. Enough capacity alone does not confirm a unit can start and run them.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  const { capacityClass } = state;
+  const products = state.products;
   const anyActiveLink = hasAnyActiveLink(products);
   const sectionHasAffiliateLink = hasActiveAffiliateLink(products);
   const sectionHasAmazonLink = hasActiveAmazonLink(products);
 
   return (
     <section
-      className={`mx-auto max-w-5xl px-4 sm:px-6 ${className ?? ""}`}
+      className={sectionClassName}
       aria-labelledby="product-recommendations-heading"
     >
       <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
@@ -71,7 +115,7 @@ export function ProductRecommendations({
         <p className="mt-1 text-xs text-ink/55">{capacityClass.reason}</p>
 
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          {capacityClass.products.map((product) => {
+          {products.map((product) => {
             const link = resolveProductLink(product);
             const dataAttrs = recommendationDataAttributes({
               page: pathname,

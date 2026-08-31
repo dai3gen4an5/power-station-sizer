@@ -135,6 +135,9 @@ export default function MethodologyPage() {
         </ul>
         <p className="mt-3 text-ink/75">
           These are ranges to compare within, not endorsements, and they are listed in a fixed order.
+          If your recommended capacity is larger than every single unit listed, the section shows a
+          neutral note pointing to expandable or whole-home systems instead of linking an undersized
+          unit.
         </p>
       </div>
 

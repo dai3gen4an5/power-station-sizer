@@ -41,6 +41,17 @@ export interface ProductEntry {
   url?: string;
   /** Affiliate URL, added once a program is approved. Empty / undefined = not set. */
   affiliateUrl?: string;
+  /**
+   * Conservative nominal battery capacity, in watt-hours, for a unit in this
+   * class. This is the class's defining size (500 / 1,000 / 2,000 / 3,000), not
+   * a per-SKU rating — real units in each class have at least this capacity, so
+   * comparing `capacityWh >= recommendedWh` never over-promises.
+   *
+   * Used ONLY by the recommendation layer's capacity-eligibility check
+   * (lib/recommendations/eligibility.ts). It is never an input to any calculator
+   * math, and it is independent of the calculator's own size-class rounding.
+   */
+  capacityWh: number;
   /** Per-product switch. A card stays non-clickable until this is `true` (and a URL exists). */
   enabled: boolean;
 }
@@ -62,11 +73,12 @@ export interface CapacityClass {
 function family(
   brand: BrandId,
   brandName: string,
-  productName: string
+  productName: string,
+  capacityWh: number
 ): ProductEntry {
   // All entries start disabled with no URL. Editors fill url/affiliateUrl and flip
   // `enabled` per product once links are ready.
-  return { brand, brandName, productName, enabled: false };
+  return { brand, brandName, productName, capacityWh, enabled: false };
 }
 
 /**
@@ -92,6 +104,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "Jackery",
         productName: "Jackery Explorer 500 v2",
         affiliateUrl: "https://amzn.to/3ULg6T7",
+        capacityWh: 500,
         enabled: true,
       },
       // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
@@ -100,9 +113,10 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "EcoFlow",
         productName: "EcoFlow RIVER 2 Max 500",
         affiliateUrl: "https://amzn.to/4gK4pnj",
+        capacityWh: 500,
         enabled: true,
       },
-      family("bluetti", "BLUETTI", "EB3A / EB55 family"),
+      family("bluetti", "BLUETTI", "EB3A / EB55 family", 500),
     ],
   },
   {
@@ -120,6 +134,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "Jackery",
         productName: "Jackery Explorer 1000 v2",
         affiliateUrl: "https://amzn.to/4wWx2Ue",
+        capacityWh: 1000,
         enabled: true,
       },
       // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
@@ -128,6 +143,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "EcoFlow",
         productName: "EcoFlow DELTA 3 Classic",
         affiliateUrl: "https://amzn.to/4zM42RC",
+        capacityWh: 1000,
         enabled: true,
       },
       // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
@@ -136,6 +152,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "BLUETTI",
         productName: "BLUETTI Elite 100 V2",
         affiliateUrl: "https://amzn.to/4gECyVw",
+        capacityWh: 1000,
         enabled: true,
       },
     ],
@@ -154,6 +171,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "Jackery",
         productName: "Jackery Explorer 2000 v2",
         affiliateUrl: "https://amzn.to/4d7s3c4",
+        capacityWh: 2000,
         enabled: true,
       },
       // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
@@ -162,6 +180,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "EcoFlow",
         productName: "EcoFlow DELTA 3 Max",
         affiliateUrl: "https://amzn.to/46wIOty",
+        capacityWh: 2000,
         enabled: true,
       },
       // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
@@ -170,6 +189,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "BLUETTI",
         productName: "BLUETTI AC200L",
         affiliateUrl: "https://amzn.to/4ck9AJf",
+        capacityWh: 2000,
         enabled: true,
       },
     ],
@@ -188,6 +208,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "Jackery",
         productName: "Jackery HomePower 3000",
         affiliateUrl: "https://amzn.to/3UulYA8",
+        capacityWh: 3000,
         enabled: true,
       },
       // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
@@ -196,6 +217,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "EcoFlow",
         productName: "EcoFlow DELTA 3 Ultra",
         affiliateUrl: "https://amzn.to/3SCc7Yk",
+        capacityWh: 3000,
         enabled: true,
       },
       // Amazon Associates SiteStripe short link — do not expand, rewrite, or re-shorten.
@@ -204,6 +226,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brandName: "BLUETTI",
         productName: "BLUETTI Elite 300",
         affiliateUrl: "https://amzn.to/4cONKh0",
+        capacityWh: 3000,
         enabled: true,
       },
     ],
