@@ -23,6 +23,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Add RV, camper and van loads — 12V fridge, lights, fan, Starlink, CPAP — to estimate daily Wh and battery capacity for camping.",
   },
   {
+    href: "/camping-power-station-calculator",
+    title: "Camping Power Station Calculator",
+    description: "Size a power station for tent or car camping — portable fridge, camp lights, phones, laptop, CPAP, Starlink — over one to three nights.",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",

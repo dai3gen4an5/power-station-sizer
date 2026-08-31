@@ -34,7 +34,15 @@ export function RvWhatSize() {
           >
             Home Power Outage Calculator
           </Link>{" "}
-          covers that case.
+          covers that case, and for tent or car camping with packable gear rather than a built-in
+          setup, see the{" "}
+          <Link
+            href="/camping-power-station-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Camping Power Station Calculator
+          </Link>
+          .
         </p>
       </div>
     </div>
