@@ -33,6 +33,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Battery capacity plus the continuous and startup / surge output a power station needs to run a sump pump through an outage.",
   },
   {
+    href: "/well-pump-power-calculator",
+    title: "Well Pump Backup Power Calculator",
+    description: "Battery capacity, continuous and startup / surge output, and a 120V vs 240V check for backing up a household well pump.",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",

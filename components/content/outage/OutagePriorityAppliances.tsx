@@ -28,15 +28,23 @@ export function OutagePriorityAppliances() {
           </li>
           <li>
             <span className="font-medium text-ink">Water and flood protection.</span> If a storm
-            outage could flood a basement, a sump pump is a priority &mdash; but it is a motor load,
-            so a power station needs the right startup output, not just watt-hours. The{" "}
+            outage could flood a basement, a sump pump is a priority; if your home draws water from a
+            well, the well pump is your water supply. Both are motor loads, so a power station needs
+            the right startup output, not just watt-hours &mdash; the{" "}
             <Link
               href="/sump-pump-power-calculator"
               className="font-medium text-brand hover:underline"
             >
-              Sump Pump Backup Power Calculator
+              Sump Pump
             </Link>{" "}
-            covers running versus starting watts.
+            and{" "}
+            <Link
+              href="/well-pump-power-calculator"
+              className="font-medium text-brand hover:underline"
+            >
+              Well Pump
+            </Link>{" "}
+            backup calculators cover running versus starting watts.
           </li>
           <li>
             <span className="font-medium text-ink">Communication and light.</span> Phone charging,

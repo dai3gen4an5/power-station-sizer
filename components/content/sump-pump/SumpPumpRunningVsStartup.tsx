@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function SumpPumpRunningVsStartup() {
   return (
     <div>
@@ -22,6 +24,16 @@ export function SumpPumpRunningVsStartup() {
           not something this calculator will estimate for you. Both numbers are usually printed on the
           pump&apos;s rating label or listed in its manual and on the manufacturer&apos;s product
           page &mdash; enter what you find there.
+        </p>
+        <p>
+          Need backup sizing for a household well pump instead? The{" "}
+          <Link
+            href="/well-pump-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Well Pump Backup Power Calculator
+          </Link>{" "}
+          uses the same running-versus-starting approach and adds a 120V versus 240V check.
         </p>
       </div>
     </div>

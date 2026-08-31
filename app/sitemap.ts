@@ -70,6 +70,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: absoluteUrl("/well-pump-power-calculator"),
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: absoluteUrl("/about"),
       lastModified: new Date(),
       changeFrequency: "yearly",
