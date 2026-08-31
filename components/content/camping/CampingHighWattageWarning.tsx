@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function CampingHighWattageWarning() {
   return (
     <div>
@@ -31,7 +33,15 @@ export function CampingHighWattageWarning() {
           Because a reliable surge result depends on the exact appliance and power station, this page
           deliberately does not calculate one. Treat kettles, cookers and heaters as short-burst
           loads, read both the appliance label and the power station spec sheet, and confirm
-          compatibility with the manufacturer before you depend on it in the field.
+          compatibility with the manufacturer before you depend on it in the field. Planning to run a
+          portable air conditioner at camp? The{" "}
+          <Link
+            href="/air-conditioner-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Air Conditioner Power Station Calculator
+          </Link>{" "}
+          covers its battery, output, and voltage requirements.
         </p>
       </div>
     </div>

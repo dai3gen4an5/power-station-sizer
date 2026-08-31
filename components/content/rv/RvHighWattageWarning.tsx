@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function RvHighWattageWarning() {
   return (
     <div>
@@ -31,7 +33,15 @@ export function RvHighWattageWarning() {
           Because a reliable surge result depends on the exact appliance and power station, this page
           deliberately does not calculate one. Treat high-wattage appliances as short-burst loads,
           read both the appliance label and the power station spec sheet, and confirm compatibility
-          with the manufacturer before you depend on it.
+          with the manufacturer before you depend on it. For an RV or portable air conditioner
+          specifically, the{" "}
+          <Link
+            href="/air-conditioner-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Air Conditioner Power Station Calculator
+          </Link>{" "}
+          sizes battery capacity and reports the continuous and surge output it needs.
         </p>
       </div>
     </div>

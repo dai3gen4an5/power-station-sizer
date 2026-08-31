@@ -38,6 +38,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Battery capacity, continuous and startup / surge output, and a 120V vs 240V check for backing up a household well pump.",
   },
   {
+    href: "/air-conditioner-power-calculator",
+    title: "Air Conditioner Power Station Calculator",
+    description: "Battery capacity, continuous and startup / surge output, and a voltage check for running a portable, window, or room air conditioner.",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",
