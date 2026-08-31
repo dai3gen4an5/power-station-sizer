@@ -24,7 +24,15 @@ export function OutagePriorityAppliances() {
           <li>
             <span className="font-medium text-ink">Food safety.</span> A refrigerator or freezer is
             the next common priority. It is a larger load, but running it a few hours at a time is
-            often enough to keep food cold.
+            often enough to keep food cold. A microwave for reheating is brief but high-wattage
+            &mdash; the{" "}
+            <Link
+              href="/microwave-power-calculator"
+              className="font-medium text-brand hover:underline"
+            >
+              Microwave Power Station Calculator
+            </Link>{" "}
+            checks whether an inverter can supply it.
           </li>
           <li>
             <span className="font-medium text-ink">Water and flood protection.</span> If a storm

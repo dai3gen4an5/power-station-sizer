@@ -43,6 +43,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Battery capacity, continuous and startup / surge output, and a voltage check for running a portable, window, or room air conditioner.",
   },
   {
+    href: "/microwave-power-calculator",
+    title: "Microwave Power Station Calculator",
+    description: "Battery capacity and the continuous AC output a power station needs to run a microwave, based on its electrical input watts — not its cooking-power rating.",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",

@@ -52,6 +52,28 @@ export function getCyclingEnergyWh(input: CyclingEnergyInput): number {
 }
 
 /**
+ * Energy a load uses over a fixed total run time, BEFORE inverter efficiency and
+ * battery reserve:
+ *
+ *   watts x (minutes / 60)
+ *
+ * General-purpose, not tied to any one appliance: use it for a load sized by
+ * total operating minutes rather than a per-hour duty cycle — a microwave,
+ * kettle, coffee maker, or heater. For a load that only runs part of each hour
+ * across an outage, use getCyclingEnergyWh instead.
+ *
+ * `watts` is the load's electrical INPUT power (what it draws from the outlet),
+ * not any "cooking" / output rating printed on the front of the appliance.
+ */
+export function getTimedEnergyWh(watts: number, minutes: number): number {
+  const normalizedWatts = normalizePowerWatts(watts);
+  const runMinutes = Math.max(0, Number.isFinite(minutes) ? minutes : 0);
+  // Multiply before dividing by 60 so whole-minute inputs give exact results
+  // (e.g. 1500 x 10 / 60 = 250, not 249.999...).
+  return (normalizedWatts * runMinutes) / 60;
+}
+
+/**
  * The continuous AC output a power station must be able to sustain equals the
  * load's running watts. No margin is added here — the caller decides on
  * headroom.
