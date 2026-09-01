@@ -32,14 +32,21 @@ export function RvHighWattageWarning() {
           >
             Electric Kettle Power Station Calculator
           </Link>{" "}
-          does the same for an RV kettle, and the{" "}
+          does the same for an RV kettle, the{" "}
           <Link
             href="/hair-dryer-power-calculator"
             className="font-medium text-brand hover:underline"
           >
             Hair Dryer Power Station Calculator
           </Link>{" "}
-          covers an RV hair dryer.
+          covers an RV hair dryer, and the{" "}
+          <Link
+            href="/air-fryer-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Air Fryer Power Station Calculator
+          </Link>{" "}
+          covers an RV air fryer.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>

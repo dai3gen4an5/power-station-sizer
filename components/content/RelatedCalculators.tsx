@@ -51,6 +51,12 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     category: "Climate",
   },
   {
+    href: "/air-fryer-power-calculator",
+    title: "Air Fryer Power Station Calculator",
+    description: "Battery capacity and continuous AC output for an air fryer — a longer cook than a microwave, on a 1,000–1,800 W heating element.",
+    category: "Kitchen",
+  },
+  {
     href: "/microwave-power-calculator",
     title: "Microwave Power Station Calculator",
     description: "Battery capacity and the continuous AC output a power station needs to run a microwave, based on its electrical input watts — not its cooking-power rating.",

@@ -53,7 +53,15 @@ export function MwUseCases() {
           >
             Solar Charge Time Calculator
           </Link>{" "}
-          estimates how quickly a panel refills the power station between meals.
+          estimates how quickly a panel refills the power station between meals. For a longer cook,
+          the{" "}
+          <Link
+            href="/air-fryer-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Air Fryer Power Station Calculator
+          </Link>{" "}
+          sizes an air fryer on the same battery-and-output basis.
         </p>
       </div>
     </div>

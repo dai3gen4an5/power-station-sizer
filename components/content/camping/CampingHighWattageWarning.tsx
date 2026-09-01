@@ -32,14 +32,21 @@ export function CampingHighWattageWarning() {
           >
             Electric Kettle Power Station Calculator
           </Link>{" "}
-          does the same for a camp kettle, and the{" "}
+          does the same for a camp kettle, the{" "}
           <Link
             href="/hair-dryer-power-calculator"
             className="font-medium text-brand hover:underline"
           >
             Hair Dryer Power Station Calculator
           </Link>{" "}
-          covers a hair dryer.
+          covers a hair dryer, and the{" "}
+          <Link
+            href="/air-fryer-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Air Fryer Power Station Calculator
+          </Link>{" "}
+          covers a camp air fryer.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
