@@ -63,6 +63,12 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     category: "Kitchen",
   },
   {
+    href: "/induction-cooktop-power-calculator",
+    title: "Induction Cooktop Power Station Calculator",
+    description: "Battery capacity and continuous AC output for a portable induction cooktop — a 1,500–1,800 W burner held for a full meal, where a lower power setting is not proportionally lighter.",
+    category: "Kitchen",
+  },
+  {
     href: "/electric-heater-power-calculator",
     title: "Electric Heater Power Station Calculator",
     description: "Battery capacity and continuous AC output for an electric space heater — and why resistance heat drains a portable power station so fast.",
