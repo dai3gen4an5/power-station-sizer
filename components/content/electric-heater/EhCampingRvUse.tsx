@@ -43,7 +43,15 @@ export function EhCampingRvUse() {
           >
             Solar Charge Time Calculator
           </Link>{" "}
-          shows how long a panel takes to refill the battery between uses.
+          shows how long a panel takes to refill the battery between uses. Another short but
+          output-hungry resistive load is a hair dryer &mdash; the{" "}
+          <Link
+            href="/hair-dryer-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Hair Dryer Power Station Calculator
+          </Link>{" "}
+          sizes one on the same basis.
         </p>
       </div>
     </div>

@@ -75,6 +75,12 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     category: "Kitchen",
   },
   {
+    href: "/hair-dryer-power-calculator",
+    title: "Hair Dryer Power Station Calculator",
+    description: "Battery capacity and continuous AC output for a hair dryer — a short run, but a 1,500–1,875 W heating element the inverter has to hold.",
+    category: "Personal care",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",
