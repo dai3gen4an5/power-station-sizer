@@ -7,10 +7,10 @@ export function EbCampingRv() {
       <div className="mt-3 space-y-3 text-ink/75">
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <span className="font-medium text-ink">Camping.</span> A heated blanket is a far more
-            efficient way to stay warm than a space heater &mdash; tens of watts instead of over a
-            thousand. A 12V blanket is the lightest option off-grid because it skips the inverter.
-            The{" "}
+            <span className="font-medium text-ink">Camping.</span> A heated blanket usually uses far
+            less power than heating a whole tent or cabin with a space heater, because it warms the
+            person and bedding directly &mdash; often tens of watts rather than over a thousand. A
+            12V blanket is the lightest option off-grid because it bypasses the inverter. The{" "}
             <Link
               href="/camping-power-station-calculator"
               className="font-medium text-brand hover:underline"
@@ -20,9 +20,10 @@ export function EbCampingRv() {
             sizes it alongside the rest of your gear.
           </li>
           <li>
-            <span className="font-medium text-ink">RV.</span> The inverter will not notice a blanket;
-            the question is how many amp-hours of the house bank a full night uses, especially on
-            several cold nights between charges. The{" "}
+            <span className="font-medium text-ink">RV.</span> A blanket&apos;s draw is small next to
+            an RV inverter&apos;s rating; the electrical question is how many amp-hours of the house
+            bank a full night uses, especially on several cold nights between charges. Check the
+            blanket manual permits inverter power. The{" "}
             <Link
               href="/rv-power-station-calculator"
               className="font-medium text-brand hover:underline"

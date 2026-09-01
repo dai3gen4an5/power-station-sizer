@@ -47,9 +47,11 @@ export function RvDeviceExamples() {
         </p>
         <p>
           <span className="font-medium text-ink">Heating the bed on a cold night.</span> An electric
-          blanket at 40&ndash;100&nbsp;watts, or a 12V version that skips the inverter, is a far more
-          efficient way to stay warm than a heater. A full night is a few hundred watt-hours off the
-          house bank, so plan it against your capacity &mdash; the{" "}
+          blanket usually draws far less than heating the whole rig with a space heater, because it
+          warms the person and bedding directly &mdash; often tens of watts &mdash; and a 12V version
+          bypasses the inverter. A full night is still a few hundred watt-hours off the house bank,
+          and some blanket manuals do not allow inverter power, so check the manual and plan it
+          against your capacity &mdash; the{" "}
           <Link
             href="/electric-blanket-power-calculator"
             className="font-medium text-brand hover:underline"

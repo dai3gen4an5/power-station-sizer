@@ -22,20 +22,23 @@ export function EbBatteryVsOutput() {
           </li>
           <li>
             <span className="font-medium text-ink">AC output</span>, in watts (W), is how much power
-            the inverter can deliver at once. A blanket&apos;s 40&ndash;150&nbsp;W sits well inside
-            almost any power station&apos;s inverter, so this is rarely the limit.
+            the inverter can deliver at once. A blanket&apos;s draw &mdash; typically tens of watts,
+            sometimes over 100&nbsp;W &mdash; sits inside the listed power stations&apos; inverters,
+            so among those units AC output is usually not the limiting specification. Manufacturer
+            compatibility still has to be checked separately.
           </li>
         </ul>
         <p>
-          The practical question is whether the battery lasts until you wake up. To check how long a
-          given unit runs a steady low load, use the{" "}
+          The practical electrical question is whether the battery lasts until you wake up. To check
+          how long a given unit runs a steady low load, use the{" "}
           <Link
             href="/power-station-runtime-calculator"
             className="font-medium text-brand hover:underline"
           >
             Power Station Runtime Calculator
           </Link>
-          .
+          . Sizing does not replace the blanket manual: some heated bedding is not rated for inverter
+          or generator power at all.
         </p>
       </div>
     </div>

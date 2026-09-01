@@ -93,8 +93,10 @@ export function OutagePriorityAppliances() {
             >
               Air Conditioner Power Station Calculator
             </Link>{" "}
-            sizes battery capacity and the output it needs. For staying warm, an electric blanket at
-            60&ndash;100&nbsp;watts is far gentler on a battery than a space heater &mdash; the{" "}
+            sizes battery capacity and the output it needs. For staying warm, an electric blanket
+            usually draws far less than heating a room with a space heater, because it warms the
+            person directly &mdash; often tens of watts &mdash; though the blanket manual has to
+            allow inverter power. The{" "}
             <Link
               href="/electric-blanket-power-calculator"
               className="font-medium text-brand hover:underline"

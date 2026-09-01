@@ -40,9 +40,10 @@ export function CampingDeviceExamples() {
         </p>
         <p>
           <span className="font-medium text-ink">Staying warm on a cold night.</span> A heated
-          blanket at 40&ndash;100&nbsp;watts is far kinder to a battery than a space heater, and a
-          12V model skips the inverter entirely. A full night still adds several hundred watt-hours,
-          so size it deliberately &mdash; the{" "}
+          blanket usually draws far less than heating the whole tent with a space heater &mdash;
+          often tens of watts &mdash; because it warms the person directly, and a 12V model bypasses
+          the inverter. A full night still adds several hundred watt-hours, and some blanket manuals
+          bar inverter power, so check the manual and size it deliberately &mdash; the{" "}
           <Link
             href="/electric-blanket-power-calculator"
             className="font-medium text-brand hover:underline"

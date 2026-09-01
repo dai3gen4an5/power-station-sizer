@@ -22,10 +22,11 @@ export function EbFindWattage() {
           </li>
         </ul>
         <p>
-          Heated throws are often 40&ndash;80&nbsp;W; single blankets are commonly
-          60&ndash;100&nbsp;W; queen and king blankets with dual controls can total
-          120&ndash;180&nbsp;W with both sides on high. Do not assume a figure from the blanket
-          size &mdash; read the label and enter that number for the setting you use.
+          As a rough guide only, small heated throws tend to be at the low end and large
+          dual-control blankets on high draw the most, and figures can range from tens of watts to
+          well over 100&nbsp;W depending on size, controller, and model. These are search-intent
+          examples, not a rule &mdash; do not assume a figure from the blanket size. Read the
+          label or manual and enter the exact number for the setting you use.
         </p>
       </div>
     </div>

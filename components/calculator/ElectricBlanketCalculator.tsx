@@ -148,7 +148,8 @@ export function ElectricBlanketCalculator() {
                       <span className="text-sm text-muted">%</span>
                     </div>
                     <span className="mt-1 block text-xs text-muted/70">
-                      Energy lost converting battery power to AC. Not applied to a 12V or USB blanket.
+                      Energy lost converting battery power to AC. This AC model does not cover 12V or
+                      USB blankets.
                     </span>
                   </label>
 
@@ -254,17 +255,20 @@ export function ElectricBlanketCalculator() {
                 </div>
               </dl>
               <p className="mt-3 text-xs leading-relaxed text-muted">
-                An electric blanket draws very little &mdash; usually 40 to 150&nbsp;W &mdash; so
-                almost any power station&apos;s inverter can sustain it. The catch is the other way
-                round: run that small load all night and the watt-hours add up, so{" "}
-                <span className="font-medium">battery capacity and runtime</span>, not AC output, are
-                what decide whether a unit lasts until morning.
+                An electric blanket draws little power &mdash; examples range from tens of watts to
+                well over 100&nbsp;W depending on size, controller, and model. Among the listed power
+                stations, AC output is usually not the limiting specification for a low-watt blanket;
+                the watt-hours over a full night are. That means{" "}
+                <span className="font-medium">battery capacity and runtime</span>, not AC output,
+                normally decide whether a unit lasts until morning &mdash; but manufacturer
+                compatibility still has to be checked separately.
               </p>
               <p className="mt-3 rounded-control border border-amber-200 bg-amber-50/70 p-3 text-xs leading-relaxed text-amber-800">
                 An electric blanket is a low-power resistive heating load; its start-up draw is
-                negligible, so this page does not ask for a surge figure. A 12V or USB heated blanket
-                runs from DC and skips the inverter entirely &mdash; use its actual DC consumption
-                and ignore the inverter-efficiency setting.
+                negligible, so this page does not ask for a surge figure. 12V and USB heated blankets
+                bypass the AC inverter and are outside this calculator&apos;s AC model &mdash; size
+                them from their actual source-side energy use, allowing for any DC-conversion losses
+                the device or power source specifies.
               </p>
             </div>
 
@@ -273,26 +277,34 @@ export function ElectricBlanketCalculator() {
               <div className="mt-2 space-y-2 text-xs leading-relaxed text-amber-800">
                 <ul className="list-disc space-y-1 pl-5">
                   <li>
+                    <span className="font-medium">Manufacturer permits it.</span> The blanket manual
+                    explicitly allows inverter, generator, or portable-power-station use, and any AC
+                    source or waveform requirement it states is met.
+                  </li>
+                  <li>
                     <span className="font-medium">Battery capacity (Wh)</span> at least the
                     recommended figure &mdash; this and runtime are what matter here.
                   </li>
                   <li>
                     <span className="font-medium">AC output</span> at or above the blanket&apos;s
-                    active watts (an easy bar for any unit).
+                    active watts. Among the listed units this is usually not the limiting spec, but
+                    confirm it.
                   </li>
                   <li>
-                    <span className="font-medium">Voltage and plug</span> match the blanket, or the
-                    correct DC output for a 12V / USB model.
+                    <span className="font-medium">Voltage, frequency, and plug</span> match the
+                    blanket, or the correct DC output for a 12V / USB model.
                   </li>
                   <li>
                     <span className="font-medium">Auto-shutoff timer</span> on the controller checked
-                    against how long you actually want heat.
+                    against how long you actually want heat, and no damaged cord or controller.
                   </li>
                 </ul>
                 <p>
                   This calculator sizes energy (Wh) and reports the AC output (W) you need from the
-                  numbers you enter. It does not check voltage or plug compatibility, and it is not a
-                  safety approval &mdash; follow the manufacturer&apos;s instructions.
+                  numbers you enter. Electrical capacity alone does not prove compatibility &mdash; it
+                  does not check voltage, plug, or whether the blanket maker allows inverter power,
+                  and it is not a safety approval. Follow the blanket manufacturer&apos;s
+                  instructions.
                 </p>
               </div>
             </div>
@@ -309,12 +321,14 @@ export function ElectricBlanketCalculator() {
 
       <section className="container-page pb-14">
         <p className="mx-auto max-w-3xl text-xs leading-relaxed text-muted/80">
-          Recommendations above are based on the known battery-capacity and AC-output requirements
-          only. Before buying, verify the power station&apos;s real usable capacity against your
-          blanket&apos;s overnight energy, plus its AC output against the blanket&apos;s full active
-          wattage, its voltage, and outlet or DC-adapter compatibility &mdash; this is not an
-          unconditional claim that a given unit will run your blanket for the full night, and it is
-          not safety advice.
+          These recommendations only satisfy the calculated battery-capacity and AC-output
+          requirements. They do not establish that your heated blanket manufacturer permits inverter
+          power. Before buying, verify the power station&apos;s real usable capacity against your
+          blanket&apos;s overnight energy, its AC output against the blanket&apos;s full active
+          wattage, its voltage and outlet or DC-adapter compatibility, and the blanket manual&apos;s
+          stance on inverter, generator, or power-station use &mdash; this is not an unconditional
+          claim that a given unit will run your blanket for the full night, and it is not safety
+          advice.
         </p>
       </section>
     </>

@@ -6,10 +6,11 @@ export function EbOutageUse() {
       <h2 className="h2">Using an electric blanket during a power outage</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
-          In a winter outage, a heated blanket is one of the most efficient ways to stay warm from a
-          power station. A space heater can pull 1,500&nbsp;W and drain a portable unit in under an
-          hour; a blanket at 60&ndash;100&nbsp;W keeps a person warm for a whole night on a fraction
-          of the energy.
+          In a winter outage, a heated blanket usually uses far less power than heating a whole room
+          with a space heater, because it warms the person and bedding directly. A space heater can
+          pull well over a thousand watts and drain a portable unit in under an hour; a blanket
+          drawing tens of watts can keep a person warm for a whole night on a small share of the
+          same battery. Check the blanket manual allows inverter or power-station use first.
         </p>
         <p>
           For an outage, that usually means:
