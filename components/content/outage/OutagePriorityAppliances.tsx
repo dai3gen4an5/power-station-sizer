@@ -32,7 +32,15 @@ export function OutagePriorityAppliances() {
             >
               Microwave Power Station Calculator
             </Link>{" "}
-            checks whether an inverter can supply it.
+            checks whether an inverter can supply it. For an unattended hot meal, a rice cooker is a
+            low, steady load &mdash; the{" "}
+            <Link
+              href="/rice-cooker-power-calculator"
+              className="font-medium text-brand hover:underline"
+            >
+              Rice Cooker Power Station Calculator
+            </Link>{" "}
+            sizes its cook cycle and keep-warm energy.
           </li>
           <li>
             <span className="font-medium text-ink">Water and flood protection.</span> If a storm

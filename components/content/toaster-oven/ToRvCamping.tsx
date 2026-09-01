@@ -56,7 +56,11 @@ export function ToRvCamping() {
             coffee maker
           </Link>{" "}
           all behave the same way &mdash; output-limited by a heating element &mdash; but a
-          microwave&apos;s far shorter run makes it the lighter choice off-grid.
+          microwave&apos;s far shorter run makes it the lighter choice off-grid. A{" "}
+          <Link href="/rice-cooker-power-calculator" className="font-medium text-brand hover:underline">
+            rice cooker
+          </Link>{" "}
+          is the gentlest of the group, with a lower wattage and a slow cook cycle.
         </p>
       </div>
     </div>

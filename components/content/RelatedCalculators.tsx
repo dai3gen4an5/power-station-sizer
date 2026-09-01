@@ -75,6 +75,12 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     category: "Kitchen",
   },
   {
+    href: "/rice-cooker-power-calculator",
+    title: "Rice Cooker Power Station Calculator",
+    description: "Battery capacity and continuous AC output for a rice cooker — a low 200–1,000 W load over a cook cycle, plus a separate keep-warm estimate.",
+    category: "Kitchen",
+  },
+  {
     href: "/electric-heater-power-calculator",
     title: "Electric Heater Power Station Calculator",
     description: "Battery capacity and continuous AC output for an electric space heater — and why resistance heat drains a portable power station so fast.",

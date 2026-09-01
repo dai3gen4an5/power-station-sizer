@@ -53,14 +53,21 @@ export function CampingHighWattageWarning() {
           >
             Induction Cooktop Power Station Calculator
           </Link>{" "}
-          covers a camp induction burner, and the{" "}
+          covers a camp induction burner, the{" "}
           <Link
             href="/toaster-oven-power-calculator"
             className="font-medium text-brand hover:underline"
           >
             Toaster Oven Power Station Calculator
           </Link>{" "}
-          covers a camp toaster oven.
+          covers a camp toaster oven, and the{" "}
+          <Link
+            href="/rice-cooker-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Rice Cooker Power Station Calculator
+          </Link>{" "}
+          covers a camp rice cooker &mdash; the gentlest load of the group.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
