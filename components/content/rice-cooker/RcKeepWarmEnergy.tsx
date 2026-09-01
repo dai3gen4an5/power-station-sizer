@@ -38,8 +38,8 @@ export function RcKeepWarmEnergy() {
           </Link>{" "}
           &mdash; one &ldquo;Rice cooker &mdash; cook&rdquo; device at the cook watts and runtime,
           and a separate &ldquo;Rice cooker &mdash; keep warm&rdquo; device at the keep-warm watts
-          and hours. It sums the two wattages correctly. To see how a low steady keep-warm draw pulls
-          a battery down over a long hold, use the{" "}
+          and hours. It calculates each phase separately and adds their watt-hours correctly. To see
+          how a low steady keep-warm draw pulls a battery down over a long hold, use the{" "}
           <Link
             href="/power-station-runtime-calculator"
             className="font-medium text-brand hover:underline"
