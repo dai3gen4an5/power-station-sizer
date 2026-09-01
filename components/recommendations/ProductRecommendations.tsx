@@ -11,6 +11,7 @@ import {
   resolveProductLink,
 } from "@/lib/recommendations/links";
 import { getRecommendationState } from "@/lib/recommendations/eligibility";
+import { trackEvent } from "@/lib/analytics";
 import { formatWh } from "@/lib/utils/format";
 
 interface ProductRecommendationsProps {
@@ -218,14 +219,24 @@ export function ProductRecommendations({
                   href={link.href}
                   target="_blank"
                   rel={link.rel}
-                  onClick={() =>
+                  onClick={() => {
+                    // DOM CustomEvent for any provider-agnostic listener.
                     emitRecommendationClick({
                       page: pathname,
                       capacityClass: capacityClass.id,
                       brand: product.brand,
                       linkType: link.type,
-                    })
-                  }
+                    });
+                    // Named analytics conversion event. Does not preventDefault,
+                    // so the affiliate navigation is untouched. Single call
+                    // site, so there is no double counting.
+                    trackEvent("affiliate_click", {
+                      page: pathname,
+                      capacity_class: capacityClass.id,
+                      brand: product.brand,
+                      link_type: link.type,
+                    });
+                  }}
                   {...dataAttrs}
                   className="group block rounded-card border border-line bg-surface-muted/60 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-surface hover:shadow-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >

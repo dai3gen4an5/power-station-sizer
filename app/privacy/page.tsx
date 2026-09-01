@@ -4,7 +4,7 @@ import { InfoPageLayout } from "@/components/content/InfoPageLayout";
 
 const TITLE = "Privacy Policy";
 const DESCRIPTION =
-  "How Power Station Sizer handles data: calculators run in your browser, the site sets no cookies, and there is no analytics or tracking.";
+  "How Power Station Sizer handles data: calculators run in your browser, the site sets no cookies, and analytics is limited to cookieless, aggregate visit and click counts with no personal data.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "August 29, 2026";
+const LAST_UPDATED = "September 1, 2026";
 
 export default function PrivacyPage() {
   return (
     <InfoPageLayout
       title="Privacy policy"
-      intro="Short version: the calculators run in your browser, this site sets no cookies, runs no analytics, and does not collect personal information."
+      intro="Short version: the calculators run in your browser, this site sets no cookies, and the only measurement is cookieless, aggregate visit and click counts with no personal information."
       lastUpdated={LAST_UPDATED}
     >
       <div>
@@ -44,24 +44,42 @@ export default function PrivacyPage() {
 
       <div>
         <h2 className="font-display text-2xl font-semibold text-ink">Cookies</h2>
-        <p className="mt-3 text-ink/75">This site does not set any cookies.</p>
-      </div>
-
-      <div>
-        <h2 className="font-display text-2xl font-semibold text-ink">Analytics and tracking</h2>
         <p className="mt-3 text-ink/75">
-          There is no Google Analytics, no third-party analytics or tag manager, and no advertising
-          or social tracking pixel on the site.
+          This site does not set any cookies. The analytics described below is cookieless and does
+          not store an identifier in your browser.
         </p>
       </div>
 
       <div>
-        <h2 className="font-display text-2xl font-semibold text-ink">Recommendation click events</h2>
+        <h2 className="font-display text-2xl font-semibold text-ink">Analytics</h2>
         <p className="mt-3 text-ink/75">
-          The product-recommendation section adds data attributes to its cards and, once a link is
-          active and clicked, emits an event inside your own browser. Nothing from this is
-          transmitted anywhere at present; the structure exists only so click measurement could be
-          added in future.
+          The site uses Vercel Web Analytics to count page views and a small number of on-page
+          actions. It is privacy-friendly by design: it sets no cookies, stores nothing on your
+          device, does not fingerprint you for advertising, does not track you across other
+          websites, and does not collect personal information. Visit counts are aggregated from a
+          one-way hash that Vercel rotates daily, so individual visitors cannot be re-identified or
+          followed from one day to the next.
+        </p>
+        <p className="mt-3 text-ink/75">
+          There is still no Google Analytics, no tag manager loaded by default, and no advertising or
+          social tracking pixel.
+        </p>
+      </div>
+
+      <div>
+        <h2 className="font-display text-2xl font-semibold text-ink">Affiliate link clicks</h2>
+        <p className="mt-3 text-ink/75">
+          When you click a product link in the recommendation section, the site records an anonymous{" "}
+          <span className="font-mono text-sm">affiliate_click</span> event so we can see which
+          calculators and which product categories lead people to a retailer. The event carries only
+          the page path, the recommended capacity class (for example &ldquo;1000wh&rdquo;), the
+          product brand, and whether the link is an affiliate or plain link. It contains no personal
+          data, and clicking is not delayed or interrupted by it.
+        </p>
+        <p className="mt-3 text-ink/75">
+          What happens after you reach the retailer &mdash; whether you buy anything &mdash; is not
+          visible to this site. Any commission reporting comes only from the retailer&apos;s own
+          affiliate dashboard.
         </p>
       </div>
 
@@ -98,8 +116,9 @@ export default function PrivacyPage() {
       <div>
         <h2 className="font-display text-2xl font-semibold text-ink">Future changes</h2>
         <p className="mt-3 text-ink/75">
-          If analytics, cookies, or affiliate click tracking that sends data are introduced later,
-          this page will be updated to describe them and the date above will change.
+          If cookies, a different analytics provider, or any tracking that collects personal data are
+          introduced later, this page will be updated to describe them and the date above will
+          change.
         </p>
       </div>
 
