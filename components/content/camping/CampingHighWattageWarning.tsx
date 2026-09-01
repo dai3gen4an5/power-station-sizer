@@ -25,7 +25,14 @@ export function CampingHighWattageWarning() {
           >
             Coffee Maker Power Station Calculator
           </Link>{" "}
-          sizes it on its own from the machine&apos;s input watts.
+          sizes it on its own from the machine&apos;s input watts, and the{" "}
+          <Link
+            href="/electric-kettle-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Electric Kettle Power Station Calculator
+          </Link>{" "}
+          does the same for a camp kettle.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>

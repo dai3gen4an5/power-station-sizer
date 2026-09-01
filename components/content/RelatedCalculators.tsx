@@ -69,6 +69,12 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     category: "Kitchen",
   },
   {
+    href: "/electric-kettle-power-calculator",
+    title: "Electric Kettle Power Station Calculator",
+    description: "Battery capacity and continuous AC output for an electric kettle — a brief boil, but a high steady wattage the inverter must sustain.",
+    category: "Kitchen",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",

@@ -25,7 +25,14 @@ export function RvHighWattageWarning() {
           >
             Coffee Maker Power Station Calculator
           </Link>{" "}
-          covers an RV coffee maker on its own, from its electrical input watts.
+          covers an RV coffee maker on its own, from its electrical input watts, and the{" "}
+          <Link
+            href="/electric-kettle-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Electric Kettle Power Station Calculator
+          </Link>{" "}
+          does the same for an RV kettle.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
