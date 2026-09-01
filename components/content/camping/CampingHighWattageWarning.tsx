@@ -17,6 +17,16 @@ export function CampingHighWattageWarning() {
           For an electric kettle, camping coffee maker, induction cooktop, portable heater or a
           12V-to-AC microwave, always check two things on the power station before relying on it:
         </p>
+        <p>
+          For a coffee maker specifically, the{" "}
+          <Link
+            href="/coffee-maker-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Coffee Maker Power Station Calculator
+          </Link>{" "}
+          sizes it on its own from the machine&apos;s input watts.
+        </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
             <span className="font-medium text-ink">Continuous AC output.</span> A 1,000&nbsp;W kettle

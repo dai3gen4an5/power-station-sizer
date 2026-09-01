@@ -17,6 +17,16 @@ export function RvHighWattageWarning() {
           For an RV air conditioner, microwave, electric kettle, hair dryer, induction cooktop,
           toaster or coffee maker, always check two things on the power station before relying on it:
         </p>
+        <p>
+          The{" "}
+          <Link
+            href="/coffee-maker-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Coffee Maker Power Station Calculator
+          </Link>{" "}
+          covers an RV coffee maker on its own, from its electrical input watts.
+        </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
             <span className="font-medium text-ink">Continuous AC output.</span> A 1,000&nbsp;W coffee

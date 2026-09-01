@@ -53,6 +53,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Battery capacity and continuous AC output for an electric space heater — and why resistance heat drains a portable power station so fast.",
   },
   {
+    href: "/coffee-maker-power-calculator",
+    title: "Coffee Maker Power Station Calculator",
+    description: "Battery capacity and continuous AC output for a drip, single-serve, or espresso coffee maker, based on its electrical input watts.",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",
