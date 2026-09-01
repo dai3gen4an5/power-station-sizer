@@ -21,6 +21,7 @@ export function EkWorkedExample() {
     DEFAULT_SETTINGS.batteryReserve
   );
   const sizeClass = roundUpToSizeClass(recommendedWh);
+  const sizeLabel = sizeClass ? formatWh(sizeClass) : "5,000 Wh+";
   const capacityClass = selectCapacityClassForResult({
     recommendedCapacityWh: recommendedWh,
     recommendedSizeClass: sizeClass,
@@ -43,17 +44,21 @@ export function EkWorkedExample() {
           inverter efficiency it is about{" "}
           <span className="font-mono">{formatWh(minimumBeforeReserveWh)}</span>, and keeping a{" "}
           {DEFAULT_SETTINGS.batteryReserve}% reserve brings the recommended battery capacity to
-          roughly <span className="font-mono">{formatWh(recommendedWh)}</span> &mdash; the{" "}
-          {classLabel} class on energy alone.
+          roughly <span className="font-mono">{formatWh(recommendedWh)}</span>. On battery capacity
+          alone, the calculator rounds that up to about a{" "}
+          <span className="font-semibold">{sizeLabel}</span> power station. Our listed product
+          catalogue starts at the <span className="font-semibold">{classLabel}</span> recommendation
+          range.
         </p>
         <p className="mt-3 text-sm text-ink/75">
           The output requirement is the catch. Separately from the {formatWh(recommendedWh)}, the
           power station has to supply at least{" "}
           <span className="font-mono">{WATTS.toLocaleString("en-US")} W</span> continuously for the
-          whole boil. Units in the {classLabel} class typically have around a 500&nbsp;W inverter, so
-          the recommendation below searches up to the first listed class whose units have a confirmed
-          continuous rating of {WATTS.toLocaleString("en-US")}&nbsp;W or more. The
-          calculator&apos;s own size figure does not change.
+          whole boil. Units in the {classLabel} recommendation range typically have around a
+          500&nbsp;W inverter, so the recommendation below searches up to the first listed range
+          whose units have a confirmed continuous rating of {WATTS.toLocaleString("en-US")}&nbsp;W
+          or more &mdash; the 1,000Wh range, for a {WATTS.toLocaleString("en-US")}&nbsp;W kettle. The
+          calculator&apos;s own rounded size figure does not change.
         </p>
       </div>
     </div>

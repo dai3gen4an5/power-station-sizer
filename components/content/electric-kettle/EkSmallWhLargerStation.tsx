@@ -13,11 +13,11 @@ export function EkSmallWhLargerStation() {
         </p>
         <p>
           This is why the recommendation below can point to a{" "}
-          <span className="font-medium text-ink">larger class than your energy figure alone
-          suggests</span>. If your battery requirement fits the smallest range but that range&apos;s
-          listed units cannot supply your kettle&apos;s watts, the section moves up to the first
-          class whose units have a confirmed continuous rating that meets the load, and shows a short
-          note explaining why. The calculator&apos;s own size figure stays put.
+          <span className="font-medium text-ink">larger product range than your energy figure alone
+          suggests</span>. If your battery requirement fits the smallest recommendation range but
+          that range&apos;s listed units cannot supply your kettle&apos;s watts, the section moves up
+          to the first range whose units have a confirmed continuous rating that meets the load, and
+          shows a short note explaining why. The calculator&apos;s own rounded size figure stays put.
         </p>
         <p>
           The same short-burst, output-limited pattern applies to a{" "}

@@ -197,14 +197,14 @@ export function ElectricKettleCalculator() {
                     {formatWh(result.recommendedWh)}
                   </p>
                   <p className="mt-1 text-sm text-muted">
-                    Recommended battery capacity after inverter efficiency and reserve. Look for a
-                    power station around{" "}
-                    <span className="font-semibold text-ink">{sizeLabel}</span>
+                    Recommended battery capacity after inverter efficiency and reserve. On capacity
+                    alone the calculator rounds that up to about a{" "}
+                    <span className="font-semibold text-ink">{sizeLabel}</span> power station
                     {result.capacityLabel ? (
                       <>
-                        {" "}
-                        &mdash; the{" "}
-                        <span className="font-semibold text-ink">{result.capacityLabel}</span> class.
+                        , which falls in the{" "}
+                        <span className="font-semibold text-ink">{result.capacityLabel}</span>{" "}
+                        product recommendation range below.
                       </>
                     ) : (
                       "."
