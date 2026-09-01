@@ -34,12 +34,12 @@ const SC_FAQ_ITEMS: FaqItem[] = [
   {
     question: "Does Low mode use half as much power as High?",
     answer:
-      "Not reliably. On many cookers Low and High run the same heater and differ only in how often the thermostat cycles it, so the average draw is closer than the labels suggest. Low mostly changes how fast the food reaches a simmer, not the holding temperature. Enter the actual measured watts for your setting rather than assuming a percentage.",
+      "Not reliably. On many cookers Low and High run the same heater and differ only in how often the thermostat cycles it, so the average draw is closer than the labels suggest. Low mostly changes how fast the food reaches a simmer, not the holding temperature. Enter the active heating watts for your setting rather than assuming a percentage.",
   },
   {
     question: "Does thermostat cycling reduce battery use?",
     answer:
-      "It can. Once the food is hot, the element switches on and off to hold temperature, so the average power over a long cook is often below the nameplate wattage. How much lower depends on the model, the setting, how full the pot is, and the room, so this calculator does not assume a reduction. Enter a watt-meter average if you have one.",
+      "It can. Once the food is hot, the element switches on and off to hold temperature, so the average power over a long cook is often below the nameplate wattage. How much lower depends on the model, the setting, how full the pot is, and the room, so this calculator does not assume a reduction. Keep entering the active or rated wattage here, because the same figure sizes the required continuous output; if you want a lower energy-only estimate, use measured total watt-hours or a measured average times the hours separately, and still check the power station's continuous output against the full wattage.",
   },
   {
     question: "How much battery does keep-warm mode use?",

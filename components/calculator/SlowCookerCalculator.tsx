@@ -233,9 +233,10 @@ export function SlowCookerCalculator() {
               )}
               <p className="mt-3 text-xs leading-relaxed text-muted/80">
                 This is a planning estimate for the cook. It assumes the cooker draws its full input
-                watts for the whole time you enter. Thermostat cycling and keep-warm are not modelled
-                &mdash; enter your best estimate of powered hours, or a watt-meter average, and add
-                keep-warm energy separately if you leave it on.
+                watts for the whole time you enter. Enter the cooker&apos;s active or rated input
+                watts here &mdash; the same figure also sizes the required continuous output, so it
+                must be the full heating draw, not a long-run cycling average. Thermostat cycling and
+                keep-warm are not modelled; add keep-warm energy separately if you leave it on.
               </p>
             </div>
 

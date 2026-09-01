@@ -14,9 +14,11 @@ export function ScFindWattage() {
             &ldquo;rated power&rdquo;, &ldquo;wattage&rdquo;, or a table of watts per setting.
           </li>
           <li>
-            <span className="font-medium text-ink">Watt meter.</span> Plug the cooker in and run it
-            at the setting you use for an hour &mdash; a measured average, and the most reliable,
-            because it already includes the thermostat cycling.
+            <span className="font-medium text-ink">Watt meter.</span> Plug the cooker in and read the
+            wattage while the element is actively heating &mdash; that active draw is what you enter,
+            and what the inverter has to supply. A meter also shows the lower long-run average once
+            cycling starts, which is useful for a separate energy estimate but is not the figure for
+            this calculator.
           </li>
         </ul>
         <p>

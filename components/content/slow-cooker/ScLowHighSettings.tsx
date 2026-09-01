@@ -24,8 +24,9 @@ export function ScLowHighSettings() {
         <p>
           Because of that, the calculator does not convert a setting into a wattage &mdash; there is
           no &ldquo;Low = 50%&rdquo; or &ldquo;Warm = 25%&rdquo;. Enter the{" "}
-          <span className="font-medium text-ink">actual input watts at the setting you plan to
-          use</span>, measured with a watt meter if you can, and otherwise the nameplate maximum as a
+          <span className="font-medium text-ink">active input watts at the setting you plan to
+          use</span> &mdash; the draw while the element is heating, read from a watt meter if you can,
+          not a long-run cycling average &mdash; and otherwise the nameplate maximum as a
           conservative planning value.
         </p>
       </div>
