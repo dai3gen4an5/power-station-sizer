@@ -62,8 +62,15 @@ export function OutagePriorityAppliances() {
           <li>
             <span className="font-medium text-ink">Comfort loads last.</span> A fan, TV or laptop is
             fine to include if capacity allows. High-wattage resistive appliances &mdash; space
-            heaters, kettles, hair dryers &mdash; drain a portable unit in well under an hour. An
-            air conditioner is a heavy load with a compressor surge of its own; the{" "}
+            heaters, kettles, hair dryers &mdash; drain a portable unit in well under an hour; the{" "}
+            <Link
+              href="/electric-heater-power-calculator"
+              className="font-medium text-brand hover:underline"
+            >
+              Electric Heater Power Station Calculator
+            </Link>{" "}
+            shows how fast. An air conditioner is a heavy load with a compressor surge of its own;
+            the{" "}
             <Link
               href="/air-conditioner-power-calculator"
               className="font-medium text-brand hover:underline"

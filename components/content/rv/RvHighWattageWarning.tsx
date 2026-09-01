@@ -41,14 +41,21 @@ export function RvHighWattageWarning() {
           >
             Air Conditioner Power Station Calculator
           </Link>{" "}
-          sizes battery capacity and reports the continuous and surge output it needs, and the{" "}
+          sizes battery capacity and reports the continuous and surge output it needs, the{" "}
           <Link
             href="/microwave-power-calculator"
             className="font-medium text-brand hover:underline"
           >
             Microwave Power Station Calculator
           </Link>{" "}
-          does the same for an RV microwave from its electrical input watts.
+          does the same for an RV microwave from its electrical input watts, and the{" "}
+          <Link
+            href="/electric-heater-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Electric Heater Power Station Calculator
+          </Link>{" "}
+          covers an electric heater&apos;s watts and how fast it drains a battery.
         </p>
       </div>
     </div>

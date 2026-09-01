@@ -48,6 +48,11 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     description: "Battery capacity and the continuous AC output a power station needs to run a microwave, based on its electrical input watts — not its cooking-power rating.",
   },
   {
+    href: "/electric-heater-power-calculator",
+    title: "Electric Heater Power Station Calculator",
+    description: "Battery capacity and continuous AC output for an electric space heater — and why resistance heat drains a portable power station so fast.",
+  },
+  {
     href: "/power-station-runtime-calculator",
     title: "Power Station Runtime Calculator",
     description: "Estimate how long a power station will run a device from its capacity, wattage, efficiency, and reserve.",

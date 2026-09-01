@@ -41,14 +41,21 @@ export function CampingHighWattageWarning() {
           >
             Air Conditioner Power Station Calculator
           </Link>{" "}
-          covers its battery, output, and voltage requirements, and the{" "}
+          covers its battery, output, and voltage requirements, the{" "}
           <Link
             href="/microwave-power-calculator"
             className="font-medium text-brand hover:underline"
           >
             Microwave Power Station Calculator
           </Link>{" "}
-          covers a camp microwave&apos;s input-watt and continuous-output needs.
+          covers a camp microwave&apos;s input-watt and continuous-output needs, and the{" "}
+          <Link
+            href="/electric-heater-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Electric Heater Power Station Calculator
+          </Link>{" "}
+          shows how quickly a heater empties a battery.
         </p>
       </div>
     </div>
