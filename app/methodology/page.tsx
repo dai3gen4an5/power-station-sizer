@@ -137,14 +137,23 @@ export default function MethodologyPage() {
           These are ranges to compare within, not endorsements, and they are listed in a fixed order.
         </p>
         <p className="mt-3 text-ink/75">
-          Product recommendations are filtered separately from the calculator&apos;s size classes. A
-          listed product is only shown when it satisfies the known battery-capacity requirement and,
-          when the calculator supplies them, the known continuous-output and startup / surge
-          requirements. An unknown specification is never treated as confirmed compatibility. If your
-          recommended capacity is larger than every single unit listed, or no listed unit has a
-          confirmed output rating high enough for the load, the section shows a neutral note &mdash;
-          pointing to expandable or whole-home systems, or stating the output rating to look for
-          &mdash; instead of linking a product that may be undersized.
+          Calculator sizing and affiliate product matching are separate. The size class above comes
+          from your energy estimate alone. The product recommendation then starts at the smallest
+          class that could hold that energy and searches upward for the first range that contains a
+          listed unit which meets all of your known requirements: the unit&apos;s real battery
+          capacity is at or above the recommended capacity, and &mdash; when the calculator supplies
+          them &mdash; its manufacturer-rated continuous output and startup / surge output are at or
+          above what the load needs. Each unit&apos;s specs are taken from the manufacturer or the
+          exact Amazon listing the link resolves to; a &ldquo;boost&rdquo; or &ldquo;lifting&rdquo;
+          mode that drives resistive loads harder is not counted as a surge rating.
+        </p>
+        <p className="mt-3 text-ink/75">
+          An unknown specification is never treated as confirmed compatibility. If your recommended
+          capacity is larger than every listed unit, or no unit in any class has a confirmed output
+          rating high enough for the load, the section shows a neutral note &mdash; pointing to
+          expandable or whole-home systems, or stating the continuous and surge watts to look for
+          &mdash; instead of linking a product that may not fit. When the matching class sits above
+          the size class from your energy estimate, the section says so and why.
         </p>
       </div>
 

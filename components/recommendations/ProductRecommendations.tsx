@@ -40,9 +40,12 @@ interface ProductRecommendationsProps {
  *   - nothing, for an empty calculator;
  *   - a neutral, non-affiliate note when the recommended capacity is larger than
  *     every single unit listed — so an undersized unit is never linked;
- *   - a neutral, non-affiliate note when capacity fits but no listed unit has a
- *     confirmed continuous / surge output rating high enough for the load;
- *   - otherwise the product families that clear every supplied requirement.
+ *   - a neutral, non-affiliate note when capacity fits somewhere but, after
+ *     searching every class from the starting one upward, no unit has a confirmed
+ *     continuous / surge output rating high enough for the load;
+ *   - otherwise the products that clear every supplied requirement, from the
+ *     smallest class that has one (which may sit above the calculator's own size
+ *     class when the search escalated to find AC-output headroom).
  *
  * No calculator math is duplicated here, and the calculator's own size-class
  * rounding is untouched.
@@ -127,10 +130,11 @@ export function ProductRecommendations({
             Check the power station&apos;s output rating
           </h2>
           <p className="mt-2 text-sm text-ink/70">
-            Products in this range can cover the roughly{" "}
+            The listed power stations can cover the roughly{" "}
             <span className="font-semibold text-ink">{formatWh(state.recommendedWh)}</span> of battery
-            capacity this load needs, but the listed units do not have a confirmed continuous AC
-            output rating high enough for it, so no specific product is shown.
+            capacity this load needs, but none of them &mdash; in this range or any larger one listed
+            &mdash; has a confirmed AC output rating high enough for it, so no specific product is
+            shown.
           </p>
           <p className="mt-3 text-sm text-ink/70">
             Look for a power station with at least{" "}
@@ -161,6 +165,10 @@ export function ProductRecommendations({
   const anyActiveLink = hasAnyActiveLink(products);
   const sectionHasAffiliateLink = hasActiveAffiliateLink(products);
   const sectionHasAmazonLink = hasActiveAmazonLink(products);
+  const outputAware =
+    state.requiredContinuousOutputW > 0 || state.requiredSurgeOutputW > 0;
+  const continuousW = Math.round(state.requiredContinuousOutputW);
+  const surgeW = Math.round(state.requiredSurgeOutputW);
 
   return (
     <section
@@ -172,14 +180,41 @@ export function ProductRecommendations({
           id="product-recommendations-heading"
           className="font-display text-base font-semibold text-ink"
         >
-          Power stations in this size range
+          {outputAware
+            ? "Power stations that meet your battery and AC-output needs"
+            : "Power stations in this size range"}
         </h2>
-        <p className="mt-1 text-sm text-ink/70">
-          Your estimate points to roughly the{" "}
-          <span className="font-semibold text-ink">{capacityClass.label}</span> class. Here are
-          product families you can compare.
-        </p>
-        <p className="mt-1 text-xs text-ink/55">{capacityClass.reason}</p>
+        {outputAware ? (
+          <p className="mt-1 text-sm text-ink/70">
+            These{" "}
+            <span className="font-semibold text-ink">{capacityClass.label}</span>-class units have a
+            confirmed continuous AC output of at least{" "}
+            <span className="font-semibold text-ink">{continuousW}&nbsp;W</span>
+            {surgeW > 0 ? (
+              <>
+                {" "}
+                and a rated surge of at least{" "}
+                <span className="font-semibold text-ink">{surgeW}&nbsp;W</span>
+              </>
+            ) : null}
+            , plus enough battery capacity for this load.
+          </p>
+        ) : (
+          <p className="mt-1 text-sm text-ink/70">
+            Your estimate points to roughly the{" "}
+            <span className="font-semibold text-ink">{capacityClass.label}</span> class. Here are
+            product families you can compare.
+          </p>
+        )}
+        {state.capacityClassEscalated ? (
+          <p className="mt-1 text-xs text-ink/55">
+            Your energy requirement fits a smaller battery class, but the{" "}
+            {capacityClass.label} class is the first listed range with products whose confirmed AC
+            output can meet your {continuousW}&nbsp;W load.
+          </p>
+        ) : (
+          <p className="mt-1 text-xs text-ink/55">{capacityClass.reason}</p>
+        )}
 
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           {products.map((product) => {
