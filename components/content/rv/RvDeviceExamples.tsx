@@ -45,6 +45,19 @@ export function RvDeviceExamples() {
           </Link>{" "}
           for humidifier and DC details.
         </p>
+        <p>
+          <span className="font-medium text-ink">Heating the bed on a cold night.</span> An electric
+          blanket at 40&ndash;100&nbsp;watts, or a 12V version that skips the inverter, is a far more
+          efficient way to stay warm than a heater. A full night is a few hundred watt-hours off the
+          house bank, so plan it against your capacity &mdash; the{" "}
+          <Link
+            href="/electric-blanket-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Electric Blanket Power Station Calculator
+          </Link>{" "}
+          sizes the overnight load.
+        </p>
       </div>
     </div>
   );

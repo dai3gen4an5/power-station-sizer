@@ -93,7 +93,15 @@ export function OutagePriorityAppliances() {
             >
               Air Conditioner Power Station Calculator
             </Link>{" "}
-            sizes battery capacity and the output it needs.
+            sizes battery capacity and the output it needs. For staying warm, an electric blanket at
+            60&ndash;100&nbsp;watts is far gentler on a battery than a space heater &mdash; the{" "}
+            <Link
+              href="/electric-blanket-power-calculator"
+              className="font-medium text-brand hover:underline"
+            >
+              Electric Blanket Power Station Calculator
+            </Link>{" "}
+            sizes an overnight run.
           </li>
         </ul>
         <p>

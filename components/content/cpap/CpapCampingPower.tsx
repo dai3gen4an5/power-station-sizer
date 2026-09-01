@@ -20,7 +20,14 @@ export function CpapCampingPower() {
           <Link href="/starlink-power-calculator" className="font-medium text-brand hover:underline">
             Starlink Power Station Calculator
           </Link>{" "}
-          to size a battery that covers both.
+          to size a battery that covers both. And if you run a heated blanket on cold nights, the{" "}
+          <Link
+            href="/electric-blanket-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Electric Blanket Power Station Calculator
+          </Link>{" "}
+          sizes that overnight load alongside the CPAP.
         </p>
       </div>
     </div>

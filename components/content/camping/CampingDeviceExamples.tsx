@@ -38,6 +38,19 @@ export function CampingDeviceExamples() {
           150&ndash;400&nbsp;Wh a day for a photography trip. Charging on 12V or USB-C PD where
           possible avoids the inverter loss of an AC charger.
         </p>
+        <p>
+          <span className="font-medium text-ink">Staying warm on a cold night.</span> A heated
+          blanket at 40&ndash;100&nbsp;watts is far kinder to a battery than a space heater, and a
+          12V model skips the inverter entirely. A full night still adds several hundred watt-hours,
+          so size it deliberately &mdash; the{" "}
+          <Link
+            href="/electric-blanket-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Electric Blanket Power Station Calculator
+          </Link>{" "}
+          covers active watts, runtime, and AC versus 12V.
+        </p>
       </div>
     </div>
   );

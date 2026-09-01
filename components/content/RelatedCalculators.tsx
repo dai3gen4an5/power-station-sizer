@@ -93,6 +93,12 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     category: "Climate",
   },
   {
+    href: "/electric-blanket-power-calculator",
+    title: "Electric Blanket Power Station Calculator",
+    description: "Battery capacity and runtime for an electric blanket — a 40–150 W load held all night, where the hours, not the wattage, size the battery.",
+    category: "Climate",
+  },
+  {
     href: "/coffee-maker-power-calculator",
     title: "Coffee Maker Power Station Calculator",
     description: "Battery capacity and continuous AC output for a drip, single-serve, or espresso coffee maker, based on its electrical input watts.",
