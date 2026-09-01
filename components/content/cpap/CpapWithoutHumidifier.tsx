@@ -1,7 +1,7 @@
 export function CpapWithoutHumidifier() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">CPAP without a humidifier</h2>
+      <h2 className="h2">CPAP without a humidifier</h2>
       <p className="mt-3 text-ink/75">
         Turning off a heated humidifier, or not using one, is one of the more effective ways to reduce a
         CPAP&apos;s power draw, since heating water takes meaningfully more energy than running the blower

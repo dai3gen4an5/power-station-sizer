@@ -30,13 +30,13 @@ export function SumpPumpWorkedExample() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Worked outage example</h2>
+      <h2 className="h2">Worked outage example</h2>
       <p className="mt-3 text-ink/75">
         A pump with a spec sheet reading {RUNNING_WATTS}&nbsp;W running and {STARTUP_WATTS}&nbsp;W
         starting, expected to run about {MINUTES_PER_HOUR} minutes of each hour, backed up for a{" "}
         {OUTAGE_HOURS}-hour outage. These are example figures &mdash; use your own pump&apos;s.
       </p>
-      <div className="mt-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="mt-4 card card-pad">
         <p className="font-mono text-lg text-ink">
           {RUNNING_WATTS} W &times; ({MINUTES_PER_HOUR} / 60) &times; {OUTAGE_HOURS} h ={" "}
           {formatWh(rawWh)}

@@ -1,7 +1,7 @@
 export function CmCapacityVsOutputNotice() {
   return (
-    <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+    <section className="container-prose">
+      <div className="card card-pad">
         <span className="text-xs font-medium uppercase tracking-wide text-ink/50">
           Before you rely on this number
         </span>

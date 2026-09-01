@@ -1,7 +1,7 @@
 export function CpapWithHumidifier() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">CPAP with heated humidifier</h2>
+      <h2 className="h2">CPAP with heated humidifier</h2>
       <p className="mt-3 text-ink/75">
         A heated humidifier adds a heating element that can noticeably increase a CPAP&apos;s total power
         draw compared to running the blower motor alone, and heated tubing — which helps prevent

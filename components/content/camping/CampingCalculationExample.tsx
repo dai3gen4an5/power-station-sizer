@@ -34,14 +34,14 @@ export function CampingCalculationExample() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Worked calculation example</h2>
+      <h2 className="h2">Worked calculation example</h2>
       <p className="mt-3 text-ink/75">
         One night of car camping: a portable cooler (45&nbsp;W, ~10 equivalent compressor hours), two
         LED camp lights (5&nbsp;W, 5&nbsp;h), a small fan (5&nbsp;W, 6&nbsp;h), two phones charging
         (8&nbsp;W, 3&nbsp;h), a laptop (65&nbsp;W, 3&nbsp;h) and one camera battery charge (25&nbsp;W,
         1.5&nbsp;h).
       </p>
-      <div className="mt-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="mt-4 card card-pad">
         <p className="text-sm text-ink/70">
           Those add up to <span className="font-mono">{formatWh(totalDailyWh)}</span> of energy for
           one day. After {DEFAULT_SETTINGS.inverterEfficiency}% inverter efficiency that is about{" "}

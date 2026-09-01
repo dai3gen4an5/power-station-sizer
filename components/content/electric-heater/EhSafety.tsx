@@ -1,7 +1,7 @@
 export function EhSafety() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Safety notes</h2>
+      <h2 className="h2">Safety notes</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           An electric heater is a high-power load and a heat source. A few practical points:

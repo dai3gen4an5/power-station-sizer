@@ -69,29 +69,24 @@ export function ProductRecommendations({
   // Nothing to recommend yet (e.g. an empty calculator) — render nothing.
   if (state.kind === "empty") return null;
 
-  const sectionClassName = `mx-auto max-w-5xl px-4 sm:px-6 ${className ?? ""}`;
+  const sectionClassName = `container-page ${className ?? ""}`;
 
   // The recommended capacity is larger than every single unit currently listed.
   // Show a neutral, link-free note rather than an undersized affiliate card.
   if (state.kind === "no-match") {
     return (
-      <section
-        className={sectionClassName}
-        aria-labelledby="product-recommendations-heading"
-      >
-        <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-          <h2
-            id="product-recommendations-heading"
-            className="font-display text-base font-semibold text-ink"
-          >
+      <section className={sectionClassName} aria-labelledby="product-recommendations-heading">
+        <div className="card card-pad">
+          <p className="eyebrow">Recommendation</p>
+          <h2 id="product-recommendations-heading" className="mt-2 h3 text-base">
             Larger than a single listed power station
           </h2>
-          <p className="mt-2 text-sm text-ink/70">
+          <p className="mt-2 text-sm text-muted">
             Your estimated capacity requirement is about{" "}
             <span className="font-semibold text-ink">{formatWh(state.recommendedWh)}</span>, which is
             larger than the single-unit power stations currently listed here.
           </p>
-          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-ink/70">
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-muted">
             <li>
               Consider an expandable power station with add-on battery modules, or a larger
               whole-home system.
@@ -101,7 +96,7 @@ export function ProductRecommendations({
               draw, or add solar to extend runtime.
             </li>
           </ul>
-          <p className="mt-3 text-xs leading-relaxed text-ink/55">
+          <p className="mt-3 text-xs leading-relaxed text-muted/80">
             Before buying, verify total usable capacity, continuous output, surge capability,
             voltage, outlet configuration, and battery-expansion limits against the devices you plan
             to run. Enough capacity alone does not confirm a unit can start and run them.
@@ -118,25 +113,20 @@ export function ProductRecommendations({
     const continuousW = Math.round(state.requiredContinuousOutputW);
     const surgeW = Math.round(state.requiredSurgeOutputW);
     return (
-      <section
-        className={sectionClassName}
-        aria-labelledby="product-recommendations-heading"
-      >
-        <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-          <h2
-            id="product-recommendations-heading"
-            className="font-display text-base font-semibold text-ink"
-          >
+      <section className={sectionClassName} aria-labelledby="product-recommendations-heading">
+        <div className="card card-pad">
+          <p className="eyebrow">Recommendation</p>
+          <h2 id="product-recommendations-heading" className="mt-2 h3 text-base">
             Check the power station&apos;s output rating
           </h2>
-          <p className="mt-2 text-sm text-ink/70">
+          <p className="mt-2 text-sm text-muted">
             The listed power stations can cover the roughly{" "}
             <span className="font-semibold text-ink">{formatWh(state.recommendedWh)}</span> of battery
             capacity this load needs, but none of them &mdash; in this range or any larger one listed
             &mdash; has a confirmed AC output rating high enough for it, so no specific product is
             shown.
           </p>
-          <p className="mt-3 text-sm text-ink/70">
+          <p className="mt-3 text-sm text-muted">
             Look for a power station with at least{" "}
             <span className="font-semibold text-ink">{continuousW}&nbsp;W</span> of continuous AC
             output
@@ -150,7 +140,7 @@ export function ProductRecommendations({
             ) : null}
             , plus enough battery capacity.
           </p>
-          <p className="mt-3 text-xs leading-relaxed text-ink/55">
+          <p className="mt-3 text-xs leading-relaxed text-muted/80">
             Confirm the unit&apos;s rated continuous output, its surge / peak rating, its AC voltage,
             and its outlet type against this load&apos;s specifications before buying. Enough
             capacity alone does not confirm a unit can start and run it.
@@ -171,21 +161,16 @@ export function ProductRecommendations({
   const surgeW = Math.round(state.requiredSurgeOutputW);
 
   return (
-    <section
-      className={sectionClassName}
-      aria-labelledby="product-recommendations-heading"
-    >
-      <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-        <h2
-          id="product-recommendations-heading"
-          className="font-display text-base font-semibold text-ink"
-        >
+    <section className={sectionClassName} aria-labelledby="product-recommendations-heading">
+      <div className="card card-pad">
+        <p className="eyebrow">Recommendation</p>
+        <h2 id="product-recommendations-heading" className="mt-2 h3 text-base">
           {outputAware
             ? "Power stations that meet your battery and AC-output needs"
             : "Power stations in this size range"}
         </h2>
         {outputAware ? (
-          <p className="mt-1 text-sm text-ink/70">
+          <p className="mt-1 text-sm text-muted">
             These{" "}
             <span className="font-semibold text-ink">{capacityClass.label}</span>-class units have a
             confirmed continuous AC output of at least{" "}
@@ -200,23 +185,23 @@ export function ProductRecommendations({
             , plus enough battery capacity for this load.
           </p>
         ) : (
-          <p className="mt-1 text-sm text-ink/70">
+          <p className="mt-1 text-sm text-muted">
             Your estimate points to roughly the{" "}
             <span className="font-semibold text-ink">{capacityClass.label}</span> class. Here are
             product families you can compare.
           </p>
         )}
         {state.capacityClassEscalated ? (
-          <p className="mt-1 text-xs text-ink/55">
+          <p className="mt-1 text-xs text-muted/80">
             Your energy requirement fits a smaller battery class, but the{" "}
             {capacityClass.label} class is the first listed range with products whose confirmed AC
             output can meet your {continuousW}&nbsp;W load.
           </p>
         ) : (
-          <p className="mt-1 text-xs text-ink/55">{capacityClass.reason}</p>
+          <p className="mt-1 text-xs text-muted/80">{capacityClass.reason}</p>
         )}
 
-        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">
           {products.map((product) => {
             const link = resolveProductLink(product);
             const dataAttrs = recommendationDataAttributes({
@@ -242,15 +227,17 @@ export function ProductRecommendations({
                     })
                   }
                   {...dataAttrs}
-                  className="block rounded-xl border border-line bg-paper p-4 transition-colors hover:border-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  className="group block rounded-card border border-line bg-surface-muted/60 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-surface hover:shadow-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
-                  <span className="block text-[11px] font-medium uppercase tracking-wide text-ink/50">
+                  <span className="block font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
                     {product.brandName}
                   </span>
-                  <span className="mt-1 block text-sm font-medium text-ink">
+                  <span className="mt-1 block text-sm font-semibold text-ink">
                     {product.productName}
                   </span>
-                  <span className="mt-2 block text-xs text-brand">Compare options &rarr;</span>
+                  <span className="mt-2 block text-xs font-medium text-brand-700">
+                    Compare options &rarr;
+                  </span>
                 </a>
               );
             }
@@ -260,28 +247,28 @@ export function ProductRecommendations({
                 key={product.brand}
                 {...dataAttrs}
                 aria-disabled="true"
-                className="block rounded-xl border border-dashed border-line bg-paper p-4"
+                className="block rounded-card border border-dashed border-line-strong bg-surface-muted/60 p-4"
               >
-                <span className="block text-[11px] font-medium uppercase tracking-wide text-ink/50">
+                <span className="block font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
                   {product.brandName}
                 </span>
-                <span className="mt-1 block text-sm font-medium text-ink">
+                <span className="mt-1 block text-sm font-semibold text-ink">
                   {product.productName}
                 </span>
-                <span className="mt-2 block text-xs text-ink/45">Product links coming soon</span>
+                <span className="mt-2 block text-xs text-muted/70">Product links coming soon</span>
               </div>
             );
           })}
         </div>
 
         {!anyActiveLink && (
-          <p className="mt-4 rounded-lg bg-paper px-3 py-2 text-xs text-ink/60">
+          <p className="mt-4 rounded-control bg-surface-muted px-3 py-2 text-xs text-muted">
             Product links are being added. For now this is a guide to which size class to shop in, not
             a set of specific buy links.
           </p>
         )}
 
-        <p className="mt-4 text-xs leading-relaxed text-ink/55">
+        <p className="mt-4 text-xs leading-relaxed text-muted/80">
           Capacity class is a starting point only. Always confirm the actual unit&apos;s
           specifications &mdash; usable capacity, continuous and surge output, and maximum charge
           input &mdash; against the devices you plan to run before buying.

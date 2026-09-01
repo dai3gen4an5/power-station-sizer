@@ -12,7 +12,7 @@ export function CpapBatterySizing() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">How to calculate CPAP battery size</h2>
+      <h2 className="h2">How to calculate CPAP battery size</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           The underlying math is simple: watts × hours = watt-hours. A 40-watt CPAP running for 8 hours

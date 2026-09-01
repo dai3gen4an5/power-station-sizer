@@ -23,9 +23,8 @@ const EXAMPLE = {
   batteryReserve: DEFAULT_SETTINGS.batteryReserve,
 };
 
-const inputClasses =
-  "w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
-const labelClasses = "mb-1 block text-xs font-medium uppercase tracking-wide text-ink/50";
+const inputClasses = "field";
+const labelClasses = "field-label";
 
 function parseNumber(value: string): number {
   const parsed = Number.parseFloat(value);
@@ -80,13 +79,13 @@ export function MicrowaveCalculator() {
 
   return (
     <>
-      <section id="calculator" className="mx-auto max-w-5xl px-4 pb-8 pt-2 sm:px-6">
+      <section id="calculator" className="container-page scroll-mt-20 pb-8 pt-2">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           {/* ---- INPUTS ---- */}
           <div className="space-y-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-lg font-semibold text-ink">Your microwave</h2>
-              <p className="mt-1 text-sm text-ink/60">
+            <div className="card card-pad">
+              <h2 className="h3">Your microwave</h2>
+              <p className="mt-1 text-sm text-muted">
                 Enter the microwave&apos;s electrical <span className="font-medium">input</span> watts
                 &mdash; its power consumption from the outlet, from the rear label, the manual, or a
                 watt meter. This is not the &ldquo;700 W&rdquo; / &ldquo;1000 W&rdquo; cooking power
@@ -107,7 +106,7 @@ export function MicrowaveCalculator() {
                     onChange={(e) => setInputWatts(Math.max(0, parseNumber(e.target.value)))}
                     className={inputClasses}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     Power drawn from the wall while running. Required. Look for &ldquo;input&rdquo; or
                     &ldquo;power consumption&rdquo; on the spec.
                   </span>
@@ -127,7 +126,7 @@ export function MicrowaveCalculator() {
                     onChange={(e) => setUseMinutes(clamp(parseNumber(e.target.value), 0, 240))}
                     className={inputClasses}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     Total operating minutes you want to cover, added up across sessions. Required.
                   </span>
                 </label>
@@ -147,7 +146,7 @@ export function MicrowaveCalculator() {
                     onChange={(e) => setStartupWatts(Math.max(0, parseNumber(e.target.value)))}
                     className={`${inputClasses} sm:max-w-[16rem]`}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     Enter this only if the manufacturer publishes a startup / surge figure. Leave it
                     blank otherwise &mdash; it is not estimated from the input watts.
                   </span>
@@ -155,7 +154,7 @@ export function MicrowaveCalculator() {
               </div>
 
               <div className="mt-5 border-t border-line pt-5">
-                <p className="text-xs font-medium uppercase tracking-wide text-ink/50">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted">
                   Backup settings
                 </p>
                 <div className="mt-3 grid gap-4 sm:grid-cols-2">
@@ -175,9 +174,9 @@ export function MicrowaveCalculator() {
                         }
                         className={inputClasses}
                       />
-                      <span className="text-sm text-ink/50">%</span>
+                      <span className="text-sm text-muted">%</span>
                     </div>
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       Energy lost converting battery power to AC.
                     </span>
                   </label>
@@ -196,9 +195,9 @@ export function MicrowaveCalculator() {
                         onChange={(e) => setBatteryReserve(clamp(parseNumber(e.target.value), 0, 50))}
                         className={inputClasses}
                       />
-                      <span className="text-sm text-ink/50">%</span>
+                      <span className="text-sm text-muted">%</span>
                     </div>
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       Buffer left unused to protect battery life.
                     </span>
                   </label>
@@ -208,11 +207,11 @@ export function MicrowaveCalculator() {
               <button
                 type="button"
                 onClick={loadExample}
-                className="mt-5 inline-flex items-center gap-2 rounded-lg border border-dashed border-ink/25 px-4 py-2 text-sm font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="mt-5 inline-flex items-center gap-2 rounded-control border border-dashed border-line-strong px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-brand-300 hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 Load example
               </button>
-              <p className="mt-2 text-xs text-ink/45">
+              <p className="mt-2 text-xs text-muted/70">
                 Example only &mdash; input 1,500&nbsp;W, 10 minutes of use. Replace both with your
                 microwave&apos;s actual input watts and run time; the input figure is not derived from
                 a cooking-power rating.
@@ -222,8 +221,8 @@ export function MicrowaveCalculator() {
 
           {/* ---- RESULTS ---- */}
           <div className="space-y-4 lg:sticky lg:top-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-base font-semibold text-ink">
+            <div className="card card-pad">
+              <h2 className="h3 text-base">
                 Battery capacity you need
               </h2>
               {hasInput ? (
@@ -231,7 +230,7 @@ export function MicrowaveCalculator() {
                   <p className="mt-2 font-mono text-3xl font-semibold text-ink sm:text-4xl">
                     {formatWh(result.recommendedWh)}
                   </p>
-                  <p className="mt-1 text-sm text-ink/60">
+                  <p className="mt-1 text-sm text-muted">
                     Recommended battery capacity after inverter efficiency and reserve. Look for a
                     power station around{" "}
                     <span className="font-semibold text-ink">{sizeLabel}</span>
@@ -247,13 +246,13 @@ export function MicrowaveCalculator() {
                   </p>
                   <div className="mt-4 grid grid-cols-2 gap-3 rounded-xl bg-paper p-4">
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-ink/50">
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted">
                         Estimated microwave energy use
                       </p>
                       <p className="mt-0.5 font-mono text-base text-ink">{formatWh(result.rawWh)}</p>
                     </div>
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-ink/50">
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted">
                         Minimum before reserve
                       </p>
                       <p className="mt-0.5 font-mono text-base text-ink">
@@ -263,34 +262,34 @@ export function MicrowaveCalculator() {
                   </div>
                 </>
               ) : (
-                <p className="mt-2 text-sm text-ink/60">
+                <p className="mt-2 text-sm text-muted">
                   Enter your microwave&apos;s input watts and minutes of use to calculate the battery
                   capacity, energy use, and required output.
                 </p>
               )}
-              <p className="mt-3 text-xs leading-relaxed text-ink/55">
+              <p className="mt-3 text-xs leading-relaxed text-muted/80">
                 This is a planning estimate. Actual energy use depends on your microwave&apos;s real
                 input watts and how many minutes it runs, and a microwave is a short-run, high-draw
                 load &mdash; the battery is rarely the limit.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-base font-semibold text-ink">
+            <div className="card card-pad">
+              <h2 className="h3 text-base">
                 Inverter output your power station must have
               </h2>
-              <p className="mt-1 text-sm text-ink/60">
+              <p className="mt-1 text-sm text-muted">
                 This is separate from battery capacity. A power station needs both.
               </p>
               <dl className="mt-4 space-y-3 text-sm">
                 <div className="flex items-baseline justify-between gap-3">
-                  <dt className="text-ink/70">Required continuous AC output</dt>
+                  <dt className="text-muted">Required continuous AC output</dt>
                   <dd className="font-mono font-semibold text-ink">
                     {hasInput ? `${Math.round(result.requiredContinuousW)} W` : "—"}
                   </dd>
                 </div>
                 <div className="flex items-baseline justify-between gap-3">
-                  <dt className="text-ink/70">Required startup / surge capability</dt>
+                  <dt className="text-muted">Required startup / surge capability</dt>
                   <dd className="font-mono font-semibold text-ink">
                     {surgeKnown ? `${Math.round(result.requiredSurgeW)} W` : "Unknown"}
                   </dd>
@@ -303,14 +302,14 @@ export function MicrowaveCalculator() {
                   does list a surge or peak figure, enter it and check the power station against it.
                 </p>
               )}
-              <p className="mt-3 text-xs leading-relaxed text-ink/60">
+              <p className="mt-3 text-xs leading-relaxed text-muted">
                 A power station can have enough battery capacity but still fail to run a microwave if
                 its inverter&apos;s continuous AC output is below the microwave&apos;s input watts.
                 Check the unit&apos;s rated continuous output against the number above.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-amber-200 bg-amber-50/70 p-5 sm:p-6">
+            <div className="rounded-card border border-amber-200 bg-amber-50/70 p-5 sm:p-6">
               <h2 className="font-display text-base font-semibold text-amber-900">
                 Before you buy
               </h2>
@@ -353,8 +352,8 @@ export function MicrowaveCalculator() {
         className="pb-2"
       />
 
-      <section className="mx-auto max-w-5xl px-4 pb-14 sm:px-6">
-        <p className="mx-auto max-w-3xl text-xs leading-relaxed text-ink/55">
+      <section className="container-page pb-14">
+        <p className="mx-auto max-w-3xl text-xs leading-relaxed text-muted/80">
           Capacity recommendations above are based on energy needs only. Before buying, verify the
           power station&apos;s continuous AC output against your microwave&apos;s input watts, plus
           its AC voltage, outlet configuration, and any startup / surge specification &mdash; capacity

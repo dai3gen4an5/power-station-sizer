@@ -3,7 +3,7 @@ import Link from "next/link";
 export function RefrigeratorRuntimeExplainer() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         How long will a power station run a refrigerator?
       </h2>
       <p className="mt-3 text-ink/75">

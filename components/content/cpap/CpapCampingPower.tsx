@@ -3,7 +3,7 @@ import Link from "next/link";
 export function CpapCampingPower() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">CPAP camping power</h2>
+      <h2 className="h2">CPAP camping power</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           Multi-night trips add planning considerations beyond a single night at home. Multiply your

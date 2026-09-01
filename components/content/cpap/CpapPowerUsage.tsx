@@ -1,7 +1,7 @@
 export function CpapPowerUsage() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">How much power does a CPAP use?</h2>
+      <h2 className="h2">How much power does a CPAP use?</h2>
       <p className="mt-3 text-ink/75">
         CPAP machines typically draw somewhere between 30 and 60 watts on their own, but the exact figure
         depends on several factors: the specific machine model, the pressure setting you use, whether a

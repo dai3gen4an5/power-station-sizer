@@ -7,7 +7,7 @@ const HOURS = [0.5, 1, 2, 4];
 export function EhWattageExamples() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         500&nbsp;W, 750&nbsp;W, 1000&nbsp;W, and 1500&nbsp;W heater examples
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

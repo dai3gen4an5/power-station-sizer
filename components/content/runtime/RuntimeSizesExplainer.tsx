@@ -1,7 +1,7 @@
 export function RuntimeSizesExplainer() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         How long will a 500Wh, 1000Wh, or 2000Wh power station last?
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

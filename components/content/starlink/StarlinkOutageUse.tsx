@@ -3,7 +3,7 @@ import Link from "next/link";
 export function StarlinkOutageUse() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Starlink during a power outage</h2>
+      <h2 className="h2">Starlink during a power outage</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           During a power outage, decide how many days you want to keep Starlink running and multiply your

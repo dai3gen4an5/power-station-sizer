@@ -30,7 +30,7 @@ export function WellPumpWorkedExample() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Worked outage example</h2>
+      <h2 className="h2">Worked outage example</h2>
       <p className="mt-3 text-ink/75">
         A pump with a spec sheet reading {RUNNING_WATTS.toLocaleString("en-US")}&nbsp;W running and{" "}
         {STARTUP_WATTS.toLocaleString("en-US")}&nbsp;W starting, expected to run about{" "}
@@ -38,7 +38,7 @@ export function WellPumpWorkedExample() {
         example figures &mdash; use your own pump&apos;s, and they are not tied to a particular
         horsepower.
       </p>
-      <div className="mt-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="mt-4 card card-pad">
         <p className="font-mono text-lg text-ink">
           {RUNNING_WATTS.toLocaleString("en-US")} W &times; {MINUTES_PER_HOUR} min &times;{" "}
           {OUTAGE_HOURS} h / 60 = {formatWh(rawWh)}

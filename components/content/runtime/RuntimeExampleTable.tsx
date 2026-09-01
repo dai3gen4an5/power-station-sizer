@@ -39,7 +39,7 @@ export function RuntimeExampleTable() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         How long a power station runs common devices
       </h2>
       <p className="mt-3 text-ink/75">

@@ -14,7 +14,7 @@ export function RefrigeratorExampleTable() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         Example refrigerator energy requirements
       </h2>
       <p className="mt-3 text-ink/75">

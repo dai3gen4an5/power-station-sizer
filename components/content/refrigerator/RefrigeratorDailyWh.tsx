@@ -1,7 +1,7 @@
 export function RefrigeratorDailyWh() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         How many Wh does a refrigerator use per day?
       </h2>
       <p className="mt-3 text-ink/75">

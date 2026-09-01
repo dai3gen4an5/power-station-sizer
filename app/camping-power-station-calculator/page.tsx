@@ -67,16 +67,17 @@ const CAMPING_PRESETS_NOTE =
 export default function CampingPowerStationCalculatorPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+      <section className="container-page pb-6 pt-12 text-center sm:pt-16">
+        <p className="eyebrow">Power station calculator</p>
+        <h1 className="h1 mx-auto mt-3 max-w-3xl">
           Camping Power Station Calculator
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
+        <p className="lede mx-auto mt-4 max-w-2xl">
           Add the gear you bring tent or car camping &mdash; a portable fridge or cooler, camp
           lights, a fan, phones, a laptop, camera and drone batteries, a CPAP, Starlink &mdash; to
           estimate your daily watt-hours and the portable power station capacity you need.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted/80">
           Enter the hours each item runs in a typical day, and set{" "}
           <span className="font-medium">Number of days</span> in Backup settings to how many nights
           you are out. Results are planning estimates, not a guarantee.
@@ -92,7 +93,7 @@ export default function CampingPowerStationCalculatorPage() {
 
       <CampingHowToUse />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <section className="container-prose section space-y-12">
         <CampingWhatSize />
         <CampingGearTable />
         <CampingCapacityClasses />

@@ -79,10 +79,10 @@ export function SolarPanelSizeCalculator() {
   );
 
   return (
-    <section id="calculator" className="mx-auto max-w-5xl px-4 pb-16 pt-2 sm:px-6">
+    <section id="calculator" className="container-page scroll-mt-20 pb-16 pt-2">
       <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
         <div className="space-y-6">
-          <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+          <div className="card card-pad">
             <h2 className="font-display text-lg font-semibold text-ink">Power station</h2>
             <p className="mt-1 text-sm text-ink/60">
               Battery capacity and how far you need to charge it.
@@ -144,7 +144,7 @@ export function SolarPanelSizeCalculator() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+          <div className="card card-pad">
             <h2 className="font-display text-lg font-semibold text-ink">Recharge target</h2>
             <p className="mt-1 text-sm text-ink/60">
               How quickly you want the recharge done, plus a real-world derating factor.
@@ -332,7 +332,7 @@ export function SolarPanelSizeCalculator() {
               </div>
             ) : null}
 
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+            <div className="card card-pad">
               <p className="text-sm text-ink/70">
                 This is an ideal-conditions estimate. A panel&apos;s rated watts are rarely sustained
                 outdoors — weather, sun angle, shade, temperature, cabling, and the charge controller

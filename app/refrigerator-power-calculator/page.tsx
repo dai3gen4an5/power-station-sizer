@@ -63,19 +63,20 @@ const REFRIGERATOR_PRESETS_NOTE =
 export default function RefrigeratorPowerCalculatorPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+      <section className="container-page pb-6 pt-12 text-center sm:pt-16">
+        <p className="eyebrow">Power station calculator</p>
+        <h1 className="h1 mx-auto mt-3 max-w-3xl">
           Refrigerator Power Station Calculator
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
+        <p className="lede mx-auto mt-4 max-w-2xl">
           Estimate how much battery capacity you need to keep a refrigerator running during a power
           outage, camping trip, or off-grid use.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted/80">
           Refrigerators cycle on and off. Enter approximate compressor runtime rather than assuming the
           refrigerator draws its running wattage 24 hours a day.
         </p>
-        <p className="mx-auto mt-2 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-muted/80">
           Startup surge power can be much higher than normal running watts, so power station inverter
           output matters in addition to battery capacity.
         </p>
@@ -91,7 +92,7 @@ export default function RefrigeratorPowerCalculatorPage() {
       <RefrigeratorSurgeNotice />
       <RefrigeratorCalculationExample />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <section className="container-prose section space-y-12">
         <RefrigeratorWattUsage />
         <RefrigeratorCyclingExplainer />
         <RefrigeratorSurgeVsRunning />

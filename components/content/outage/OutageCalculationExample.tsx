@@ -32,7 +32,7 @@ export function OutageCalculationExample() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 pb-12 sm:px-6">
-      <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="card card-pad">
         <h2 className="font-display text-lg font-semibold text-ink">How this example adds up</h2>
         <p className="mt-2 text-sm text-ink/70">
           A refrigerator (150&nbsp;W, ~8 equivalent compressor hours), a Wi-Fi router (12&nbsp;W,

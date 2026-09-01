@@ -1,7 +1,7 @@
 export function SolarChargeFormula() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">The solar charge time formula</h2>
+      <h2 className="h2">The solar charge time formula</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>The estimate is built from three short steps:</p>
         <ol className="list-decimal space-y-2 pl-5">

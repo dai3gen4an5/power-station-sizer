@@ -21,7 +21,7 @@ export function SolarPanelSizeCalculationExample() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 pb-12 sm:px-6">
-      <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="card card-pad">
         <h2 className="font-display text-lg font-semibold text-ink">How this example adds up</h2>
         <div className="mt-2 space-y-1 font-mono text-sm text-ink sm:text-base">
           <p>

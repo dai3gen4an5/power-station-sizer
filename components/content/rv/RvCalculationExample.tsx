@@ -33,13 +33,13 @@ export function RvCalculationExample() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Worked calculation example</h2>
+      <h2 className="h2">Worked calculation example</h2>
       <p className="mt-3 text-ink/75">
         A common dry-camping day: a 12V fridge (45&nbsp;W, ~12 equivalent compressor hours), three
         LED bulbs (10&nbsp;W, 5&nbsp;h), a roof vent fan (30&nbsp;W, 6&nbsp;h), two phones charging
         (8&nbsp;W, 3&nbsp;h) and a laptop (65&nbsp;W, 4&nbsp;h).
       </p>
-      <div className="mt-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="mt-4 card card-pad">
         <p className="text-sm text-ink/70">
           Those add up to <span className="font-mono">{formatWh(totalDailyWh)}</span> of energy for
           one day. After {DEFAULT_SETTINGS.inverterEfficiency}% inverter efficiency that is about{" "}

@@ -3,7 +3,7 @@ import Link from "next/link";
 export function RefrigeratorSolarCharging() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Solar charging for refrigerator backup</h2>
+      <h2 className="h2">Solar charging for refrigerator backup</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           Because a refrigerator draws power continuously, in cycles, rather than for a single scheduled

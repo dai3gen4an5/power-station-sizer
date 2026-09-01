@@ -30,7 +30,7 @@ export function AcWorkedExample() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Worked example</h2>
+      <h2 className="h2">Worked example</h2>
       <p className="mt-3 text-ink/75">
         A portable unit with a spec sheet reading {RUNNING_WATTS}&nbsp;W running and{" "}
         {STARTUP_WATTS.toLocaleString("en-US")}&nbsp;W starting, with the compressor expected to run
@@ -38,7 +38,7 @@ export function AcWorkedExample() {
         These are example figures &mdash; use your own unit&apos;s, and they are not derived from a
         BTU rating.
       </p>
-      <div className="mt-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="mt-4 card card-pad">
         <p className="font-mono text-lg text-ink">
           {RUNNING_WATTS} W &times; {MINUTES_PER_HOUR} min &times; {USE_HOURS} h / 60 ={" "}
           {formatWh(rawWh)}

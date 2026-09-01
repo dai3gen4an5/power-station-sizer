@@ -1,7 +1,7 @@
 export function StarlinkWattUsage() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">How many watts does Starlink use?</h2>
+      <h2 className="h2">How many watts does Starlink use?</h2>
       <p className="mt-3 text-ink/75">
         Starlink hardware typically draws somewhere in the range of 40 to 150 watts, depending on the
         specific dish and router generation, weather conditions (snow-melt heating can increase draw

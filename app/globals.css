@@ -4,20 +4,144 @@
 
 :root {
   color-scheme: light;
+  --edge: 232 234 223; /* line, as rgb for gradients */
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+body {
+  /* Warm technical canvas: a barely-there dot grid + a faint teal wash near the
+     top so white cards lift off the page without any heavy gradient. */
+  background-color: theme("colors.paper");
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(21, 24, 29, 0.035) 1px, transparent 0),
+    radial-gradient(60rem 40rem at 50% -12rem, rgba(21, 154, 130, 0.06), transparent 70%);
+  background-size:
+    22px 22px,
+    100% 100%;
+  background-attachment: fixed, scroll;
+}
+
 /* Keyboard focus should always be visible, even though most interactive
    elements also set their own focus-visible ring utility classes. */
 :focus-visible {
-  outline: 2px solid #159a82;
+  outline: 2px solid theme("colors.brand.DEFAULT");
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Hide the default disclosure marker so Faq.tsx can draw its own indicator. */
 summary::-webkit-details-marker {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@layer components {
+  /* ---- Layout ---------------------------------------------------------- */
+  .container-page {
+    @apply mx-auto w-full max-w-5xl px-4 sm:px-6;
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .container-prose {
+    @apply mx-auto w-full max-w-3xl px-4 sm:px-6;
+  }
+  .section {
+    @apply py-14 sm:py-20;
+  }
+  .section-tight {
+    @apply py-10 sm:py-14;
+  }
+
+  /* ---- Typography ---------------------------------------------------- */
+  .eyebrow {
+    @apply font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-700;
+  }
+  .h1 {
+    @apply font-display text-3xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl;
+  }
+  .h2 {
+    @apply font-display text-2xl font-semibold tracking-tight text-ink;
+  }
+  .h3 {
+    @apply font-display text-lg font-semibold text-ink;
+  }
+  .lede {
+    @apply text-base leading-relaxed text-muted sm:text-lg;
+  }
+
+  /* ---- Cards -------------------------------------------------------- */
+  .card {
+    @apply rounded-card border border-line bg-surface shadow-card;
+  }
+  .card-pad {
+    @apply p-5 sm:p-6;
+  }
+  .card-interactive {
+    @apply rounded-card border border-line bg-surface shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-raised focus-visible:-translate-y-0.5 focus-visible:border-brand-300 focus-visible:shadow-raised;
+  }
+  .feature-card {
+    @apply rounded-feature border border-line bg-surface shadow-card;
+  }
+
+  /* ---- Buttons --------------------------------------------------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-control text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-brand px-4 py-2.5 text-white hover:bg-brand-600 active:bg-brand-700;
+  }
+  .btn-secondary {
+    @apply btn border border-line-strong bg-surface px-4 py-2.5 text-ink hover:border-brand-300 hover:text-brand-700;
+  }
+  .btn-ghost {
+    @apply btn px-3 py-2 text-muted hover:text-ink;
+  }
+  .btn-lg {
+    @apply px-5 py-3 text-[15px];
+  }
+
+  /* ---- Forms -------------------------------------------------- */
+  .field {
+    @apply w-full rounded-control border border-line bg-surface px-3 py-2 text-sm text-ink shadow-[0_1px_0_rgba(21,24,29,0.02)] transition-colors placeholder:text-muted/60 focus:border-brand-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+  }
+  .field-label {
+    @apply mb-1 block text-[11px] font-semibold uppercase tracking-[0.12em] text-muted;
+  }
+  .field-hint {
+    @apply mt-1 block text-xs text-muted/80;
+  }
+
+  /* ---- Chips ------------------------------------------------ */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-brand-300 hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+  }
+
+  /* ---- Notice / neutral panels --------------------------- */
+  .panel-note {
+    @apply rounded-card border border-line bg-surface-muted p-4 text-sm leading-relaxed text-muted sm:p-5;
+  }
+
+  /* ---- Hardware / LCD result panel ----------------------- */
+  .panel-hardware {
+    @apply rounded-[28px] bg-bezel p-2 shadow-hardware;
+  }
+  .panel-screen {
+    @apply rounded-3xl bg-screen shadow-[inset_0_1px_0_rgba(255,255,255,0.5),inset_0_-10px_24px_-12px_rgba(12,44,39,0.35)];
+  }
 }

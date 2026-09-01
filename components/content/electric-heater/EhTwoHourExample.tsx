@@ -24,14 +24,14 @@ export function EhTwoHourExample() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         Two-hour, 1,500&nbsp;W worked example
       </h2>
       <p className="mt-3 text-ink/75">
         A {WATTS.toLocaleString("en-US")}&nbsp;W heater run for {HOURS} hours. Example figures &mdash;
         use your own heater&apos;s label wattage and the time you actually need.
       </p>
-      <div className="mt-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="mt-4 card card-pad">
         <p className="font-mono text-lg text-ink">
           {WATTS.toLocaleString("en-US")} W &times; {HOURS} h = {formatWh(rawWh)}
         </p>

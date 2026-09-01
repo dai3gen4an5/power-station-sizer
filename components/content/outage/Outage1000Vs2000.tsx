@@ -1,7 +1,7 @@
 export function Outage1000Vs2000() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         1000Wh vs 2000Wh power station for home backup
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

@@ -1,7 +1,7 @@
 export function RefrigeratorWattUsage() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">How many watts does a refrigerator use?</h2>
+      <h2 className="h2">How many watts does a refrigerator use?</h2>
       <p className="mt-3 text-ink/75">
         Refrigerator compressors typically draw somewhere between 100 and 250 watts while actively
         cooling, with mini fridges and small units on the lower end and large or older refrigerators, or

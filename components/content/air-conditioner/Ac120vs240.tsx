@@ -1,7 +1,7 @@
 export function Ac120vs240() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">120V vs 240V</h2>
+      <h2 className="h2">120V vs 240V</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           Air conditioners come in both 120-volt and 240-volt versions. Small portable and window

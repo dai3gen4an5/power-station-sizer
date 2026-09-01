@@ -29,14 +29,14 @@ export function CmWorkedExample() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         1,200&nbsp;W, 10-minute worked example
       </h2>
       <p className="mt-3 text-ink/75">
         A {WATTS.toLocaleString("en-US")}&nbsp;W coffee maker run for {MINUTES} minutes. Example
         figures &mdash; use your own machine&apos;s label wattage and run time.
       </p>
-      <div className="mt-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="mt-4 card card-pad">
         <p className="font-mono text-lg text-ink">
           {WATTS.toLocaleString("en-US")} W &times; {MINUTES} min / 60 = {formatWh(rawWh)}
         </p>

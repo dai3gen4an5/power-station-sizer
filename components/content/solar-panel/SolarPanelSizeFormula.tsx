@@ -3,7 +3,7 @@ import Link from "next/link";
 export function SolarPanelSizeFormula() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">The solar panel size formula</h2>
+      <h2 className="h2">The solar panel size formula</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>This calculator runs the charge-time math in reverse, in three steps:</p>
         <ol className="list-decimal space-y-2 pl-5">

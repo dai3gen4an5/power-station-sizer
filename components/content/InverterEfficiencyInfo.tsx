@@ -1,7 +1,7 @@
 export function InverterEfficiencyInfo() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Why inverter efficiency matters</h2>
+      <h2 className="h2">Why inverter efficiency matters</h2>
       <p className="mt-3 text-ink/75">
         Power stations store energy as DC (direct current), but most household devices run on AC
         (alternating current). The built-in inverter converts DC to AC, and that conversion isn&apos;t

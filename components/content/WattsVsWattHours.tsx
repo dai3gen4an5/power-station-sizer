@@ -1,7 +1,7 @@
 export function WattsVsWattHours() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Watts vs. watt-hours</h2>
+      <h2 className="h2">Watts vs. watt-hours</h2>
       <p className="mt-3 text-ink/75">
         Watts (W) measure how much power a device draws at any given moment — think of it as speed.
         Watt-hours (Wh) measure total energy used over time — think of it as distance traveled. A

@@ -28,13 +28,15 @@ export function AffiliateDisclosure({
   hasActiveAmazonLink = false,
 }: AffiliateDisclosureProps) {
   return (
-    <div className={`space-y-1 text-xs leading-relaxed text-ink/55 ${className ?? ""}`}>
+    <div
+      className={`space-y-1 rounded-control border border-hairline bg-surface-muted/60 px-3 py-2.5 text-xs leading-relaxed text-muted/90 ${className ?? ""}`}
+    >
       <p>
-        <span className="font-medium text-ink/70">Disclosure:</span>{" "}
+        <span className="font-semibold text-ink">Disclosure:</span>{" "}
         {shortAffiliateDisclosure(hasActiveAffiliateLink)}
       </p>
       {hasActiveAmazonLink ? (
-        <p className="text-ink/70">{AMAZON_ASSOCIATES_DISCLOSURE}</p>
+        <p className="text-muted">{AMAZON_ASSOCIATES_DISCLOSURE}</p>
       ) : null}
     </div>
   );

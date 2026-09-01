@@ -1,7 +1,7 @@
 export function HowItWorks() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">How the calculator works</h2>
+      <h2 className="h2">How the calculator works</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           Add every device you want to power, along with its wattage, how many hours a day you&apos;ll run

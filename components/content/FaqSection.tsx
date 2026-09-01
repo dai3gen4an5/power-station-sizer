@@ -35,7 +35,7 @@ export function FaqSection({ items, path = "/", title = "Frequently asked questi
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">{title}</h2>
+      <h2 className="h2">{title}</h2>
       <div className="mt-4 divide-y divide-line rounded-2xl border border-line bg-white">
         {items.map((item) => (
           <details key={item.question} className="group p-5">

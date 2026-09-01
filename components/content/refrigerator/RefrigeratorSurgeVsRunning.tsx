@@ -1,7 +1,7 @@
 export function RefrigeratorSurgeVsRunning() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Running watts vs startup surge</h2>
+      <h2 className="h2">Running watts vs startup surge</h2>
       <p className="mt-3 text-ink/75">
         Running watts describe how much power the compressor draws once it&apos;s already spinning;
         startup (or surge) watts describe the brief spike required to get the compressor motor moving,

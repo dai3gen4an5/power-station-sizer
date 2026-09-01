@@ -24,7 +24,7 @@ export function CpapCalculationExample() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 pb-12 sm:px-6">
-      <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div className="card card-pad">
         <h2 className="font-display text-lg font-semibold text-ink">How this example adds up</h2>
         <p className="mt-2 font-mono text-lg text-ink">
           {EXAMPLE_WATTS} W × {EXAMPLE_HOURS} hours = {formatWh(dailyWh)}

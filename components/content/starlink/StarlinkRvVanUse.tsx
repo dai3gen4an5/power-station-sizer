@@ -3,7 +3,7 @@ import Link from "next/link";
 export function StarlinkRvVanUse() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Starlink for RV / van use</h2>
+      <h2 className="h2">Starlink for RV / van use</h2>
       <p className="mt-3 text-ink/75">
         RV and van setups often run Starlink for extended periods alongside other electronics, so
         it&apos;s worth thinking about total daily energy use rather than Starlink in isolation. A

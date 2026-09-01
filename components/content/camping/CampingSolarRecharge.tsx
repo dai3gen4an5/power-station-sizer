@@ -3,7 +3,7 @@ import Link from "next/link";
 export function CampingSolarRecharge() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Solar recharge while camping</h2>
+      <h2 className="h2">Solar recharge while camping</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           On trips longer than a night or two, most campers top a power station back up with a

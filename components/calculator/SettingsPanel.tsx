@@ -9,9 +9,8 @@ interface SettingsPanelProps {
   onReserveChange: (value: number) => void;
 }
 
-const inputClasses =
-  "w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
-const labelClasses = "mb-1 block text-xs font-medium uppercase tracking-wide text-ink/50";
+const inputClasses = "field";
+const labelClasses = "field-label";
 
 function clamp(value: number, min: number, max: number): number {
   if (!Number.isFinite(value)) return min;
@@ -27,10 +26,15 @@ export function SettingsPanel({
   onReserveChange,
 }: SettingsPanelProps) {
   return (
-    <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-      <h2 className="font-display text-lg font-semibold text-ink">Backup settings</h2>
-      <p className="mt-1 text-sm text-ink/60">
-        Fine-tune these for your situation — the defaults work well for most people.
+    <div className="card card-pad">
+      <div className="flex items-baseline gap-2.5">
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+          Advanced assumptions
+        </span>
+      </div>
+      <h2 className="mt-1 h3">Backup settings</h2>
+      <p className="mt-1 text-sm text-muted">
+        Fine-tune these for your situation &mdash; the defaults work well for most people.
       </p>
       <div className="mt-5 grid gap-4 sm:grid-cols-3">
         <label className="block text-sm">
@@ -45,7 +49,7 @@ export function SettingsPanel({
             onChange={(e) => onDaysChange(clamp(Number.parseFloat(e.target.value), 1, 30))}
             className={inputClasses}
           />
-          <span className="mt-1 block text-xs text-ink/45">How many days of backup power you want.</span>
+          <span className="field-hint">How many days of backup power you want.</span>
         </label>
 
         <label className="block text-sm">
@@ -63,7 +67,7 @@ export function SettingsPanel({
             />
             <span className="text-sm text-ink/50">%</span>
           </div>
-          <span className="mt-1 block text-xs text-ink/45">Energy lost converting battery power to AC.</span>
+          <span className="field-hint">Energy lost converting battery power to AC.</span>
         </label>
 
         <label className="block text-sm">
@@ -81,7 +85,7 @@ export function SettingsPanel({
             />
             <span className="text-sm text-ink/50">%</span>
           </div>
-          <span className="mt-1 block text-xs text-ink/45">Buffer left unused to protect battery life.</span>
+          <span className="field-hint">Buffer left unused to protect battery life.</span>
         </label>
       </div>
     </div>

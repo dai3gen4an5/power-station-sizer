@@ -22,9 +22,8 @@ const EXAMPLE = {
   batteryReserve: DEFAULT_SETTINGS.batteryReserve,
 };
 
-const inputClasses =
-  "w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
-const labelClasses = "mb-1 block text-xs font-medium uppercase tracking-wide text-ink/50";
+const inputClasses = "field";
+const labelClasses = "field-label";
 
 function parseNumber(value: string): number {
   const parsed = Number.parseFloat(value);
@@ -74,13 +73,13 @@ export function ElectricHeaterCalculator() {
 
   return (
     <>
-      <section id="calculator" className="mx-auto max-w-5xl px-4 pb-8 pt-2 sm:px-6">
+      <section id="calculator" className="container-page scroll-mt-20 pb-8 pt-2">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           {/* ---- INPUTS ---- */}
           <div className="space-y-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-lg font-semibold text-ink">Your electric heater</h2>
-              <p className="mt-1 text-sm text-ink/60">
+            <div className="card card-pad">
+              <h2 className="h3">Your electric heater</h2>
+              <p className="mt-1 text-sm text-muted">
                 Enter the heater&apos;s electrical <span className="font-medium">input</span> watts
                 from its rating label, manual, or a watt meter &mdash; and, if it has High / Low
                 settings, the setting you actually plan to run.
@@ -100,7 +99,7 @@ export function ElectricHeaterCalculator() {
                     onChange={(e) => setHeaterWatts(Math.max(0, parseNumber(e.target.value)))}
                     className={inputClasses}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     Power drawn from the wall while heating. Required &mdash; from the label, not an
                     assumption that every heater is 1,500&nbsp;W.
                   </span>
@@ -120,14 +119,14 @@ export function ElectricHeaterCalculator() {
                     onChange={(e) => setUseHours(clamp(parseNumber(e.target.value), 0, 48))}
                     className={inputClasses}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     How long you want the heater to run. Decimals are fine (0.5, 1, 2, 4, 8).
                   </span>
                 </label>
               </div>
 
               <div className="mt-5 border-t border-line pt-5">
-                <p className="text-xs font-medium uppercase tracking-wide text-ink/50">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted">
                   Backup settings
                 </p>
                 <div className="mt-3 grid gap-4 sm:grid-cols-2">
@@ -147,9 +146,9 @@ export function ElectricHeaterCalculator() {
                         }
                         className={inputClasses}
                       />
-                      <span className="text-sm text-ink/50">%</span>
+                      <span className="text-sm text-muted">%</span>
                     </div>
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       Energy lost converting battery power to AC.
                     </span>
                   </label>
@@ -168,9 +167,9 @@ export function ElectricHeaterCalculator() {
                         onChange={(e) => setBatteryReserve(clamp(parseNumber(e.target.value), 0, 50))}
                         className={inputClasses}
                       />
-                      <span className="text-sm text-ink/50">%</span>
+                      <span className="text-sm text-muted">%</span>
                     </div>
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       Buffer left unused to protect battery life.
                     </span>
                   </label>
@@ -180,11 +179,11 @@ export function ElectricHeaterCalculator() {
               <button
                 type="button"
                 onClick={loadExample}
-                className="mt-5 inline-flex items-center gap-2 rounded-lg border border-dashed border-ink/25 px-4 py-2 text-sm font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="mt-5 inline-flex items-center gap-2 rounded-control border border-dashed border-line-strong px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-brand-300 hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 Load example
               </button>
-              <p className="mt-2 text-xs text-ink/45">
+              <p className="mt-2 text-xs text-muted/70">
                 Example only &mdash; 1,500&nbsp;W heater, 2 hours of use. Replace both with your
                 heater&apos;s actual input watts and the run time you need.
               </p>
@@ -193,8 +192,8 @@ export function ElectricHeaterCalculator() {
 
           {/* ---- RESULTS ---- */}
           <div className="space-y-4 lg:sticky lg:top-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-base font-semibold text-ink">
+            <div className="card card-pad">
+              <h2 className="h3 text-base">
                 Battery capacity you need
               </h2>
               {hasInput ? (
@@ -202,7 +201,7 @@ export function ElectricHeaterCalculator() {
                   <p className="mt-2 font-mono text-3xl font-semibold text-ink sm:text-4xl">
                     {formatWh(result.recommendedWh)}
                   </p>
-                  <p className="mt-1 text-sm text-ink/60">
+                  <p className="mt-1 text-sm text-muted">
                     Recommended battery capacity after inverter efficiency and reserve. Look for a
                     power station around{" "}
                     <span className="font-semibold text-ink">{sizeLabel}</span>
@@ -218,13 +217,13 @@ export function ElectricHeaterCalculator() {
                   </p>
                   <div className="mt-4 grid grid-cols-2 gap-3 rounded-xl bg-paper p-4">
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-ink/50">
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted">
                         Estimated heater energy use
                       </p>
                       <p className="mt-0.5 font-mono text-base text-ink">{formatWh(result.rawWh)}</p>
                     </div>
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-ink/50">
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted">
                         Minimum before reserve
                       </p>
                       <p className="mt-0.5 font-mono text-base text-ink">
@@ -234,12 +233,12 @@ export function ElectricHeaterCalculator() {
                   </div>
                 </>
               ) : (
-                <p className="mt-2 text-sm text-ink/60">
+                <p className="mt-2 text-sm text-muted">
                   Enter your heater&apos;s input watts and a run time to calculate the battery
                   capacity, energy use, and required output.
                 </p>
               )}
-              <p className="mt-3 text-xs leading-relaxed text-ink/55">
+              <p className="mt-3 text-xs leading-relaxed text-muted/80">
                 This is a planning estimate, not a guaranteed runtime. It assumes the heater draws
                 its full input watts for the whole time you enter. A thermostat may cycle the heater
                 off once the room is warm and lower real use, but that depends on room size,
@@ -248,22 +247,22 @@ export function ElectricHeaterCalculator() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-base font-semibold text-ink">
+            <div className="card card-pad">
+              <h2 className="h3 text-base">
                 Continuous AC output your power station must have
               </h2>
-              <p className="mt-1 text-sm text-ink/60">
+              <p className="mt-1 text-sm text-muted">
                 This is separate from battery capacity. A power station needs both.
               </p>
               <dl className="mt-4 space-y-3 text-sm">
                 <div className="flex items-baseline justify-between gap-3">
-                  <dt className="text-ink/70">Required continuous AC output</dt>
+                  <dt className="text-muted">Required continuous AC output</dt>
                   <dd className="font-mono font-semibold text-ink">
                     {hasInput ? `${Math.round(result.requiredContinuousW)} W` : "—"}
                   </dd>
                 </div>
               </dl>
-              <p className="mt-3 text-xs leading-relaxed text-ink/60">
+              <p className="mt-3 text-xs leading-relaxed text-muted">
                 A power station can hold plenty of watt-hours and still fail to run a heater if its
                 inverter&apos;s continuous AC output is below the heater&apos;s input watts &mdash;
                 and the heater draws that much for the entire run, not just at start-up. Check the
@@ -276,7 +275,7 @@ export function ElectricHeaterCalculator() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-amber-200 bg-amber-50/70 p-5 sm:p-6">
+            <div className="rounded-card border border-amber-200 bg-amber-50/70 p-5 sm:p-6">
               <h2 className="font-display text-base font-semibold text-amber-900">
                 Before you buy &amp; safety
               </h2>
@@ -316,8 +315,8 @@ export function ElectricHeaterCalculator() {
         className="pb-2"
       />
 
-      <section className="mx-auto max-w-5xl px-4 pb-14 sm:px-6">
-        <p className="mx-auto max-w-3xl text-xs leading-relaxed text-ink/55">
+      <section className="container-page pb-14">
+        <p className="mx-auto max-w-3xl text-xs leading-relaxed text-muted/80">
           Recommendations above are based on the known battery-capacity and continuous-output
           requirements only. Before buying, verify the power station&apos;s continuous AC output
           against your heater&apos;s input watts, plus its AC voltage, outlet configuration, real

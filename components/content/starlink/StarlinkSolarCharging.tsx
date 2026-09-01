@@ -3,7 +3,7 @@ import Link from "next/link";
 export function StarlinkSolarCharging() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Solar charging for Starlink</h2>
+      <h2 className="h2">Solar charging for Starlink</h2>
       <p className="mt-3 text-ink/75">
         Solar panels can help sustain Starlink&apos;s power draw over multiple days by recharging the
         battery during daylight hours. The basic question is whether your daily solar energy recovered can

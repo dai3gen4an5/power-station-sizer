@@ -25,9 +25,8 @@ const EXAMPLE = {
   batteryReserve: DEFAULT_SETTINGS.batteryReserve,
 };
 
-const inputClasses =
-  "w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
-const labelClasses = "mb-1 block text-xs font-medium uppercase tracking-wide text-ink/50";
+const inputClasses = "field";
+const labelClasses = "field-label";
 
 function parseNumber(value: string): number {
   const parsed = Number.parseFloat(value);
@@ -84,13 +83,13 @@ export function AirConditionerCalculator() {
 
   return (
     <>
-      <section id="calculator" className="mx-auto max-w-5xl px-4 pb-8 pt-2 sm:px-6">
+      <section id="calculator" className="container-page scroll-mt-20 pb-8 pt-2">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           {/* ---- INPUTS ---- */}
           <div className="space-y-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-lg font-semibold text-ink">Your air conditioner</h2>
-              <p className="mt-1 text-sm text-ink/60">
+            <div className="card card-pad">
+              <h2 className="h3">Your air conditioner</h2>
+              <p className="mt-1 text-sm text-muted">
                 Enter the numbers from the unit&apos;s nameplate, manual, or manufacturer spec sheet
                 &mdash; not from its BTU rating.
               </p>
@@ -109,7 +108,7 @@ export function AirConditionerCalculator() {
                     onChange={(e) => setRunningWatts(Math.max(0, parseNumber(e.target.value)))}
                     className={inputClasses}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     Steady power the unit draws while cooling. Required.
                   </span>
                 </label>
@@ -127,7 +126,7 @@ export function AirConditionerCalculator() {
                     onChange={(e) => setStartupWatts(Math.max(0, parseNumber(e.target.value)))}
                     className={inputClasses}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     Spike when the compressor starts. Optional but strongly recommended &mdash; leave
                     blank if you don&apos;t have it yet.
                   </span>
@@ -135,7 +134,7 @@ export function AirConditionerCalculator() {
               </div>
 
               <div className="mt-5 border-t border-line pt-5">
-                <p className="text-xs font-medium uppercase tracking-wide text-ink/50">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted">
                   Compressor run time
                 </p>
                 <div className="mt-3 grid gap-4 sm:grid-cols-2">
@@ -152,7 +151,7 @@ export function AirConditionerCalculator() {
                       onChange={(e) => setMinutesPerHour(clamp(parseNumber(e.target.value), 0, 60))}
                       className={inputClasses}
                     />
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       How many minutes of each hour the compressor actually runs. Higher on hot days
                       and with a lower thermostat setpoint.
                     </span>
@@ -171,7 +170,7 @@ export function AirConditionerCalculator() {
                       onChange={(e) => setUseHours(clamp(parseNumber(e.target.value), 0, 168))}
                       className={inputClasses}
                     />
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       How long you want the backup to last.
                     </span>
                   </label>
@@ -179,7 +178,7 @@ export function AirConditionerCalculator() {
               </div>
 
               <div className="mt-5 border-t border-line pt-5">
-                <p className="text-xs font-medium uppercase tracking-wide text-ink/50">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted">
                   Backup settings
                 </p>
                 <div className="mt-3 grid gap-4 sm:grid-cols-2">
@@ -199,9 +198,9 @@ export function AirConditionerCalculator() {
                         }
                         className={inputClasses}
                       />
-                      <span className="text-sm text-ink/50">%</span>
+                      <span className="text-sm text-muted">%</span>
                     </div>
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       Energy lost converting battery power to AC.
                     </span>
                   </label>
@@ -220,9 +219,9 @@ export function AirConditionerCalculator() {
                         onChange={(e) => setBatteryReserve(clamp(parseNumber(e.target.value), 0, 50))}
                         className={inputClasses}
                       />
-                      <span className="text-sm text-ink/50">%</span>
+                      <span className="text-sm text-muted">%</span>
                     </div>
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       Buffer left unused to protect battery life.
                     </span>
                   </label>
@@ -232,11 +231,11 @@ export function AirConditionerCalculator() {
               <button
                 type="button"
                 onClick={loadExample}
-                className="mt-5 inline-flex items-center gap-2 rounded-lg border border-dashed border-ink/25 px-4 py-2 text-sm font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="mt-5 inline-flex items-center gap-2 rounded-control border border-dashed border-line-strong px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-brand-300 hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 Load example
               </button>
-              <p className="mt-2 text-xs text-ink/45">
+              <p className="mt-2 text-xs text-muted/70">
                 Example only &mdash; running watts 900, startup watts 1,800, compressor 40
                 minutes/hour, 8 hours of use. Replace every field with your unit&apos;s actual
                 specifications; these are not derived from a BTU rating.
@@ -246,8 +245,8 @@ export function AirConditionerCalculator() {
 
           {/* ---- RESULTS ---- */}
           <div className="space-y-4 lg:sticky lg:top-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-base font-semibold text-ink">
+            <div className="card card-pad">
+              <h2 className="h3 text-base">
                 Battery capacity you need
               </h2>
               {hasRunning ? (
@@ -255,7 +254,7 @@ export function AirConditionerCalculator() {
                   <p className="mt-2 font-mono text-3xl font-semibold text-ink sm:text-4xl">
                     {formatWh(result.recommendedWh)}
                   </p>
-                  <p className="mt-1 text-sm text-ink/60">
+                  <p className="mt-1 text-sm text-muted">
                     Recommended battery capacity after inverter efficiency and reserve. Look for a
                     power station around{" "}
                     <span className="font-semibold text-ink">{sizeLabel}</span>
@@ -271,13 +270,13 @@ export function AirConditionerCalculator() {
                   </p>
                   <div className="mt-4 grid grid-cols-2 gap-3 rounded-xl bg-paper p-4">
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-ink/50">
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted">
                         Estimated AC energy use
                       </p>
                       <p className="mt-0.5 font-mono text-base text-ink">{formatWh(result.rawWh)}</p>
                     </div>
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-ink/50">
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted">
                         Minimum before reserve
                       </p>
                       <p className="mt-0.5 font-mono text-base text-ink">
@@ -287,34 +286,34 @@ export function AirConditionerCalculator() {
                   </div>
                 </>
               ) : (
-                <p className="mt-2 text-sm text-ink/60">
+                <p className="mt-2 text-sm text-muted">
                   Enter your air conditioner&apos;s running watts to calculate the battery capacity,
                   energy use, and required output.
                 </p>
               )}
-              <p className="mt-3 text-xs leading-relaxed text-ink/55">
+              <p className="mt-3 text-xs leading-relaxed text-muted/80">
                 This is a planning estimate, not a guaranteed runtime. Air conditioner energy use
                 changes with outdoor temperature, thermostat setpoint, humidity, insulation, room
                 size, and how the compressor cycles.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-base font-semibold text-ink">
+            <div className="card card-pad">
+              <h2 className="h3 text-base">
                 Inverter output your power station must have
               </h2>
-              <p className="mt-1 text-sm text-ink/60">
+              <p className="mt-1 text-sm text-muted">
                 This is separate from battery capacity. A power station needs both.
               </p>
               <dl className="mt-4 space-y-3 text-sm">
                 <div className="flex items-baseline justify-between gap-3">
-                  <dt className="text-ink/70">Required continuous AC output</dt>
+                  <dt className="text-muted">Required continuous AC output</dt>
                   <dd className="font-mono font-semibold text-ink">
                     {hasRunning ? `${Math.round(result.requiredContinuousW)} W` : "—"}
                   </dd>
                 </div>
                 <div className="flex items-baseline justify-between gap-3">
-                  <dt className="text-ink/70">Required startup / surge capability</dt>
+                  <dt className="text-muted">Required startup / surge capability</dt>
                   <dd className="font-mono font-semibold text-ink">
                     {surgeKnown ? `${Math.round(result.requiredSurgeW)} W` : "Unknown"}
                   </dd>
@@ -328,7 +327,7 @@ export function AirConditionerCalculator() {
                   compressor if its inverter cannot supply the surge.
                 </p>
               )}
-              <p className="mt-3 text-xs leading-relaxed text-ink/60">
+              <p className="mt-3 text-xs leading-relaxed text-muted">
                 A power station can have enough battery capacity but still fail to start an air
                 conditioner if its inverter cannot supply the required startup surge. Check the
                 unit&apos;s rated continuous output and its surge / peak rating against the two
@@ -336,7 +335,7 @@ export function AirConditionerCalculator() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-amber-200 bg-amber-50/70 p-5 sm:p-6">
+            <div className="rounded-card border border-amber-200 bg-amber-50/70 p-5 sm:p-6">
               <h2 className="font-display text-base font-semibold text-amber-900">
                 Voltage reminder
               </h2>
@@ -376,8 +375,8 @@ export function AirConditionerCalculator() {
         className="pb-2"
       />
 
-      <section className="mx-auto max-w-5xl px-4 pb-14 sm:px-6">
-        <p className="mx-auto max-w-3xl text-xs leading-relaxed text-ink/55">
+      <section className="container-page pb-14">
+        <p className="mx-auto max-w-3xl text-xs leading-relaxed text-muted/80">
           Capacity recommendations above are based on energy needs only. Before buying, verify the
           power station&apos;s continuous AC output, its startup / surge capability, its AC voltage
           (120V or 240V), and its outlet configuration against your air conditioner&apos;s

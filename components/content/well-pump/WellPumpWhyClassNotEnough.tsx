@@ -1,7 +1,7 @@
 export function WellPumpWhyClassNotEnough() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         Why 3000Wh+ may still not guarantee compatibility
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

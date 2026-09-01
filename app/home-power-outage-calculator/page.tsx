@@ -65,16 +65,17 @@ const OUTAGE_PRESETS_NOTE =
 export default function HomePowerOutageCalculatorPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+      <section className="container-page pb-6 pt-12 text-center sm:pt-16">
+        <p className="eyebrow">Power station calculator</p>
+        <h1 className="h1 mx-auto mt-3 max-w-3xl">
           Home Power Outage Calculator
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
+        <p className="lede mx-auto mt-4 max-w-2xl">
           Add the essentials you want to keep running during a blackout &mdash; refrigerator, Wi-Fi,
           lights, CPAP, phones and more &mdash; to estimate the portable power station capacity and
           runtime you need.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted/80">
           Enter the hours you expect each device to run during the outage, and set{" "}
           <span className="font-medium">Number of days</span> in Backup settings to how long you want
           to cover. Results are planning estimates, not a guarantee.
@@ -91,7 +92,7 @@ export default function HomePowerOutageCalculatorPage() {
       <OutageAssumptionsNotice />
       <OutageCalculationExample />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <section className="container-prose section space-y-12">
         <OutageWhatSize />
         <OutageDurationGuide />
         <OutagePriorityAppliances />

@@ -10,7 +10,7 @@ export function EhShortRuntimeExample() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Short-runtime example</h2>
+      <h2 className="h2">Short-runtime example</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           High wattage does not always mean a huge watt-hour total. A{" "}

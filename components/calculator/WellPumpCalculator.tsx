@@ -25,9 +25,8 @@ const EXAMPLE = {
   batteryReserve: DEFAULT_SETTINGS.batteryReserve,
 };
 
-const inputClasses =
-  "w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
-const labelClasses = "mb-1 block text-xs font-medium uppercase tracking-wide text-ink/50";
+const inputClasses = "field";
+const labelClasses = "field-label";
 
 function parseNumber(value: string): number {
   const parsed = Number.parseFloat(value);
@@ -84,13 +83,13 @@ export function WellPumpCalculator() {
 
   return (
     <>
-      <section id="calculator" className="mx-auto max-w-5xl px-4 pb-8 pt-2 sm:px-6">
+      <section id="calculator" className="container-page scroll-mt-20 pb-8 pt-2">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           {/* ---- INPUTS ---- */}
           <div className="space-y-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-lg font-semibold text-ink">Your well pump</h2>
-              <p className="mt-1 text-sm text-ink/60">
+            <div className="card card-pad">
+              <h2 className="h3">Your well pump</h2>
+              <p className="mt-1 text-sm text-muted">
                 Enter the numbers from your pump&apos;s label, manual, or pressure-switch / controller
                 documentation.
               </p>
@@ -109,7 +108,7 @@ export function WellPumpCalculator() {
                     onChange={(e) => setRunningWatts(Math.max(0, parseNumber(e.target.value)))}
                     className={inputClasses}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     Steady power the pump draws while running. Required.
                   </span>
                 </label>
@@ -127,7 +126,7 @@ export function WellPumpCalculator() {
                     onChange={(e) => setStartupWatts(Math.max(0, parseNumber(e.target.value)))}
                     className={inputClasses}
                   />
-                  <span className="mt-1 block text-xs text-ink/45">
+                  <span className="mt-1 block text-xs text-muted/70">
                     Brief spike when the motor starts. Optional but strongly recommended &mdash; leave
                     blank if you don&apos;t have it yet.
                   </span>
@@ -152,7 +151,7 @@ export function WellPumpCalculator() {
                       onChange={(e) => setMinutesPerHour(clamp(parseNumber(e.target.value), 0, 60))}
                       className={inputClasses}
                     />
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       How many minutes of each hour the pump actually runs.
                     </span>
                   </label>
@@ -170,7 +169,7 @@ export function WellPumpCalculator() {
                       onChange={(e) => setOutageHours(clamp(parseNumber(e.target.value), 0, 168))}
                       className={inputClasses}
                     />
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       How long you want the backup to last.
                     </span>
                   </label>
@@ -200,7 +199,7 @@ export function WellPumpCalculator() {
                       />
                       <span className="text-sm text-ink/50">%</span>
                     </div>
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       Energy lost converting battery power to AC.
                     </span>
                   </label>
@@ -221,7 +220,7 @@ export function WellPumpCalculator() {
                       />
                       <span className="text-sm text-ink/50">%</span>
                     </div>
-                    <span className="mt-1 block text-xs text-ink/45">
+                    <span className="mt-1 block text-xs text-muted/70">
                       Buffer left unused to protect battery life.
                     </span>
                   </label>
@@ -231,11 +230,11 @@ export function WellPumpCalculator() {
               <button
                 type="button"
                 onClick={loadExample}
-                className="mt-5 inline-flex items-center gap-2 rounded-lg border border-dashed border-ink/25 px-4 py-2 text-sm font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="mt-5 inline-flex items-center gap-2 rounded-control border border-dashed border-line-strong px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-brand-300 hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 Load example
               </button>
-              <p className="mt-2 text-xs text-ink/45">
+              <p className="mt-2 text-xs text-muted/70">
                 Example only &mdash; running watts 1,000, startup watts 2,500, 10 minutes/hour,
                 12-hour outage. Replace every field with your pump&apos;s actual specifications; these
                 are not tied to a specific horsepower.
@@ -245,8 +244,8 @@ export function WellPumpCalculator() {
 
           {/* ---- RESULTS ---- */}
           <div className="space-y-4 lg:sticky lg:top-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-base font-semibold text-ink">
+            <div className="card card-pad">
+              <h2 className="h3 text-base">
                 Battery capacity you need
               </h2>
               {hasRunning ? (
@@ -254,7 +253,7 @@ export function WellPumpCalculator() {
                   <p className="mt-2 font-mono text-3xl font-semibold text-ink sm:text-4xl">
                     {formatWh(result.recommendedWh)}
                   </p>
-                  <p className="mt-1 text-sm text-ink/60">
+                  <p className="mt-1 text-sm text-muted">
                     Recommended battery capacity after inverter efficiency and reserve. Look for a
                     power station around{" "}
                     <span className="font-semibold text-ink">{sizeLabel}</span>
@@ -286,18 +285,18 @@ export function WellPumpCalculator() {
                   </div>
                 </>
               ) : (
-                <p className="mt-2 text-sm text-ink/60">
+                <p className="mt-2 text-sm text-muted">
                   Enter your pump&apos;s running watts to calculate the battery capacity, energy use,
                   and required output.
                 </p>
               )}
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-base font-semibold text-ink">
+            <div className="card card-pad">
+              <h2 className="h3 text-base">
                 Inverter output your power station must have
               </h2>
-              <p className="mt-1 text-sm text-ink/60">
+              <p className="mt-1 text-sm text-muted">
                 This is separate from battery capacity. A power station needs both.
               </p>
               <dl className="mt-4 space-y-3 text-sm">
@@ -322,14 +321,14 @@ export function WellPumpCalculator() {
                   start the pump if its inverter cannot supply the surge.
                 </p>
               )}
-              <p className="mt-3 text-xs leading-relaxed text-ink/60">
+              <p className="mt-3 text-xs leading-relaxed text-muted">
                 A power station can have enough battery capacity but still fail to start the pump if
                 its inverter cannot supply the required startup power. Check the unit&apos;s rated
                 continuous output and its surge / peak rating against the two numbers above.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-amber-200 bg-amber-50/70 p-5 sm:p-6">
+            <div className="rounded-card border border-amber-200 bg-amber-50/70 p-5 sm:p-6">
               <h2 className="font-display text-base font-semibold text-amber-900">
                 Pump voltage reminder
               </h2>
@@ -365,8 +364,8 @@ export function WellPumpCalculator() {
         className="pb-2"
       />
 
-      <section className="mx-auto max-w-5xl px-4 pb-14 sm:px-6">
-        <p className="mx-auto max-w-3xl text-xs leading-relaxed text-ink/55">
+      <section className="container-page pb-14">
+        <p className="mx-auto max-w-3xl text-xs leading-relaxed text-muted/80">
           Capacity recommendations above are based on energy needs only. Before buying, verify each
           power station&apos;s continuous AC output, its startup / surge rating, its AC voltage
           (120V or 240V), and its outlet configuration against your pump&apos;s specifications

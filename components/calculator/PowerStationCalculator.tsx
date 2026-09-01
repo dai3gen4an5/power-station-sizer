@@ -84,12 +84,15 @@ export function PowerStationCalculator({
 
   return (
     <>
-      <section id="calculator" className="mx-auto max-w-5xl px-4 pb-16 pt-2 sm:px-6">
+      <section id="calculator" className="container-page scroll-mt-20 pb-16 pt-4">
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div className="space-y-6">
-            <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-              <h2 className="font-display text-lg font-semibold text-ink">Your devices</h2>
-              <p className="mt-1 text-sm text-ink/60">
+            <div className="card card-pad">
+              <div className="flex items-baseline gap-2.5">
+                <span className="font-mono text-xs font-semibold text-brand-700">01</span>
+                <h2 className="h3">Your devices</h2>
+              </div>
+              <p className="mt-1 text-sm text-muted">
                 List everything you want to power. We&apos;ll add up the watt-hours automatically.
               </p>
 
@@ -100,7 +103,7 @@ export function PowerStationCalculator({
               <button
                 type="button"
                 onClick={addBlankDevice}
-                className="mt-4 inline-flex items-center gap-2 rounded-lg border border-dashed border-ink/25 px-4 py-2 text-sm font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="mt-4 inline-flex items-center gap-2 rounded-control border border-dashed border-line-strong px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-brand-300 hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 + Add another device
               </button>
@@ -120,7 +123,11 @@ export function PowerStationCalculator({
             />
           </div>
 
-          <div className="lg:sticky lg:top-6">
+          <div className="lg:sticky lg:top-24">
+            <div className="mb-3 flex items-baseline gap-2.5">
+              <span className="font-mono text-xs font-semibold text-brand-700">02</span>
+              <h2 className="h3">Your result</h2>
+            </div>
             <ResultsPanel results={results} inverterEfficiency={inverterEfficiency} batteryReserve={batteryReserve} />
           </div>
         </div>

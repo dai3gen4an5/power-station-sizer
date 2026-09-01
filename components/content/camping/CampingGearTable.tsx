@@ -26,7 +26,7 @@ export function CampingGearTable() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Typical camping gear energy use</h2>
+      <h2 className="h2">Typical camping gear energy use</h2>
       <p className="mt-3 text-ink/75">
         Rough daily watt-hours for common camping items, before inverter efficiency and battery
         reserve are applied. Enter your own gear in the calculator above for a tailored number.

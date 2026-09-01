@@ -3,7 +3,7 @@ import Link from "next/link";
 export function CpapOutageBackup() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">CPAP backup during a power outage</h2>
+      <h2 className="h2">CPAP backup during a power outage</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           For outage planning, decide how many nights you want to cover and multiply your nightly

@@ -35,61 +35,67 @@ export function ResultsPanel({ results, inverterEfficiency, batteryReserve }: Re
   return (
     <div className="space-y-4">
       {/* Signature "device readout" panel, styled after a power station's own LCD screen. */}
-      <div className="rounded-[28px] bg-bezel p-2 shadow-sm">
-        <div className="flex items-center justify-between px-3 pb-2 pt-1">
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">
-            Recommended size
+      <div className="panel-hardware">
+        <div className="flex items-center justify-between px-3.5 pb-2.5 pt-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
+            Recommended capacity
           </span>
-          <div className="flex gap-1.5" aria-hidden="true">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-            <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
-            <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
+          <div className="flex items-center gap-1.5" aria-hidden="true">
+            <span className="h-1.5 w-1.5 rounded-full bg-led shadow-[0_0_6px_theme(colors.led)]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
           </div>
         </div>
 
-        <div className="rounded-3xl bg-screen p-6 text-center">
-          <p className="font-mono text-4xl font-semibold tracking-tight text-screenInk sm:text-5xl">
+        <div className="panel-screen px-6 py-7 text-center">
+          <p className="font-mono text-5xl font-semibold tracking-tight text-screenInk">
             {formatWh(recommendedCapacityWh)}
           </p>
           <p className="mt-2 text-sm text-screenInk/70">
             For comfortable real-world use, look for a power station around{" "}
-            <span className="font-semibold">{sizeLabel}</span>.
+            <span className="font-semibold text-screenInk">{sizeLabel}</span>.
           </p>
         </div>
 
-        <div className="px-3 py-4">
-          <div className="flex gap-1" role="img" aria-label={`Capacity gauge, ${Math.round(fillFraction * 100)}% of scale`}>
+        <div className="px-3.5 pb-4 pt-4">
+          <div
+            className="flex gap-1"
+            role="img"
+            aria-label={`Capacity gauge, ${Math.round(fillFraction * 100)}% of scale`}
+          >
             {Array.from({ length: SEGMENT_COUNT }).map((_, i) => (
               <span
                 key={i}
-                className={`h-3 flex-1 rounded-sm ${i < filledSegments ? "bg-brand" : "bg-white/10"}`}
+                className={`h-3 flex-1 rounded-[3px] ${
+                  i < filledSegments ? "bg-led shadow-[0_0_8px_-2px_theme(colors.led)]" : "bg-white/[0.07]"
+                }`}
               />
             ))}
           </div>
-          <div className="mt-4 grid grid-cols-2 gap-3 font-mono text-white">
-            <div>
-              <p className="text-[11px] uppercase tracking-wide text-white/45">Daily energy use</p>
+          <div className="mt-4 grid grid-cols-2 gap-2 font-mono text-white">
+            <div className="rounded-xl bg-white/[0.04] px-3 py-2.5">
+              <p className="text-[10px] uppercase tracking-wide text-white/40">Daily energy use</p>
               <p className="mt-0.5 text-base">{formatWh(totalDailyWh)}</p>
             </div>
-            <div>
-              <p className="text-[11px] uppercase tracking-wide text-white/45">Minimum capacity</p>
+            <div className="rounded-xl bg-white/[0.04] px-3 py-2.5">
+              <p className="text-[10px] uppercase tracking-wide text-white/40">Minimum capacity</p>
               <p className="mt-0.5 text-base">{formatWh(minimumCapacityWh)}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
-        <h2 className="font-display text-base font-semibold text-ink">Estimate runtime</h2>
-        <p className="mt-1 text-sm text-ink/60">See how long a specific power station size would last.</p>
+      <div className="card card-pad">
+        <h2 className="h3 text-base">Estimate runtime</h2>
+        <p className="mt-1 text-sm text-muted">
+          See how long a specific power station size would last.
+        </p>
         <label className="mt-4 block text-sm">
-          <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-ink/50">
-            Power station size
-          </span>
+          <span className="field-label">Power station size</span>
           <select
             value={runtimeSize}
             onChange={(e) => setRuntimeSize(Number.parseInt(e.target.value, 10))}
-            className="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            className="field"
           >
             {SIZE_CLASSES_WH.map((size) => (
               <option key={size} value={size}>
@@ -98,8 +104,8 @@ export function ResultsPanel({ results, inverterEfficiency, batteryReserve }: Re
             ))}
           </select>
         </label>
-        <div className="mt-4 rounded-xl bg-paper p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-ink/50">Estimated runtime</p>
+        <div className="mt-4 rounded-card bg-surface-muted p-4">
+          <p className="field-label">Estimated runtime</p>
           <p className="mt-1 font-mono text-2xl font-semibold text-ink">{formatHours(runtimeHours)}</p>
         </div>
       </div>

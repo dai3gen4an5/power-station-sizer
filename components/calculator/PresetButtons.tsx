@@ -23,22 +23,18 @@ const DEFAULT_NOTE =
 export function PresetButtons({ onAdd, presets = DEVICE_PRESETS, note = DEFAULT_NOTE }: PresetButtonsProps) {
   return (
     <div>
-      <span className="mb-2 block text-xs font-medium uppercase tracking-wide text-ink/50">
-        Quick add a common device
-      </span>
-      <div className="flex flex-wrap gap-2">
+      <span className="field-label">Quick add a common device</span>
+      <div className="mt-2 flex flex-wrap gap-2">
         {presets.map((preset) => (
-          <button
-            key={preset.name}
-            type="button"
-            onClick={() => onAdd(preset)}
-            className="rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-          >
-            + {preset.name}
+          <button key={preset.name} type="button" onClick={() => onAdd(preset)} className="chip">
+            <span aria-hidden="true" className="text-brand-600">
+              +
+            </span>
+            {preset.name}
           </button>
         ))}
       </div>
-      <p className="mt-2 text-xs text-ink/45">{note}</p>
+      <p className="mt-2 text-xs text-muted/80">{note}</p>
     </div>
   );
 }

@@ -39,16 +39,17 @@ export const metadata: Metadata = {
 export default function CoffeeMakerPowerCalculatorPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+      <section className="container-page pb-6 pt-12 text-center sm:pt-16">
+        <p className="eyebrow">Power station calculator</p>
+        <h1 className="h1 mx-auto mt-3 max-w-3xl">
           Coffee Maker Power Station Calculator
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
+        <p className="lede mx-auto mt-4 max-w-2xl">
           Work out what a portable power station needs to run a coffee maker: enough continuous AC
           output for the heating element&apos;s watts, and enough battery capacity for the brew
           &mdash; which, for a short cycle, is not much.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted/80">
           Enter the coffee maker&apos;s input watts from its label, not an assumption from whether it
           is drip, pod, or espresso. The brew is brief, so the inverter&apos;s output rating usually
           matters more than capacity.
@@ -59,7 +60,7 @@ export default function CoffeeMakerPowerCalculatorPage() {
 
       <CmCapacityVsOutputNotice />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <section className="container-prose section space-y-12">
         <CmBatteryVsOutput />
         <CmFindWattage />
         <CmHowManyWh />

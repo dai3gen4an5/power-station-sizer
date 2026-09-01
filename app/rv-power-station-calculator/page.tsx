@@ -65,16 +65,17 @@ const RV_PRESETS_NOTE =
 export default function RvPowerStationCalculatorPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+      <section className="container-page pb-6 pt-12 text-center sm:pt-16">
+        <p className="eyebrow">Power station calculator</p>
+        <h1 className="h1 mx-auto mt-3 max-w-3xl">
           RV Power Station Calculator
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
+        <p className="lede mx-auto mt-4 max-w-2xl">
           Add the appliances you run in an RV, camper or van &mdash; refrigerator, lights, fan,
           laptop, Starlink, CPAP and more &mdash; to estimate your daily watt-hours and the portable
           power station capacity you need.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted/80">
           Enter the hours each device runs in a typical day, and set{" "}
           <span className="font-medium">Number of days</span> in Backup settings to your trip length.
           Results are planning estimates, not a guarantee.
@@ -90,7 +91,7 @@ export default function RvPowerStationCalculatorPage() {
 
       <RvHowToUse />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <section className="container-prose section space-y-12">
         <RvWhatSize />
         <RvApplianceTable />
         <RvCapacityClasses />

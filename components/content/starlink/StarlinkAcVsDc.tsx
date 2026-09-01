@@ -1,7 +1,7 @@
 export function StarlinkAcVsDc() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Starlink AC vs DC efficiency</h2>
+      <h2 className="h2">Starlink AC vs DC efficiency</h2>
       <p className="mt-3 text-ink/75">
         Battery capacity and conversion efficiency are two different things worth understanding together.
         If your setup looks like battery (DC) → inverter (AC) → Starlink power supply → dish (DC), each

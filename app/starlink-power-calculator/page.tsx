@@ -62,15 +62,16 @@ const STARLINK_PRESETS_NOTE =
 export default function StarlinkPowerCalculatorPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+      <section className="container-page pb-6 pt-12 text-center sm:pt-16">
+        <p className="eyebrow">Power station calculator</p>
+        <h1 className="h1 mx-auto mt-3 max-w-3xl">
           Starlink Power Station Calculator
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
+        <p className="lede mx-auto mt-4 max-w-2xl">
           Estimate the battery capacity you need to run Starlink while camping, traveling, during an
           outage, or off-grid.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted/80">
           Starlink power use varies by hardware version, weather, activity, temperature, and whether you
           power it through AC or a DC conversion setup.
         </p>
@@ -85,7 +86,7 @@ export default function StarlinkPowerCalculatorPage() {
 
       <StarlinkCalculationExample />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <section className="container-prose section space-y-12">
         <StarlinkWattUsage />
         <StarlinkDailyWh />
         <StarlinkSizingGuide />

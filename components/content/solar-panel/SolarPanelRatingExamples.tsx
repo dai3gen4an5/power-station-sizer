@@ -20,7 +20,7 @@ export function SolarPanelRatingExamples() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         100W, 200W, 300W, 400W, and 600W panel examples
       </h2>
       <p className="mt-3 text-ink/75">

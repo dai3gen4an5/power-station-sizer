@@ -1,7 +1,7 @@
 export function MwBuyingChecklist() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Buying checklist</h2>
+      <h2 className="h2">Buying checklist</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>Check every item against your microwave and your situation before buying:</p>
         <ul className="list-disc space-y-2 pl-5">

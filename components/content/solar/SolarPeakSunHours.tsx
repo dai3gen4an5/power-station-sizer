@@ -1,7 +1,7 @@
 export function SolarPeakSunHours() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">What are peak sun hours?</h2>
+      <h2 className="h2">What are peak sun hours?</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           Peak sun hours are not the same as hours of daylight. One peak sun hour is one hour of

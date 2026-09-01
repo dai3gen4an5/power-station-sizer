@@ -1,7 +1,7 @@
 export function RuntimeRealWorldLosses() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         Why real-world runtime is shorter than the formula
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

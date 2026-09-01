@@ -32,7 +32,7 @@ export function SolarPanelByCapacityExamples() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         Panel needed for 500Wh, 1000Wh, and 2000Wh power stations
       </h2>
       <p className="mt-3 text-ink/75">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { MetaHTMLAttributes } from "react";
+import Link from "next/link";
 import { PowerStationCalculator } from "@/components/calculator/PowerStationCalculator";
 import { BatteryReserveInfo } from "@/components/content/BatteryReserveInfo";
 import { Faq } from "@/components/content/Faq";
@@ -8,6 +9,7 @@ import { InverterEfficiencyInfo } from "@/components/content/InverterEfficiencyI
 import { RelatedCalculators } from "@/components/content/RelatedCalculators";
 import { WattHoursExplainer } from "@/components/content/WattHoursExplainer";
 import { WattsVsWattHours } from "@/components/content/WattsVsWattHours";
+import { HeroExampleReadout } from "@/components/home/HeroExampleReadout";
 
 const TITLE = "Power Station Size Calculator - What Size Do I Need?";
 const DESCRIPTION =
@@ -40,30 +42,82 @@ const impactSiteVerificationMeta: MetaHTMLAttributes<HTMLMetaElement> & { value:
   value: "b1f7cad1-fa52-43f9-9507-19fd92f3b9e4",
 };
 
+const TRUST_POINTS = [
+  "No signup",
+  "Real watt-hour math",
+  "Efficiency & reserve included",
+  "Product specs verified",
+];
+
 export default function HomePage() {
   return (
     <>
       <meta {...impactSiteVerificationMeta} />
 
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
-          What Size Power Station Do I Need?
-        </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
-          Calculate the battery capacity you need for camping, emergencies, RVs, CPAP machines,
-          refrigerators, Starlink, and other devices.
-        </p>
+      <section className="container-page pb-10 pt-12 sm:pt-16">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <div>
+            <p className="eyebrow">Power station sizing</p>
+            <h1 className="h1 mt-3">What Size Power Station Do I Need?</h1>
+            <p className="lede mt-4 max-w-xl">
+              Calculate the battery capacity you need for camping, emergencies, RVs, CPAP machines,
+              refrigerators, Starlink, and other devices.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="#calculator" className="btn-primary btn-lg">
+                Size my power station
+              </Link>
+              <Link href="#calculators" className="btn-secondary btn-lg">
+                Browse calculators
+              </Link>
+            </div>
+            <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+              {TRUST_POINTS.map((point) => (
+                <li key={point} className="flex items-center gap-1.5">
+                  <span
+                    aria-hidden="true"
+                    className="h-1.5 w-1.5 rounded-full bg-brand"
+                  />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mx-auto w-full max-w-sm lg:max-w-none">
+            <HeroExampleReadout />
+          </div>
+        </div>
       </section>
 
       <PowerStationCalculator />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
-        <HowItWorks />
-        <WattHoursExplainer />
-        <WattsVsWattHours />
-        <InverterEfficiencyInfo />
-        <BatteryReserveInfo />
-        <Faq />
+      <div className="border-y border-line bg-surface-muted/60">
+        <div className="container-prose section-tight">
+          <p className="eyebrow">How it works</p>
+          <div className="mt-4">
+            <HowItWorks />
+          </div>
+        </div>
+      </div>
+
+      <section className="container-prose section">
+        <p className="eyebrow">Key concepts</p>
+        <div className="mt-4 space-y-12">
+          <WattHoursExplainer />
+          <WattsVsWattHours />
+          <InverterEfficiencyInfo />
+          <BatteryReserveInfo />
+        </div>
+      </section>
+
+      <div className="border-t border-line bg-surface-muted/60">
+        <section className="container-prose section">
+          <Faq />
+        </section>
+      </div>
+
+      <section id="calculators" className="container-page section scroll-mt-20">
         <RelatedCalculators />
       </section>
     </>

@@ -14,7 +14,7 @@ export function CpapExampleTable() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Example CPAP battery requirements</h2>
+      <h2 className="h2">Example CPAP battery requirements</h2>
       <p className="mt-3 text-ink/75">
         These figures assume a common 8-hour night and haven&apos;t been adjusted for inverter efficiency
         or battery reserve yet — use the calculator above for a number tailored to your actual settings.

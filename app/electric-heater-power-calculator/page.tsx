@@ -41,16 +41,17 @@ export const metadata: Metadata = {
 export default function ElectricHeaterPowerCalculatorPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+      <section className="container-page pb-6 pt-12 text-center sm:pt-16">
+        <p className="eyebrow">Power station calculator</p>
+        <h1 className="h1 mx-auto mt-3 max-w-3xl">
           Electric Heater Power Station Calculator
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
+        <p className="lede mx-auto mt-4 max-w-2xl">
           Work out what a portable power station needs to run an electric space heater: enough
           continuous AC output for the heater&apos;s watts, and enough battery capacity for the hours
           you want &mdash; which, for resistance heat, adds up fast.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted/80">
           Enter the heater&apos;s input watts from its label, not an assumption that every heater is
           1,500&nbsp;W. A heater draws its full wattage the whole time it runs, so it stresses both
           the inverter and the battery.
@@ -61,7 +62,7 @@ export default function ElectricHeaterPowerCalculatorPage() {
 
       <EhCapacityVsOutputNotice />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <section className="container-prose section space-y-12">
         <EhWhyBatteriesFast />
         <EhBatteryVsOutput />
         <EhFindWattage />

@@ -1,7 +1,7 @@
 export function RuntimeDeviceWattage() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         How to find your device&apos;s real power draw
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

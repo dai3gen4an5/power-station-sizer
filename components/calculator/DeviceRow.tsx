@@ -12,9 +12,8 @@ interface DeviceRowProps {
   onRemove: (id: string) => void;
 }
 
-const inputClasses =
-  "w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
-const labelClasses = "mb-1 block text-xs font-medium uppercase tracking-wide text-ink/50";
+const inputClasses = "field";
+const labelClasses = "field-label";
 
 function parseNumber(value: string): number {
   const parsed = Number.parseFloat(value);
@@ -25,7 +24,7 @@ export function DeviceRow({ device, index, canRemove, onChange, onRemove }: Devi
   const dailyWh = getDeviceDailyWh(device);
 
   return (
-    <div className="rounded-xl border border-line bg-paper/60 p-3 sm:p-4">
+    <div className="rounded-card border border-line bg-surface-muted/70 p-3 transition-colors focus-within:border-brand-300 sm:p-4">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-[2fr_1fr_1fr_0.7fr_auto] sm:items-end">
         <label className="col-span-2 block text-sm sm:col-span-1">
           <span className={labelClasses}>Device {index + 1}</span>
@@ -79,20 +78,20 @@ export function DeviceRow({ device, index, canRemove, onChange, onRemove }: Devi
         </label>
 
         <div className="col-span-2 flex items-center justify-between gap-3 sm:col-span-1 sm:justify-end">
-          <span className="font-mono text-xs text-ink/60 sm:hidden">{formatWh(dailyWh)}/day</span>
+          <span className="font-mono text-xs text-muted sm:hidden">{formatWh(dailyWh)}/day</span>
           {canRemove ? (
             <button
               type="button"
               onClick={() => onRemove(device.id)}
               aria-label={`Remove ${device.name || "device"}`}
-              className="rounded-lg border border-line px-3 py-2 text-sm text-ink/60 transition-colors hover:border-red-300 hover:text-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              className="rounded-control border border-line px-3 py-2 text-sm text-muted transition-colors hover:border-red-300 hover:text-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
             >
               Remove
             </button>
           ) : null}
         </div>
       </div>
-      <p className="mt-2 hidden font-mono text-xs text-ink/50 sm:block">{formatWh(dailyWh)} per day</p>
+      <p className="mt-2 hidden font-mono text-xs text-muted sm:block">{formatWh(dailyWh)} per day</p>
     </div>
   );
 }

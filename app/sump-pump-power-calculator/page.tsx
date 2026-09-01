@@ -36,16 +36,17 @@ export const metadata: Metadata = {
 export default function SumpPumpPowerCalculatorPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:px-6 sm:pt-14">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+      <section className="container-page pb-6 pt-12 text-center sm:pt-16">
+        <p className="eyebrow">Power station calculator</p>
+        <h1 className="h1 mx-auto mt-3 max-w-3xl">
           Sump Pump Backup Power Calculator
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65 sm:text-lg">
+        <p className="lede mx-auto mt-4 max-w-2xl">
           Work out three separate things a power station needs to back up a sump pump during an
           outage: enough battery capacity in watt-hours, enough continuous AC output, and enough
           startup / surge capability.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-ink/50">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted/80">
           Enter the running and starting watts from your pump&apos;s label or manual. Results are
           planning estimates, not a guarantee, and battery capacity alone does not confirm a unit can
           start the pump.
@@ -56,7 +57,7 @@ export default function SumpPumpPowerCalculatorPage() {
 
       <SumpPumpCapacityVsOutputNotice />
 
-      <section className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <section className="container-prose section space-y-12">
         <SumpPumpBatteryVsOutput />
         <SumpPumpRunningVsStartup />
         <SumpPumpFindWattage />

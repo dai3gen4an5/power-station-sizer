@@ -1,16 +1,45 @@
 import Link from "next/link";
+import { BrandMark } from "./BrandMark";
+
+const NAV_LINKS = [
+  { href: "/#calculator", label: "Calculator" },
+  { href: "/#calculators", label: "Calculators" },
+  { href: "/methodology", label: "Methodology" },
+];
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-line bg-paper">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper/85 backdrop-blur supports-[backdrop-filter]:bg-paper/70">
+      <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link
           href="/"
-          className="font-display text-lg font-semibold tracking-tight text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          className="flex items-center gap-2.5 rounded-control text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
         >
-          Power Station Sizer
+          <BrandMark className="h-7 w-7 text-ink" />
+          <span className="font-display text-[17px] font-semibold tracking-tight">
+            Power Station Sizer
+          </span>
         </Link>
-        <p className="hidden text-sm text-ink/60 sm:block">Free battery capacity calculator</p>
+
+        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-control px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link href="/#calculator" className="btn-primary ml-2">
+            Size my power station
+          </Link>
+        </nav>
+
+        {/* Mobile: a single clear call to action, no JS menu. */}
+        <Link href="/#calculator" className="btn-primary md:hidden">
+          Start
+        </Link>
       </div>
     </header>
   );

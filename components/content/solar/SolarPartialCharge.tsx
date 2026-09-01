@@ -27,7 +27,7 @@ export function SolarPartialCharge() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         Full charge vs. partial charge (0–100% vs. 20–80%)
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

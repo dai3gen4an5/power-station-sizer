@@ -1,7 +1,7 @@
 export function CmCan500Wh() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         Can a 500Wh power station run a coffee maker?
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

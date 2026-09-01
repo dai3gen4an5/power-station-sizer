@@ -24,7 +24,7 @@ const DURATION_ROWS = [
 export function OutageDurationGuide() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">
+      <h2 className="h2">
         How much battery capacity do I need for a 24-hour outage?
       </h2>
       <div className="mt-3 space-y-3 text-ink/75">

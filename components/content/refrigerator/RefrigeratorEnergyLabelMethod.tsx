@@ -1,7 +1,7 @@
 export function RefrigeratorEnergyLabelMethod() {
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold text-ink">Using the EnergyGuide label</h2>
+      <h2 className="h2">Using the EnergyGuide label</h2>
       <div className="mt-3 space-y-3 text-ink/75">
         <p>
           If your refrigerator&apos;s EnergyGuide label lists an estimated annual energy use in kWh, you
