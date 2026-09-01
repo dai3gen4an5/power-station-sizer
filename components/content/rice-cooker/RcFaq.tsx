@@ -29,7 +29,7 @@ const RC_FAQ_ITEMS: FaqItem[] = [
   {
     question: "Does keep-warm mode use much battery?",
     answer:
-      "Over a few hours it can add as much energy as the cook itself. Keep-warm runs the element at a low duty cycle, and the draw varies by model. This calculator sizes the cook cycle only; if you know the keep-warm watts, work out that energy separately and add it, or use the manufacturer's total measured full-cycle figure.",
+      "Over a few hours it can add as much energy as the cook itself. Keep-warm may cycle or modulate the heater, and its average draw varies substantially by model. This calculator sizes the cook cycle only; if you know the keep-warm watts, work out that energy separately (keep-warm watts times keep-warm hours) and add it to the cook-cycle figure, or use the manufacturer's total measured full-cycle figure.",
   },
   {
     question: "Do IH rice cookers use more power?",
