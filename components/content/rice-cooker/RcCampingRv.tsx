@@ -52,7 +52,12 @@ export function RcCampingRv() {
             electric kettle
           </Link>
           , a rice cooker is a low, slow load &mdash; kinder on a small inverter, but the keep-warm
-          phase can quietly outlast the cook.
+          phase can quietly outlast the cook. A{" "}
+          <Link href="/slow-cooker-power-calculator" className="font-medium text-brand hover:underline">
+            slow cooker
+          </Link>{" "}
+          takes that trade further &mdash; even lower watts, but hours of runtime that make battery
+          capacity the constraint.
         </p>
       </div>
     </div>

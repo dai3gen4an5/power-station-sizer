@@ -100,6 +100,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: absoluteUrl("/slow-cooker-power-calculator"),
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: absoluteUrl("/solar-charge-time-calculator"),
       lastModified: new Date(),
       changeFrequency: "monthly",

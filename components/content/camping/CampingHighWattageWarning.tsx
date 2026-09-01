@@ -67,7 +67,15 @@ export function CampingHighWattageWarning() {
           >
             Rice Cooker Power Station Calculator
           </Link>{" "}
-          covers a camp rice cooker &mdash; the gentlest load of the group.
+          covers a camp rice cooker, and the{" "}
+          <Link
+            href="/slow-cooker-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Slow Cooker Power Station Calculator
+          </Link>{" "}
+          covers a low-wattage slow cooker, where the all-day runtime rather than the watts sizes the
+          battery.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>

@@ -81,6 +81,12 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     category: "Kitchen",
   },
   {
+    href: "/slow-cooker-power-calculator",
+    title: "Slow Cooker Power Station Calculator",
+    description: "Battery capacity for a slow cooker — a low 100–400 W draw held for 4 to 10 hours, where the runtime, not the wattage, sizes the battery.",
+    category: "Kitchen",
+  },
+  {
     href: "/electric-heater-power-calculator",
     title: "Electric Heater Power Station Calculator",
     description: "Battery capacity and continuous AC output for an electric space heater — and why resistance heat drains a portable power station so fast.",

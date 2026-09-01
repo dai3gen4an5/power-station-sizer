@@ -40,7 +40,15 @@ export function OutagePriorityAppliances() {
             >
               Rice Cooker Power Station Calculator
             </Link>{" "}
-            sizes its cook cycle and keep-warm energy.
+            sizes its cook cycle and keep-warm energy, and the{" "}
+            <Link
+              href="/slow-cooker-power-calculator"
+              className="font-medium text-brand hover:underline"
+            >
+              Slow Cooker Power Station Calculator
+            </Link>{" "}
+            sizes an all-day slow cook, where the runtime rather than the wattage sets the battery
+            size.
           </li>
           <li>
             <span className="font-medium text-ink">Water and flood protection.</span> If a storm

@@ -67,7 +67,14 @@ export function RvHighWattageWarning() {
           >
             Rice Cooker Power Station Calculator
           </Link>{" "}
-          covers an RV rice cooker.
+          covers an RV rice cooker, and the{" "}
+          <Link
+            href="/slow-cooker-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Slow Cooker Power Station Calculator
+          </Link>{" "}
+          covers an RV slow cooker, where the long runtime rather than the wattage sizes the battery.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
