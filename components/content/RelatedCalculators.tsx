@@ -69,6 +69,12 @@ const RELATED_CALCULATORS: RelatedCalculatorLink[] = [
     category: "Kitchen",
   },
   {
+    href: "/toaster-oven-power-calculator",
+    title: "Toaster Oven Power Station Calculator",
+    description: "Battery capacity and continuous AC output for a toaster oven — a 1,000–1,800 W countertop oven held through a preheat and a full bake.",
+    category: "Kitchen",
+  },
+  {
     href: "/electric-heater-power-calculator",
     title: "Electric Heater Power Station Calculator",
     description: "Battery capacity and continuous AC output for an electric space heater — and why resistance heat drains a portable power station so fast.",

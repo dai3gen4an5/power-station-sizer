@@ -46,14 +46,21 @@ export function RvHighWattageWarning() {
           >
             Air Fryer Power Station Calculator
           </Link>{" "}
-          covers an RV air fryer, and the{" "}
+          covers an RV air fryer, the{" "}
           <Link
             href="/induction-cooktop-power-calculator"
             className="font-medium text-brand hover:underline"
           >
             Induction Cooktop Power Station Calculator
           </Link>{" "}
-          covers an RV induction cooktop.
+          covers an RV induction cooktop, and the{" "}
+          <Link
+            href="/toaster-oven-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Toaster Oven Power Station Calculator
+          </Link>{" "}
+          covers an RV toaster oven.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>

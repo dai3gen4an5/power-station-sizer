@@ -46,14 +46,21 @@ export function CampingHighWattageWarning() {
           >
             Air Fryer Power Station Calculator
           </Link>{" "}
-          covers a camp air fryer, and the{" "}
+          covers a camp air fryer, the{" "}
           <Link
             href="/induction-cooktop-power-calculator"
             className="font-medium text-brand hover:underline"
           >
             Induction Cooktop Power Station Calculator
           </Link>{" "}
-          covers a camp induction burner.
+          covers a camp induction burner, and the{" "}
+          <Link
+            href="/toaster-oven-power-calculator"
+            className="font-medium text-brand hover:underline"
+          >
+            Toaster Oven Power Station Calculator
+          </Link>{" "}
+          covers a camp toaster oven.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
