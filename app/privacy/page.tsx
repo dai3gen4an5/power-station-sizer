@@ -53,13 +53,24 @@ export default function PrivacyPage() {
       <div>
         <h2 className="font-display text-2xl font-semibold text-ink">Analytics</h2>
         <p className="mt-3 text-ink/75">
-          The site uses Vercel Web Analytics to count page views and a small number of on-page
-          actions. It is privacy-friendly by design: it sets no cookies, stores nothing on your
-          device, does not fingerprint you for advertising, does not track you across other
-          websites, and does not collect personal information. Visit counts are aggregated from a
-          one-way hash that Vercel rotates daily, so individual visitors cannot be re-identified or
-          followed from one day to the next.
+          Two tools are used, each for one narrow purpose:
         </p>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-ink/75">
+          <li>
+            <span className="font-medium text-ink">Vercel Web Analytics</span> counts page views and
+            landing pages. It sets no cookies, stores nothing on your device, does not fingerprint
+            you for advertising, and does not track you across other sites. Visit counts are
+            aggregated from a one-way hash that Vercel rotates daily, so individual visitors cannot be
+            re-identified or followed from one day to the next.
+          </li>
+          <li>
+            <span className="font-medium text-ink">PostHog</span> (EU Cloud) is used only to record
+            the affiliate link click described below &mdash; nothing else. It does not capture page
+            views on this site, autocapture is off, session replay is off, person profiles are off,
+            and it is configured with in-memory persistence only, so it sets no cookies and writes
+            nothing to your browser&apos;s storage.
+          </li>
+        </ul>
         <p className="mt-3 text-ink/75">
           There is still no Google Analytics, no tag manager loaded by default, and no advertising or
           social tracking pixel.
@@ -69,17 +80,18 @@ export default function PrivacyPage() {
       <div>
         <h2 className="font-display text-2xl font-semibold text-ink">Affiliate link clicks</h2>
         <p className="mt-3 text-ink/75">
-          When you click a product link in the recommendation section, the site records an anonymous{" "}
-          <span className="font-mono text-sm">affiliate_click</span> event so we can see which
-          calculators and which product categories lead people to a retailer. The event carries only
-          the page path, the recommended capacity class (for example &ldquo;1000wh&rdquo;), the
-          product brand, and whether the link is an affiliate or plain link. It contains no personal
-          data, and clicking is not delayed or interrupted by it.
+          When you click a product link in the recommendation section, the site sends one anonymous{" "}
+          <span className="font-mono text-sm">affiliate_click</span> event to PostHog so we can see
+          which calculators and which product ranges lead people to a retailer. The event carries
+          only the page path, the recommended capacity class (for example &ldquo;1000wh&rdquo;), the
+          product brand, and whether the link is an affiliate or plain link. It contains no email,
+          name, account identifier, IP address collected as a property, or fingerprint, and clicking
+          is not delayed or interrupted by it.
         </p>
         <p className="mt-3 text-ink/75">
           What happens after you reach the retailer &mdash; whether you buy anything &mdash; is not
-          visible to this site. Any commission reporting comes only from the retailer&apos;s own
-          affiliate dashboard.
+          visible to this site. Any purchase or commission reporting comes only from the
+          retailer&apos;s own affiliate dashboard, such as Amazon&apos;s.
         </p>
       </div>
 

@@ -1,4 +1,5 @@
 import { track } from "@vercel/analytics";
+import { posthogCapture } from "@/lib/posthog";
 
 /**
  * Single entry point for named analytics events.
@@ -10,11 +11,13 @@ import { track } from "@vercel/analytics";
  * It forwards each event to whatever collectors are present, and never blocks,
  * delays, or throws into the caller:
  *
- *   1. Vercel Web Analytics custom event via `track()`. Custom events are
- *      recorded on Pro / Enterprise projects; on a Hobby project `track()` is a
- *      documented safe no-op (it does not error and costs nothing), so calling
- *      it here is harmless regardless of the account plan.
- *   2. `window.dataLayer` push, so if Google Tag Manager / GA4 is added later it
+ *   1. PostHog custom event via `posthog.capture()`. This is the persistent,
+ *      reportable collector for `affiliate_click` on the current (Vercel Hobby)
+ *      setup. No-op unless PostHog is configured — see lib/posthog.ts.
+ *   2. Vercel Web Analytics custom event via `track()`. Recorded on
+ *      Pro / Enterprise; a documented safe no-op on Hobby (never errors, costs
+ *      nothing), so calling it here is harmless regardless of the plan.
+ *   3. `window.dataLayer` push, so if Google Tag Manager / GA4 is added later it
  *      picks these events up with no further code change.
  *
  * Merchant-side outcomes (a completed Amazon purchase) are NOT tracked here —
@@ -23,6 +26,12 @@ import { track } from "@vercel/analytics";
 type EventProps = Record<string, string | number | boolean | null | undefined>;
 
 export function trackEvent(name: string, props?: EventProps): void {
+  try {
+    posthogCapture(name, props);
+  } catch {
+    /* analytics must never break navigation or rendering */
+  }
+
   try {
     track(name, props);
   } catch {
