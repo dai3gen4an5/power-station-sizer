@@ -1,5 +1,7 @@
 "use client";
 
+import { NumberField } from "./NumberField";
+
 interface SettingsPanelProps {
   days: number;
   inverterEfficiency: number;
@@ -11,13 +13,8 @@ interface SettingsPanelProps {
   onReserveChange: (value: number) => void;
 }
 
-const inputClasses = "field";
 const labelClasses = "field-label";
-
-function clamp(value: number, min: number, max: number): number {
-  if (!Number.isFinite(value)) return min;
-  return Math.min(max, Math.max(min, value));
-}
+const fieldClasses = "field";
 
 export function SettingsPanel({
   days,
@@ -51,15 +48,15 @@ export function SettingsPanel({
       <div className="mt-4 grid gap-4 sm:grid-cols-3">
         <label className="block text-sm">
           <span className={labelClasses}>Number of days</span>
-          <input
-            type="number"
-            inputMode="numeric"
+          <NumberField
+            value={days}
             min={1}
             max={30}
-            step={1}
-            value={days}
-            onChange={(e) => onDaysChange(clamp(Number.parseFloat(e.target.value), 1, 30))}
-            className={inputClasses}
+            allowDecimal={false}
+            fallback={1}
+            ariaLabel="Number of days of backup power"
+            onValueChange={onDaysChange}
+            className={fieldClasses}
           />
           <span className="field-hint">How many days of backup power you want.</span>
         </label>
@@ -67,15 +64,15 @@ export function SettingsPanel({
         <label className="block text-sm">
           <span className={labelClasses}>Inverter efficiency</span>
           <div className="flex items-center gap-2">
-            <input
-              type="number"
-              inputMode="numeric"
+            <NumberField
+              value={inverterEfficiency}
               min={50}
               max={100}
-              step={1}
-              value={inverterEfficiency}
-              onChange={(e) => onEfficiencyChange(clamp(Number.parseFloat(e.target.value), 50, 100))}
-              className={inputClasses}
+              allowDecimal={false}
+              fallback={85}
+              ariaLabel="Inverter efficiency percent"
+              onValueChange={onEfficiencyChange}
+              className={fieldClasses}
             />
             <span className="text-sm text-ink/50">%</span>
           </div>
@@ -85,15 +82,15 @@ export function SettingsPanel({
         <label className="block text-sm">
           <span className={labelClasses}>Battery reserve</span>
           <div className="flex items-center gap-2">
-            <input
-              type="number"
-              inputMode="numeric"
+            <NumberField
+              value={batteryReserve}
               min={0}
               max={50}
-              step={5}
-              value={batteryReserve}
-              onChange={(e) => onReserveChange(clamp(Number.parseFloat(e.target.value), 0, 50))}
-              className={inputClasses}
+              allowDecimal={false}
+              fallback={20}
+              ariaLabel="Battery reserve percent"
+              onValueChange={onReserveChange}
+              className={fieldClasses}
             />
             <span className="text-sm text-ink/50">%</span>
           </div>

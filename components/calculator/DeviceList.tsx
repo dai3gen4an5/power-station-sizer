@@ -13,21 +13,21 @@ interface DeviceListProps {
 
 export function DeviceList({ devices, totalDailyWh, onChange, onRemove }: DeviceListProps) {
   return (
-    <div>
+    <div className="overflow-hidden rounded-xl border border-line">
       {/* Column header — desktop only; DeviceRow keeps labels for mobile + a11y. */}
       <div
-        className="hidden grid-cols-[minmax(0,2.6fr)_0.9fr_0.9fr_0.7fr_minmax(0,1fr)_auto] gap-x-4 px-1 pb-2 text-xs font-medium text-muted sm:grid"
+        className="hidden grid-cols-[minmax(0,2.4fr)_0.85fr_0.85fr_0.65fr_minmax(0,0.9fr)_2rem] gap-x-3 border-b border-line bg-surface-muted/50 px-3 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted sm:grid"
         aria-hidden="true"
       >
-        <span>Device</span>
-        <span>Watts</span>
-        <span>Hours / day</span>
-        <span>Qty</span>
-        <span className="text-right">Wh / day</span>
-        <span className="w-[4.5rem]" />
+        <span className="px-2">Device</span>
+        <span className="px-2 text-right">Power</span>
+        <span className="px-2 text-right">Usage</span>
+        <span className="px-2 text-right">Qty</span>
+        <span className="px-2 text-right">Daily Wh</span>
+        <span />
       </div>
 
-      <div className="divide-y divide-hairline rounded-card border border-line bg-surface">
+      <div className="bg-surface">
         {devices.map((device, index) => (
           <DeviceRow
             key={device.id}
@@ -40,10 +40,11 @@ export function DeviceList({ devices, totalDailyWh, onChange, onRemove }: Device
         ))}
       </div>
 
-      <div className="mt-3 flex items-center justify-between gap-3 rounded-card bg-brand-50 px-4 py-3">
-        <span className="text-sm font-semibold text-ink">Total energy per day</span>
-        <span className="font-mono text-lg font-semibold tabular-nums text-brand-700">
+      <div className="flex items-center justify-between gap-3 border-t border-line bg-surface px-5 py-3">
+        <span className="text-sm font-semibold text-ink">Total</span>
+        <span className="font-mono text-base font-semibold tabular-nums text-brand-700">
           {formatWh(totalDailyWh)}
+          <span className="ml-1 text-xs font-medium text-muted">/ day</span>
         </span>
       </div>
     </div>

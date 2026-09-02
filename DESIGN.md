@@ -5,18 +5,29 @@ should reuse the tokens and classes below so the site stays consistent.
 
 ## Concept
 
-A **polished technical instrument**, not a generic SaaS marketing site.
+A **polished consumer product-selection tool** — a confident, spacious sizing
+calculator that leads into a product comparison, not a generic SaaS marketing
+site and not an engineering/admin form.
 
-- **Warm technical canvas** (`paper` / `canvas`) — an off-white ground with a
-  barely-there dot grid and a faint teal wash near the top, so white cards lift
-  off the page without any heavy gradient.
-- **Clean white cards** (`surface`) for inputs, content, and recommendations.
-- **Graphite hardware surfaces** (`bezel` / `hardware`) for the signature LCD
-  result panel — a stylised power-station readout with a segmented charge gauge
-  and status LEDs.
-- **One accent**: teal, modelled on a charge-indicator LED (`brand`, plus the
-  brighter `led` for glowing gauge segments and status dots). Categories are
-  distinguished by small mono labels, never by adding more colours.
+The current visual source of truth is the approved homepage mockup: a large
+light hero, a light two-column calculator (a **"Your power needs summary"**
+metric-tile card + a clean **"Your devices"** table), a **"Popular calculators"**
+shortcut strip, then the product comparison. Match its composition, whitespace,
+proportions, typography scale, card sizing, radii, borders, input styling, and
+green-accent usage.
+
+- **Warm light canvas** (`paper` / `canvas`) — an off-white ground with a
+  barely-there dot grid and a faint accent wash near the top, so white cards
+  lift off the page without any heavy gradient.
+- **Clean white cards** (`surface` / `feature-card`) for the hero preview,
+  inputs, results, shortcuts, and recommendations. Result metrics live in
+  `rounded-xl` tiles with a soft circular icon chip (`bg-brand-50` / `bg-amber-50`).
+- **One accent**: green (`brand`, plus the brighter `led` for status dots).
+  Categories are distinguished by small labels, never by adding more colours.
+- **Graphite hardware surfaces** (`bezel` / `hardware`, `.panel-hardware` /
+  `.panel-screen`) are now an **optional** secondary treatment, not required on
+  any page. The former mandatory LCD `ResultsPanel` anchor is retired — the
+  light summary card is the anchor.
 
 Typography (unchanged, three roles):
 
@@ -65,30 +76,46 @@ Hardware: `.panel-hardware` (bezel), `.panel-screen` (LCD screen).
 
 ## Page anatomy
 
-1. **Hero** — `.eyebrow` → `.h1` → `.lede` → optional context line. Centered on
-   calculator pages; two-column on the homepage with a deterministic
-   `HeroExampleReadout` (real calculator output, `aria-hidden`).
-2. **Calculator** — two columns: white input cards on the left (numbered
-   workflow, `.field` inputs, `.chip` presets, "Advanced assumptions" for
-   settings); the sticky hardware `ResultsPanel` on the right.
-3. **Recommendations** — `ProductRecommendations`, same card system; neutral
-   panels for the no-match / output-unconfirmed / escalated states.
-4. **Content** — `.container-prose .section`, `.h2` headings, prose at
+1. **Hero** — a rounded-full pill kicker → a large `font-display` headline (up to
+   ~`text-6xl`, one accent-coloured word with an underline swoosh) → a `text-lg`
+   grey lede → one solid `.btn-primary .btn-lg` CTA → a three-up trust row (small
+   round outline icon + bold label + grey sub). Two-column on the homepage with a
+   light `HeroExampleReadout` card (deterministic real calculator output,
+   `aria-hidden`). A photographic hero image is out (see Don't); the example card
+   fills that slot.
+2. **Calculator** — light two-column: the **`ResultsPanel`** "Your power needs
+   summary" card (a 2×2 grid of `rounded-xl` metric tiles — Daily usage,
+   Recommended capacity in green, Estimated runtime, Solar recharge time — plus a
+   green check status line) and a **`DeviceList`** "Your devices" table (ghost
+   cell inputs that outline on focus, `Device / Power / Usage / Qty / Daily Wh`,
+   a green `Total … / day`). `.chip` presets and a collapsed `<details>` "Backup
+   assumptions" below. Numeric inputs use `NumberField` (string-buffer, commit on
+   blur/Enter) — never bare `<input type="number">`.
+3. **Popular calculators** — homepage only: a `feature-card` with a row of
+   `.card-interactive` shortcut pills.
+4. **Recommendations** — `ProductRecommendations` comparison grid, same card
+   system; neutral panels for the no-match / output-unconfirmed / escalated
+   states. No fabricated price / rating / photo / "Best".
+5. **Content** — `.container-prose .section`, `.h2` headings, prose at
    `text-ink/75`; tables scroll inside an `overflow-x-auto` container.
-5. **FAQ** — `FaqSection` accordion.
-6. **Related calculators** — `.card-interactive` grid with a mono category label.
+6. **FAQ** — `FaqSection` accordion.
+7. **Related calculators** — `.card-interactive` grid with a small category label.
 
 ## Do
 
 - Reuse the classes above; add a token before a one-off value.
-- Keep the LCD `ResultsPanel` as the visual anchor — every page leads to it.
-- Label categories with a mono kicker or an aria-hidden line icon.
+- Lead every calculator page to the light "Your power needs summary" card.
+- Keep large, readable result numbers with plain labels; recommended capacity is
+  the strongest, and shown big only once.
+- Label categories with a small kicker or an aria-hidden line icon.
 - Test at 375 / 390 / 768 / 1024 / 1440; wide content scrolls in its own box.
 
 ## Don't
 
 - Add a second accent colour, neon, cyberpunk, or a full-page gradient.
-- Use stock photos, AI battery imagery, emoji, or an icon-only control.
+- Use stock or AI photography, emoji, or an icon-only control that has no
+  accessible label.
+- Show the recommended-capacity figure large in two places at once.
 - Pull in an animation / carousel / chart / icon-font library.
 - Touch calculator math, recommendation logic, SEO copy, canonical, JSON-LD,
   or the affiliate URLs for a visual change.

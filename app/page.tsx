@@ -43,9 +43,37 @@ const impactSiteVerificationMeta: MetaHTMLAttributes<HTMLMetaElement> & { value:
 };
 
 const TRUST_POINTS = [
-  { label: "Fast & free", sub: "No sign-up, ~2 minutes" },
-  { label: "Personalised", sub: "Sized to your own devices" },
-  { label: "Purchase-ready", sub: "Real watt-hour math, verified specs" },
+  {
+    label: "Fast & free",
+    sub: "Takes ~2 minutes",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 3" />
+      </svg>
+    ),
+  },
+  {
+    label: "Personalised",
+    sub: "For your devices",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="12" cy="12" r="0.6" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    label: "Purchase-ready",
+    sub: "Real watt-hour math",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 5h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2z" />
+        <path d="M9 3h6v4H9zM9.5 13l1.8 1.8L15 11" />
+      </svg>
+    ),
+  },
 ];
 
 export default function HomePage() {
@@ -53,37 +81,51 @@ export default function HomePage() {
     <>
       <meta {...impactSiteVerificationMeta} />
 
-      <section className="container-page pb-14 pt-16 sm:pb-20 sm:pt-24">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <section className="container-page pb-12 pt-14 sm:pb-16 sm:pt-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
-            <p className="eyebrow">Power station sizing</p>
-            <h1 className="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
-              What Size <span className="text-brand-700">Power Station</span> Do I Need?
+            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted shadow-card">
+              <span aria-hidden="true" className="text-brand-600">
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor">
+                  <path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10.5H13z" />
+                </svg>
+              </span>
+              Smart sizing. Smarter adventures.
+            </span>
+            <h1 className="mt-5 font-display text-[2.6rem] font-bold leading-[1.03] tracking-tight text-ink sm:text-[3.75rem]">
+              What Size{" "}
+              <span className="relative inline-block text-brand-600">
+                Power Station
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 -bottom-1 h-[3px] rounded-full bg-brand-300/70"
+                />
+              </span>{" "}
+              Do I Need?
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-              How much battery do you actually need? Size a portable power station for camping,
-              outages, RVs, CPAP, Starlink, and everyday backup &mdash; the recommendation updates as
-              you add your devices.
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+              How much battery do you actually need? Right-size a portable power station for camping,
+              outages, RVs, CPAP, Starlink, and everyday power needs.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8">
               <Link href="#calculator" className="btn-primary btn-lg">
-                Size my power station
-              </Link>
-              <Link href="#calculators" className="btn-secondary btn-lg">
-                Browse calculators
+                Calculate my size
+                <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
-            <ul className="mt-9 grid gap-3 sm:grid-cols-3">
+            <ul className="mt-10 grid gap-5 sm:grid-cols-3">
               {TRUST_POINTS.map((point) => (
-                <li
-                  key={point.label}
-                  className="rounded-card border border-line bg-surface/70 px-3.5 py-3"
-                >
-                  <span className="flex items-center gap-2 text-sm font-semibold text-ink">
-                    <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand" />
-                    {point.label}
+                <li key={point.label} className="flex items-start gap-2.5">
+                  <span
+                    aria-hidden="true"
+                    className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-brand-600"
+                  >
+                    {point.icon}
                   </span>
-                  <span className="mt-1 block text-xs text-muted">{point.sub}</span>
+                  <span>
+                    <span className="block text-sm font-semibold text-ink">{point.label}</span>
+                    <span className="block text-xs text-muted">{point.sub}</span>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -95,9 +137,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="border-t border-line" />
-
-      <PowerStationCalculator />
+      <PowerStationCalculator showPopularCalculators />
 
       <div className="border-y border-line bg-surface-muted/60">
         <div className="container-prose section-tight">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import {
   estimateRuntimeHours,
   estimateSolarChargeHours,
@@ -17,17 +17,59 @@ interface ResultsPanelProps {
 }
 
 const LARGEST_CLASS = SIZE_CLASSES_WH[SIZE_CLASSES_WH.length - 1];
-const SEGMENT_COUNT = 20;
 
 // Stated assumption for the "solar recharge" figure: a common 200 W portable
 // panel at the project's default 70% real-world derating. The main calculator
-// does not collect solar inputs, so this is illustrative with the assumption
+// does not collect solar inputs, so this is illustrative, with the assumption
 // shown next to it — the Solar Charge Time Calculator takes real inputs.
 const SOLAR_PANEL_W = 200;
 const SOLAR_EFFICIENCY_PCT = 70;
 
+function Tile({
+  icon,
+  accent,
+  label,
+  value,
+  caption,
+  emphasise,
+  children,
+}: {
+  icon: ReactNode;
+  accent: "brand" | "amber";
+  label: string;
+  value: string;
+  caption: string;
+  emphasise?: boolean;
+  children?: ReactNode;
+}) {
+  return (
+    <div className="rounded-xl border border-line bg-surface p-5">
+      <span
+        aria-hidden="true"
+        className={`flex h-10 w-10 items-center justify-center rounded-full ${
+          accent === "amber" ? "bg-amber-50 text-amber-600" : "bg-brand-50 text-brand-600"
+        }`}
+      >
+        {icon}
+      </span>
+      <p className="mt-3 text-sm text-muted">{label}</p>
+      <p
+        className={`mt-0.5 font-mono text-3xl font-semibold leading-none tracking-tight tabular-nums ${
+          emphasise ? "text-brand-700" : "text-ink"
+        }`}
+      >
+        {value}
+      </p>
+      <p className="mt-1.5 text-xs text-muted">{caption}</p>
+      {children}
+    </div>
+  );
+}
+
+const iconClass = "h-5 w-5";
+
 export function ResultsPanel({ results, inverterEfficiency, batteryReserve }: ResultsPanelProps) {
-  const { totalDailyWh, minimumCapacityWh, recommendedCapacityWh, recommendedSizeClass } = results;
+  const { totalDailyWh, recommendedCapacityWh, recommendedSizeClass } = results;
 
   const [runtimeSize, setRuntimeSize] = useState<number>(recommendedSizeClass ?? LARGEST_CLASS);
 
@@ -47,130 +89,120 @@ export function ResultsPanel({ results, inverterEfficiency, batteryReserve }: Re
   const sizeLabel = recommendedSizeClass
     ? formatWh(recommendedSizeClass)
     : `${LARGEST_CLASS.toLocaleString("en-US")} Wh+`;
-
-  const fillFraction = Math.min(1, recommendedCapacityWh / LARGEST_CLASS);
-  const filledSegments = Math.max(1, Math.round(fillFraction * SEGMENT_COUNT));
   const hasLoad = totalDailyWh > 0;
 
   return (
-    <div className="space-y-4">
-      {/* PRIMARY — the summary the whole page builds toward. */}
-      <div className="feature-card p-6 sm:p-8">
-        <p className="eyebrow">Your power needs summary</p>
+    <div className="feature-card p-6 sm:p-8">
+      <h2 className="h2 text-xl">Your power needs summary</h2>
 
-        <div className="mt-4">
-          <p className="text-sm font-medium text-muted">Recommended capacity</p>
-          <p className="mt-1 font-mono text-5xl font-semibold leading-none tracking-tight tabular-nums text-brand-700 sm:text-6xl">
-            {formatWh(recommendedCapacityWh)}
-          </p>
-          <p className="mt-2 text-sm text-muted">
-            For comfortable real-world use, shop around{" "}
-            <span className="font-semibold text-ink">{sizeLabel}</span>.
-          </p>
-        </div>
-
-        <dl className="mt-6 grid gap-4 border-t border-hairline pt-5 sm:grid-cols-3">
-          <div>
-            <dt className="text-xs font-medium text-muted">Daily usage</dt>
-            <dd className="mt-1 font-mono text-xl font-semibold tabular-nums text-ink">
-              {formatWh(totalDailyWh)}
-            </dd>
-          </div>
-
-          <div>
-            <dt className="text-xs font-medium text-muted">Estimated runtime</dt>
-            <dd className="mt-1 font-mono text-xl font-semibold tabular-nums text-ink">
-              {hasLoad ? formatHours(runtimeHours) : "—"}
-            </dd>
-            <label className="mt-1 block">
-              <span className="sr-only">Power station size for the runtime estimate</span>
-              <select
-                value={runtimeSize}
-                onChange={(e) => setRuntimeSize(Number.parseInt(e.target.value, 10))}
-                className="field py-1 text-xs"
-              >
-                {SIZE_CLASSES_WH.map((size) => (
-                  <option key={size} value={size}>
-                    at {formatWh(size)}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-
-          <div>
-            <dt className="text-xs font-medium text-muted">Solar recharge</dt>
-            <dd className="mt-1 font-mono text-xl font-semibold tabular-nums text-ink">
-              {solarHours > 0 ? formatHours(solarHours) : "—"}
-            </dd>
-            <p className="mt-1 text-[11px] leading-snug text-muted">
-              Full charge, {SOLAR_PANEL_W}&nbsp;W panel in good sun.{" "}
-              <a
-                href="/solar-charge-time-calculator"
-                className="font-medium text-brand-700 hover:underline"
-              >
-                Real figures
-              </a>
-            </p>
-          </div>
-        </dl>
-
-        <p
-          className={`mt-5 rounded-control px-3.5 py-2.5 text-xs leading-relaxed ${
-            hasLoad ? "bg-brand-50 text-brand-800" : "bg-surface-muted text-muted"
-          }`}
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <Tile
+          accent="brand"
+          label="Daily usage"
+          value={formatWh(totalDailyWh)}
+          caption="Total energy per day"
+          icon={
+            <svg viewBox="0 0 24 24" className={iconClass} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12h4l3 8 4-16 3 8h4" />
+            </svg>
+          }
+        />
+        <Tile
+          accent="brand"
+          emphasise
+          label="Recommended capacity"
+          value={hasLoad ? formatWh(recommendedCapacityWh) : "—"}
+          caption={hasLoad ? `Shop around ${sizeLabel}` : "Add a device to size it"}
+          icon={
+            <svg viewBox="0 0 24 24" className={iconClass} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="7" width="18" height="10" rx="2" />
+              <path d="M22 10v4M6 10v4" />
+            </svg>
+          }
+        />
+        <Tile
+          accent="brand"
+          label="Estimated runtime"
+          value={hasLoad ? formatHours(runtimeHours) : "—"}
+          caption={`For a ${formatWh(runtimeSize)} unit`}
+          icon={
+            <svg viewBox="0 0 24 24" className={iconClass} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 3" />
+            </svg>
+          }
         >
-          {hasLoad ? (
-            <>
-              This size covers about <span className="font-semibold">{formatWh(totalDailyWh)}</span>{" "}
-              of use per day. It already includes the {batteryReserve}% reserve buffer and{" "}
-              {inverterEfficiency}% inverter efficiency you set, rounded up to a common{" "}
-              <span className="font-semibold">{sizeLabel}</span> size.
-            </>
-          ) : (
-            "Add a device on the left to see your recommended size and runtime."
-          )}
-        </p>
+          <label className="mt-2 block">
+            <span className="sr-only">Power station size for the runtime estimate</span>
+            <select
+              value={runtimeSize}
+              onChange={(e) => setRuntimeSize(Number.parseInt(e.target.value, 10))}
+              className="field py-1 text-xs"
+            >
+              {SIZE_CLASSES_WH.map((size) => (
+                <option key={size} value={size}>
+                  {formatWh(size)}
+                </option>
+              ))}
+            </select>
+          </label>
+        </Tile>
+        <Tile
+          accent="amber"
+          label="Solar recharge time"
+          value={solarHours > 0 ? formatHours(solarHours) : "—"}
+          caption={`With a ${SOLAR_PANEL_W} W panel in good sun`}
+          icon={
+            <svg viewBox="0 0 24 24" className={iconClass} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2 2M17.1 17.1l2 2M19.1 4.9l-2 2M6.9 17.1l-2 2" />
+            </svg>
+          }
+        >
+          <a
+            href="/solar-charge-time-calculator"
+            className="mt-2 inline-block text-xs font-medium text-brand-700 hover:underline"
+          >
+            Use real panel figures &rarr;
+          </a>
+        </Tile>
       </div>
 
-      {/* SECONDARY — branded charge-scale readout, not a second headline number. */}
-      <div className="panel-hardware">
-        <div className="flex items-center justify-between px-3.5 pb-2 pt-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
-            Charge scale
-          </span>
-          <div className="flex items-center gap-1.5" aria-hidden="true">
-            <span className="h-1.5 w-1.5 rounded-full bg-led shadow-[0_0_6px_theme(colors.led)]" />
-            <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
-            <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
-          </div>
-        </div>
-        <div className="px-3.5 pb-4">
-          <div
-            className="flex gap-1"
-            role="img"
-            aria-label={`Recommended capacity is ${Math.round(fillFraction * 100)}% of the largest listed size`}
+      <div
+        className={`mt-5 flex items-start gap-3 rounded-xl px-4 py-3 ${
+          hasLoad ? "bg-brand-50" : "bg-surface-muted"
+        }`}
+      >
+        {hasLoad ? (
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            className="mt-0.5 h-5 w-5 shrink-0 text-brand-600"
+            fill="currentColor"
           >
-            {Array.from({ length: SEGMENT_COUNT }).map((_, i) => (
-              <span
-                key={i}
-                className={`h-2.5 flex-1 rounded-[3px] ${
-                  i < filledSegments ? "bg-led shadow-[0_0_8px_-2px_theme(colors.led)]" : "bg-white/[0.07]"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="mt-3 grid grid-cols-2 gap-2 font-mono text-white">
-            <div className="rounded-lg bg-white/[0.04] px-3 py-2">
-              <p className="text-[10px] uppercase tracking-wide text-white/40">Daily energy</p>
-              <p className="mt-0.5 text-sm">{formatWh(totalDailyWh)}</p>
-            </div>
-            <div className="rounded-lg bg-white/[0.04] px-3 py-2">
-              <p className="text-[10px] uppercase tracking-wide text-white/40">Min. before reserve</p>
-              <p className="mt-0.5 text-sm">{formatWh(minimumCapacityWh)}</p>
-            </div>
-          </div>
-        </div>
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.7-9.3a1 1 0 00-1.4-1.4L9 10.6 7.7 9.3a1 1 0 00-1.4 1.4l2 2a1 1 0 001.4 0l4-4z"
+              clipRule="evenodd"
+            />
+          </svg>
+        ) : null}
+        <p className="text-sm leading-relaxed">
+          {hasLoad ? (
+            <>
+              <span className="font-semibold text-brand-800">You&apos;re all set.</span>{" "}
+              <span className="text-brand-800/90">
+                A {sizeLabel} power station covers your {formatWh(totalDailyWh)}/day with the{" "}
+                {batteryReserve}% reserve and {inverterEfficiency}% inverter efficiency you set.
+                Adjust your devices or usage to see it change.
+              </span>
+            </>
+          ) : (
+            <span className="text-muted">
+              Add a device to see your recommended capacity, runtime, and solar recharge time.
+            </span>
+          )}
+        </p>
       </div>
     </div>
   );
