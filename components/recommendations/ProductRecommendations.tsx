@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { AffiliateDisclosure } from "./AffiliateDisclosure";
 import {
@@ -13,6 +14,7 @@ import {
 import { getRecommendationState } from "@/lib/recommendations/eligibility";
 import { trackEvent } from "@/lib/analytics";
 import { formatWh } from "@/lib/utils/format";
+import type { ProductEntry } from "@/lib/recommendations/products";
 
 interface ProductRecommendationsProps {
   /** Recommended capacity from the calculator, in watt-hours. */
@@ -33,6 +35,49 @@ interface ProductRecommendationsProps {
   className?: string;
 }
 
+function formatW(value: number | undefined): string {
+  if (typeof value !== "number" || !Number.isFinite(value) || value <= 0) return "Not listed";
+  return `${Math.round(value).toLocaleString("en-US")} W`;
+}
+
+function formatVoltage(volts: readonly number[] | undefined): string {
+  if (!volts || volts.length === 0) return "Not listed";
+  return volts.map((v) => `${v}V`).join(" / ");
+}
+
+/**
+ * A short, factual tag derived only from the verified per-SKU specs — never an
+ * editorial ranking ("Best", "#1", "Top pick" are intentionally not used here).
+ * Returns a label for the smallest qualifying battery and for the highest
+ * confirmed continuous output, when those are unambiguous across the set.
+ */
+function factualTags(products: ProductEntry[]): Record<string, string> {
+  const tags: Record<string, string> = {};
+  if (products.length < 2) return tags;
+
+  const caps = products
+    .map((p) => p.capacityWh)
+    .filter((n) => Number.isFinite(n) && n > 0);
+  if (caps.length === products.length) {
+    const minCap = Math.min(...caps);
+    const atMin = products.filter((p) => p.capacityWh === minCap);
+    if (atMin.length === 1) tags[atMin[0].brand] = "Smallest that fits";
+  }
+
+  const outs = products
+    .map((p) => p.continuousOutputW)
+    .filter((n): n is number => typeof n === "number" && n > 0);
+  if (outs.length >= 2) {
+    const maxOut = Math.max(...outs);
+    const atMax = products.filter((p) => p.continuousOutputW === maxOut);
+    if (atMax.length === 1 && !tags[atMax[0].brand]) {
+      tags[atMax[0].brand] = "Highest continuous output";
+    }
+  }
+
+  return tags;
+}
+
 /**
  * Site-wide "here are power stations in your size range" section.
  *
@@ -44,9 +89,10 @@ interface ProductRecommendationsProps {
  *   - a neutral, non-affiliate note when capacity fits somewhere but, after
  *     searching every class from the starting one upward, no unit has a confirmed
  *     continuous / surge output rating high enough for the load;
- *   - otherwise the products that clear every supplied requirement, from the
- *     smallest class that has one (which may sit above the calculator's own size
- *     class when the search escalated to find AC-output headroom).
+ *   - otherwise a comparison grid of the products that clear every supplied
+ *     requirement, from the smallest class that has one (which may sit above the
+ *     calculator's own size class when the search escalated to find AC-output
+ *     headroom).
  *
  * No calculator math is duplicated here, and the calculator's own size-class
  * rounding is untouched.
@@ -59,6 +105,7 @@ export function ProductRecommendations({
   className,
 }: ProductRecommendationsProps) {
   const pathname = usePathname() || "/";
+  const [brandFilter, setBrandFilter] = useState<string | null>(null);
 
   const state = getRecommendationState({
     recommendedCapacityWh,
@@ -151,8 +198,12 @@ export function ProductRecommendations({
     );
   }
 
-  const { capacityClass } = state;
-  const products = state.products;
+  const { capacityClass, products } = state;
+  const tags = factualTags(products);
+  const brands: { id: string; name: string }[] = [];
+  for (const p of products) {
+    if (!brands.some((b) => b.id === p.brand)) brands.push({ id: p.brand, name: p.brandName });
+  }
   const anyActiveLink = hasAnyActiveLink(products);
   const sectionHasAffiliateLink = hasActiveAffiliateLink(products);
   const sectionHasAmazonLink = hasActiveAmazonLink(products);
@@ -160,6 +211,11 @@ export function ProductRecommendations({
     state.requiredContinuousOutputW > 0 || state.requiredSurgeOutputW > 0;
   const continuousW = Math.round(state.requiredContinuousOutputW);
   const surgeW = Math.round(state.requiredSurgeOutputW);
+  const showBrandFilter = brands.length > 1 && products.length > 2;
+  const visibleProducts =
+    brandFilter && showBrandFilter
+      ? products.filter((p) => p.brand === brandFilter)
+      : products;
 
   return (
     <section className={sectionClassName} aria-labelledby="product-recommendations-heading">
@@ -188,8 +244,8 @@ export function ProductRecommendations({
         ) : (
           <p className="mt-1 text-sm text-muted">
             Your estimate points to roughly the{" "}
-            <span className="font-semibold text-ink">{capacityClass.label}</span> class. Here are
-            product families you can compare.
+            <span className="font-semibold text-ink">{capacityClass.label}</span> class. Compare the
+            units below on the specs that decide whether one will run your devices.
           </p>
         )}
         {state.capacityClassEscalated ? (
@@ -202,8 +258,36 @@ export function ProductRecommendations({
           <p className="mt-1 text-xs text-muted/80">{capacityClass.reason}</p>
         )}
 
-        <div className="mt-5 grid gap-3 sm:grid-cols-3">
-          {products.map((product) => {
+        {showBrandFilter && (
+          <div
+            className="mt-4 flex flex-wrap gap-2"
+            role="group"
+            aria-label="Filter recommendations by brand"
+          >
+            <button
+              type="button"
+              onClick={() => setBrandFilter(null)}
+              aria-pressed={brandFilter === null}
+              className={`chip ${brandFilter === null ? "border-brand-300 bg-brand-50 text-brand-700" : ""}`}
+            >
+              All brands
+            </button>
+            {brands.map((b) => (
+              <button
+                key={b.id}
+                type="button"
+                onClick={() => setBrandFilter(b.id)}
+                aria-pressed={brandFilter === b.id}
+                className={`chip ${brandFilter === b.id ? "border-brand-300 bg-brand-50 text-brand-700" : ""}`}
+              >
+                {b.name}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {visibleProducts.map((product) => {
             const link = resolveProductLink(product);
             const dataAttrs = recommendationDataAttributes({
               page: pathname,
@@ -211,63 +295,92 @@ export function ProductRecommendations({
               brand: product.brand,
               linkType: link.type,
             });
+            const tag = tags[product.brand];
+            const ctaLabel =
+              link.network === "amazon" ? "View on Amazon" : "View product";
 
-            if (link.href) {
-              return (
-                <a
-                  key={product.brand}
-                  href={link.href}
-                  target="_blank"
-                  rel={link.rel}
-                  onClick={() => {
-                    // DOM CustomEvent for any provider-agnostic listener.
-                    emitRecommendationClick({
-                      page: pathname,
-                      capacityClass: capacityClass.id,
-                      brand: product.brand,
-                      linkType: link.type,
-                    });
-                    // Named analytics conversion event. Does not preventDefault,
-                    // so the affiliate navigation is untouched. Single call
-                    // site, so there is no double counting.
-                    trackEvent("affiliate_click", {
-                      page: pathname,
-                      capacity_class: capacityClass.id,
-                      brand: product.brand,
-                      link_type: link.type,
-                    });
-                  }}
-                  {...dataAttrs}
-                  className="group block rounded-card border border-line bg-surface-muted/60 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-surface hover:shadow-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                >
+            return (
+              <article
+                key={product.brand}
+                className="flex flex-col rounded-card border border-line bg-surface p-4 shadow-card"
+              >
+                <div className="flex items-start justify-between gap-2">
                   <span className="block font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
                     {product.brandName}
                   </span>
-                  <span className="mt-1 block text-sm font-semibold text-ink">
-                    {product.productName}
-                  </span>
-                  <span className="mt-2 block text-xs font-medium text-brand-700">
-                    Compare options &rarr;
-                  </span>
-                </a>
-              );
-            }
+                  {tag && (
+                    <span className="shrink-0 rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-brand-700">
+                      {tag}
+                    </span>
+                  )}
+                </div>
+                <h3 className="mt-1 text-sm font-semibold text-ink">{product.productName}</h3>
 
-            return (
-              <div
-                key={product.brand}
-                {...dataAttrs}
-                aria-disabled="true"
-                className="block rounded-card border border-dashed border-line-strong bg-surface-muted/60 p-4"
-              >
-                <span className="block font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
-                  {product.brandName}
-                </span>
-                <span className="mt-1 block text-sm font-semibold text-ink">
-                  {product.productName}
-                </span>
-                <span className="mt-2 block text-xs text-muted/70">Product links coming soon</span>
-              </div>
+                <dl className="mt-3 space-y-1.5 border-t border-hairline pt-3 text-xs">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-muted">Battery capacity</dt>
+                    <dd className="font-mono font-medium text-ink">
+                      {formatWh(product.capacityWh)}
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-muted">Continuous AC output</dt>
+                    <dd className="font-mono font-medium text-ink">
+                      {formatW(product.continuousOutputW)}
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-muted">Rated surge / peak</dt>
+                    <dd className="font-mono font-medium text-ink">
+                      {formatW(product.surgeOutputW)}
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-muted">AC voltage</dt>
+                    <dd className="font-mono font-medium text-ink">
+                      {formatVoltage(product.acVoltageV)}
+                    </dd>
+                  </div>
+                </dl>
+
+                {link.href ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel={link.rel}
+                    onClick={() => {
+                      // DOM CustomEvent for any provider-agnostic listener.
+                      emitRecommendationClick({
+                        page: pathname,
+                        capacityClass: capacityClass.id,
+                        brand: product.brand,
+                        linkType: link.type,
+                      });
+                      // Named analytics conversion event. Does not preventDefault,
+                      // so the affiliate navigation is untouched. Single call
+                      // site, so there is no double counting.
+                      trackEvent("affiliate_click", {
+                        page: pathname,
+                        capacity_class: capacityClass.id,
+                        brand: product.brand,
+                        link_type: link.type,
+                      });
+                    }}
+                    {...dataAttrs}
+                    className="btn-primary mt-4 w-full"
+                  >
+                    {ctaLabel} &rarr;
+                  </a>
+                ) : (
+                  <span
+                    {...dataAttrs}
+                    aria-disabled="true"
+                    className="mt-4 block rounded-control border border-dashed border-line-strong bg-surface-muted/60 px-3 py-2 text-center text-xs text-muted/70"
+                  >
+                    Product links coming soon
+                  </span>
+                )}
+              </article>
             );
           })}
         </div>
@@ -280,9 +393,11 @@ export function ProductRecommendations({
         )}
 
         <p className="mt-4 text-xs leading-relaxed text-muted/80">
-          Capacity class is a starting point only. Always confirm the actual unit&apos;s
-          specifications &mdash; usable capacity, continuous and surge output, and maximum charge
-          input &mdash; against the devices you plan to run before buying.
+          Capacity class is a starting point only. Specs shown are the manufacturer&apos;s published,
+          per-model figures; prices and availability change, so confirm the actual unit&apos;s
+          specifications &mdash; usable capacity, continuous and surge output, AC voltage, and
+          maximum charge input &mdash; on the retailer&apos;s page against the devices you plan to
+          run before buying.
         </p>
 
         <AffiliateDisclosure
