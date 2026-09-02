@@ -97,7 +97,12 @@ export function PowerStationCalculator({
               </p>
 
               <div className="mt-5">
-                <DeviceList devices={devices} onChange={updateDevice} onRemove={removeDevice} />
+                <DeviceList
+                  devices={devices}
+                  totalDailyWh={results.totalDailyWh}
+                  onChange={updateDevice}
+                  onRemove={removeDevice}
+                />
               </div>
 
               <button

@@ -58,10 +58,13 @@ export default function HomePage() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div>
             <p className="eyebrow">Power station sizing</p>
-            <h1 className="h1 mt-3">What Size Power Station Do I Need?</h1>
+            <h1 className="h1 mt-3">
+              What Size <span className="text-brand-700">Power Station</span> Do I Need?
+            </h1>
             <p className="lede mt-4 max-w-xl">
-              Calculate the battery capacity you need for camping, emergencies, RVs, CPAP machines,
-              refrigerators, Starlink, and other devices.
+              Work out how much battery you actually need. Size a portable power station for camping,
+              outages, RVs, CPAP, Starlink, and everyday backup &mdash; add your devices below and the
+              recommended capacity updates as you type.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="#calculator" className="btn-primary btn-lg">
