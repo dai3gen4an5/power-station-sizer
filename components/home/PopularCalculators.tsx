@@ -14,7 +14,7 @@ const ITEMS = [
  */
 export function PopularCalculators() {
   return (
-    <section className="container-page pb-4">
+    <section className="container-wide pb-4">
       <div className="feature-card p-5 sm:p-6">
         <h2 className="h2 text-xl">Popular calculators</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">

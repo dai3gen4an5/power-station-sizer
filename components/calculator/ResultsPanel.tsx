@@ -43,10 +43,10 @@ function Tile({
   children?: ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-line bg-surface p-5">
+    <div className="rounded-xl border border-line bg-surface p-4 sm:p-5">
       <span
         aria-hidden="true"
-        className={`flex h-10 w-10 items-center justify-center rounded-full ${
+        className={`flex h-9 w-9 items-center justify-center rounded-full ${
           accent === "amber" ? "bg-amber-50 text-amber-600" : "bg-brand-50 text-brand-600"
         }`}
       >
@@ -54,7 +54,7 @@ function Tile({
       </span>
       <p className="mt-3 text-sm text-muted">{label}</p>
       <p
-        className={`mt-0.5 font-mono text-3xl font-semibold leading-none tracking-tight tabular-nums ${
+        className={`mt-0.5 whitespace-nowrap font-mono text-[1.7rem] font-semibold leading-none tracking-tight tabular-nums sm:text-3xl ${
           emphasise ? "text-brand-700" : "text-ink"
         }`}
       >

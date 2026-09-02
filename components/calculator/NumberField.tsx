@@ -102,6 +102,7 @@ export function NumberField({
       inputMode={allowDecimal ? "decimal" : "numeric"}
       autoComplete="off"
       spellCheck={false}
+      draggable={false}
       value={buffer}
       aria-label={ariaLabel}
       placeholder={placeholder}
@@ -119,6 +120,12 @@ export function NumberField({
           e.currentTarget.blur();
         }
       }}
+      // A `type="text"` input allows the browser to drag selected text and drop
+      // it elsewhere in the field, which shuffles digits in these compact
+      // number cells. Block the drag lifecycle so selection still works but the
+      // value can only change by typing.
+      onDragStart={(e) => e.preventDefault()}
+      onDrop={(e) => e.preventDefault()}
       className={className}
     />
   );
