@@ -43,6 +43,13 @@ export interface PowerStationCalculatorProps {
   showRecommendations?: boolean;
 }
 
+const STORY_STEPS = [
+  "Add your devices",
+  "See the daily energy",
+  "Get a recommended size",
+  "Compare matching units",
+];
+
 export function PowerStationCalculator({
   initialDevices,
   initialSettings,
@@ -60,6 +67,11 @@ export function PowerStationCalculator({
   const [batteryReserve, setBatteryReserve] = useState(
     initialSettings?.batteryReserve ?? DEFAULT_SETTINGS.batteryReserve
   );
+
+  const settingsChanged =
+    days !== (initialSettings?.days ?? DEFAULT_SETTINGS.days) ||
+    inverterEfficiency !== (initialSettings?.inverterEfficiency ?? DEFAULT_SETTINGS.inverterEfficiency) ||
+    batteryReserve !== (initialSettings?.batteryReserve ?? DEFAULT_SETTINGS.batteryReserve);
 
   const results = useMemo(
     () => calculateResults(devices, { days, inverterEfficiency, batteryReserve }),
@@ -84,19 +96,17 @@ export function PowerStationCalculator({
 
   return (
     <>
-      <section id="calculator" className="container-page scroll-mt-20 pb-16 pt-4">
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+      <section id="calculator" className="container-page scroll-mt-20 pb-12 pt-10 sm:pb-16 sm:pt-14">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          {/* ---- INPUTS ------------------------------------------------ */}
           <div className="space-y-6">
-            <div className="card card-pad">
-              <div className="flex items-baseline gap-2.5">
-                <span className="font-mono text-xs font-semibold text-brand-700">01</span>
-                <h2 className="h3">Your devices</h2>
-              </div>
-              <p className="mt-1 text-sm text-muted">
-                List everything you want to power. We&apos;ll add up the watt-hours automatically.
+            <div className="feature-card p-6 sm:p-8">
+              <h2 className="h2">Your devices</h2>
+              <p className="mt-2 text-muted">
+                List everything you want to power. The watt-hours add up as you type.
               </p>
 
-              <div className="mt-5">
+              <div className="mt-6">
                 <DeviceList
                   devices={devices}
                   totalDailyWh={results.totalDailyWh}
@@ -108,12 +118,12 @@ export function PowerStationCalculator({
               <button
                 type="button"
                 onClick={addBlankDevice}
-                className="mt-4 inline-flex items-center gap-2 rounded-control border border-dashed border-line-strong px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-brand-300 hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="btn-secondary btn-lg mt-4 w-full"
               >
-                + Add another device
+                + Add a device
               </button>
 
-              <div className="mt-6 border-t border-line pt-5">
+              <div className="mt-8 border-t border-hairline pt-6">
                 <PresetButtons onAdd={addPresetDevice} presets={presets} note={presetsNote} />
               </div>
             </div>
@@ -122,20 +132,42 @@ export function PowerStationCalculator({
               days={days}
               inverterEfficiency={inverterEfficiency}
               batteryReserve={batteryReserve}
+              defaultOpen={settingsChanged}
               onDaysChange={setDays}
               onEfficiencyChange={setInverterEfficiency}
               onReserveChange={setBatteryReserve}
             />
           </div>
 
+          {/* ---- LIVE RESULT ----------------------------------------- */}
           <div className="lg:sticky lg:top-24">
-            <div className="mb-3 flex items-baseline gap-2.5">
-              <span className="font-mono text-xs font-semibold text-brand-700">02</span>
-              <h2 className="h3">Your result</h2>
-            </div>
-            <ResultsPanel results={results} inverterEfficiency={inverterEfficiency} batteryReserve={batteryReserve} />
+            <ResultsPanel
+              results={results}
+              inverterEfficiency={inverterEfficiency}
+              batteryReserve={batteryReserve}
+            />
           </div>
         </div>
+
+        {showRecommendations && (
+          <ol className="mt-10 hidden items-center gap-3 text-xs font-medium text-muted sm:flex">
+            {STORY_STEPS.map((step, i) => (
+              <li key={step} className="flex items-center gap-3">
+                <span className="flex items-center gap-2">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-50 font-mono text-[10px] font-semibold text-brand-700">
+                    {i + 1}
+                  </span>
+                  {step}
+                </span>
+                {i < STORY_STEPS.length - 1 && (
+                  <span aria-hidden="true" className="text-line-strong">
+                    &rarr;
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
+        )}
       </section>
 
       {showRecommendations && (

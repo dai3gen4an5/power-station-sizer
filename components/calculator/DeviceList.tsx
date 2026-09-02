@@ -13,21 +13,21 @@ interface DeviceListProps {
 
 export function DeviceList({ devices, totalDailyWh, onChange, onRemove }: DeviceListProps) {
   return (
-    <div className="rounded-card border border-line">
-      {/* Column header — desktop only; DeviceRow labels cover mobile + a11y. */}
+    <div>
+      {/* Column header — desktop only; DeviceRow keeps labels for mobile + a11y. */}
       <div
-        className="hidden grid-cols-[minmax(0,2.4fr)_1fr_1fr_0.7fr_minmax(0,1fr)_auto] gap-x-3 border-b border-line bg-surface-muted/60 px-3 py-2 sm:grid"
+        className="hidden grid-cols-[minmax(0,2.6fr)_0.9fr_0.9fr_0.7fr_minmax(0,1fr)_auto] gap-x-4 px-1 pb-2 text-xs font-medium text-muted sm:grid"
         aria-hidden="true"
       >
-        <span className="field-label">Device</span>
-        <span className="field-label">Watts</span>
-        <span className="field-label">Hrs/day</span>
-        <span className="field-label">Qty</span>
-        <span className="field-label text-right">Wh/day</span>
-        <span className="field-label w-[4.25rem]" />
+        <span>Device</span>
+        <span>Watts</span>
+        <span>Hours / day</span>
+        <span>Qty</span>
+        <span className="text-right">Wh / day</span>
+        <span className="w-[4.5rem]" />
       </div>
 
-      <div className="px-3">
+      <div className="divide-y divide-hairline rounded-card border border-line bg-surface">
         {devices.map((device, index) => (
           <DeviceRow
             key={device.id}
@@ -40,9 +40,9 @@ export function DeviceList({ devices, totalDailyWh, onChange, onRemove }: Device
         ))}
       </div>
 
-      <div className="flex items-center justify-between gap-3 border-t border-line bg-surface-muted/60 px-3 py-2.5">
-        <span className="text-sm font-medium text-ink">Total energy per day</span>
-        <span className="font-mono text-base font-semibold tabular-nums text-ink">
+      <div className="mt-3 flex items-center justify-between gap-3 rounded-card bg-brand-50 px-4 py-3">
+        <span className="text-sm font-semibold text-ink">Total energy per day</span>
+        <span className="font-mono text-lg font-semibold tabular-nums text-brand-700">
           {formatWh(totalDailyWh)}
         </span>
       </div>

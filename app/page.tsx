@@ -43,10 +43,9 @@ const impactSiteVerificationMeta: MetaHTMLAttributes<HTMLMetaElement> & { value:
 };
 
 const TRUST_POINTS = [
-  "No signup",
-  "Real watt-hour math",
-  "Efficiency & reserve included",
-  "Product specs verified",
+  { label: "Fast & free", sub: "No sign-up, ~2 minutes" },
+  { label: "Personalised", sub: "Sized to your own devices" },
+  { label: "Purchase-ready", sub: "Real watt-hour math, verified specs" },
 ];
 
 export default function HomePage() {
@@ -54,19 +53,19 @@ export default function HomePage() {
     <>
       <meta {...impactSiteVerificationMeta} />
 
-      <section className="container-page pb-10 pt-12 sm:pt-16">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+      <section className="container-page pb-14 pt-16 sm:pb-20 sm:pt-24">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <p className="eyebrow">Power station sizing</p>
-            <h1 className="h1 mt-3">
+            <h1 className="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
               What Size <span className="text-brand-700">Power Station</span> Do I Need?
             </h1>
-            <p className="lede mt-4 max-w-xl">
-              Work out how much battery you actually need. Size a portable power station for camping,
-              outages, RVs, CPAP, Starlink, and everyday backup &mdash; add your devices below and the
-              recommended capacity updates as you type.
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+              How much battery do you actually need? Size a portable power station for camping,
+              outages, RVs, CPAP, Starlink, and everyday backup &mdash; the recommendation updates as
+              you add your devices.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link href="#calculator" className="btn-primary btn-lg">
                 Size my power station
               </Link>
@@ -74,14 +73,17 @@ export default function HomePage() {
                 Browse calculators
               </Link>
             </div>
-            <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+            <ul className="mt-9 grid gap-3 sm:grid-cols-3">
               {TRUST_POINTS.map((point) => (
-                <li key={point} className="flex items-center gap-1.5">
-                  <span
-                    aria-hidden="true"
-                    className="h-1.5 w-1.5 rounded-full bg-brand"
-                  />
-                  {point}
+                <li
+                  key={point.label}
+                  className="rounded-card border border-line bg-surface/70 px-3.5 py-3"
+                >
+                  <span className="flex items-center gap-2 text-sm font-semibold text-ink">
+                    <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand" />
+                    {point.label}
+                  </span>
+                  <span className="mt-1 block text-xs text-muted">{point.sub}</span>
                 </li>
               ))}
             </ul>
@@ -92,6 +94,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <div className="border-t border-line" />
 
       <PowerStationCalculator />
 
