@@ -221,7 +221,7 @@ export function ProductRecommendations({
     <section className={sectionClassName} aria-labelledby="product-recommendations-heading">
       <div className="card card-pad">
         <p className="eyebrow">Recommendation</p>
-        <h2 id="product-recommendations-heading" className="mt-2 h3 text-base">
+        <h2 id="product-recommendations-heading" className="mt-2 h2 text-2xl">
           {outputAware
             ? "Power stations that meet your battery and AC-output needs"
             : "Power stations in this size range"}
@@ -314,7 +314,10 @@ export function ProductRecommendations({
                     </span>
                   )}
                 </div>
-                <h3 className="mt-1 text-sm font-semibold text-ink">{product.productName}</h3>
+                <div className="my-4 flex h-36 items-center justify-center rounded-xl bg-gradient-to-br from-surface-muted to-white" aria-label="Product image unavailable">
+                  <svg viewBox="0 0 160 110" className="h-24 w-36 text-slate-700" fill="none" stroke="currentColor" strokeWidth="2"><rect x="23" y="28" width="114" height="68" rx="12" fill="currentColor" opacity=".08"/><path d="M49 28v-7c0-6 5-10 11-10h40c6 0 11 4 11 10v7"/><rect x="42" y="45" width="45" height="24" rx="4"/><circle cx="106" cy="57" r="10"/><path d="M43 81h74"/></svg>
+                </div>
+                <h3 className="text-lg font-semibold text-ink">{product.productName}</h3>
 
                 <dl className="mt-3 space-y-1.5 border-t border-hairline pt-3 text-xs">
                   <div className="flex items-baseline justify-between gap-3">

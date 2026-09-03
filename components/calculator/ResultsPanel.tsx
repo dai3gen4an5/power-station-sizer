@@ -43,25 +43,25 @@ function Tile({
   children?: ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-line bg-surface p-4 sm:p-5">
+    <div className="flex min-h-[132px] items-center gap-4 rounded-xl border border-line bg-surface p-4">
       <span
         aria-hidden="true"
-        className={`flex h-9 w-9 items-center justify-center rounded-full ${
+        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${
           accent === "amber" ? "bg-amber-50 text-amber-600" : "bg-brand-50 text-brand-600"
         }`}
       >
         {icon}
       </span>
-      <p className="mt-3 text-sm text-muted">{label}</p>
+      <div className="min-w-0"><p className="text-xs font-medium text-muted">{label}</p>
       <p
-        className={`mt-0.5 whitespace-nowrap font-mono text-[1.7rem] font-semibold leading-none tracking-tight tabular-nums sm:text-3xl ${
+        className={`mt-1 whitespace-nowrap font-display text-[1.65rem] font-semibold leading-none tracking-tight tabular-nums sm:text-3xl ${
           emphasise ? "text-brand-700" : "text-ink"
         }`}
       >
         {value}
       </p>
       <p className="mt-1.5 text-xs text-muted">{caption}</p>
-      {children}
+      {children}</div>
     </div>
   );
 }
@@ -92,10 +92,10 @@ export function ResultsPanel({ results, inverterEfficiency, batteryReserve }: Re
   const hasLoad = totalDailyWh > 0;
 
   return (
-    <div className="feature-card p-6 sm:p-8">
+    <div className="feature-card p-5 sm:p-6">
       <h2 className="h2 text-xl">Your power needs summary</h2>
 
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <Tile
           accent="brand"
           label="Daily usage"

@@ -8,11 +8,11 @@ const config: Config = {
         // ---- Base surfaces & text --------------------------------------------
         ink: "#15181D", // primary text
         muted: "#5B6470", // secondary text (was ad-hoc ink/60)
-        paper: "#F5F6F1", // page canvas — warm technical neutral
-        canvas: "#F5F6F1", // alias of `paper`
+        paper: "#FAFBF8", // clean warm-neutral page canvas
+        canvas: "#FAFBF8", // alias of `paper`
         surface: "#FFFFFF", // clean white cards
-        "surface-muted": "#F0F2EC", // recessed panels, table zebra
-        line: "#E4E6DF", // hairline borders on light surfaces
+        "surface-muted": "#F6F8F4", // recessed panels, table zebra
+        line: "#E2E7E0", // hairline borders on light surfaces
         hairline: "#ECEEE8", // even lighter divider
         "line-strong": "#CDD1C6", // emphasised border / input outline
 
@@ -27,17 +27,17 @@ const config: Config = {
 
         // ---- Accent — modeled on a charge-indicator LED --------------------
         brand: {
-          DEFAULT: "#159A82",
-          50: "#EAF7F3",
-          100: "#CDEDE4",
-          200: "#9EDDCE",
-          300: "#66C7B2",
-          400: "#33AE95",
-          500: "#159A82",
-          600: "#0F7D69",
-          700: "#0C6153",
-          800: "#0B4C42",
-          900: "#093E37",
+          DEFAULT: "#168C36",
+          50: "#EEF8EF",
+          100: "#D9F0DD",
+          200: "#B5E0BC",
+          300: "#82C98E",
+          400: "#4DAC60",
+          500: "#238F3E",
+          600: "#168C36",
+          700: "#116D2A",
+          800: "#105724",
+          900: "#0D481E",
         },
       },
       fontFamily: {

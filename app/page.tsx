@@ -9,7 +9,6 @@ import { InverterEfficiencyInfo } from "@/components/content/InverterEfficiencyI
 import { RelatedCalculators } from "@/components/content/RelatedCalculators";
 import { WattHoursExplainer } from "@/components/content/WattHoursExplainer";
 import { WattsVsWattHours } from "@/components/content/WattsVsWattHours";
-import { HeroExampleReadout } from "@/components/home/HeroExampleReadout";
 
 const TITLE = "Power Station Size Calculator - What Size Do I Need?";
 const DESCRIPTION =
@@ -81,9 +80,9 @@ export default function HomePage() {
     <>
       <meta {...impactSiteVerificationMeta} />
 
-      <section className="container-page pb-12 pt-14 sm:pb-16 sm:pt-20">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <div>
+      <section className="hero-shell relative overflow-hidden border-b border-line/70 bg-white">
+        <div className="container-wide relative z-10 grid min-h-[500px] items-center gap-8 py-12 sm:py-16 lg:grid-cols-[0.87fr_1.13fr] lg:py-14">
+          <div className="relative z-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted shadow-card">
               <span aria-hidden="true" className="text-brand-600">
                 <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor">
@@ -92,28 +91,27 @@ export default function HomePage() {
               </span>
               Smart sizing. Smarter adventures.
             </span>
-            <h1 className="mt-5 font-display text-[2.6rem] font-bold leading-[1.03] tracking-tight text-ink sm:text-[3.75rem]">
-              What Size{" "}
+            <h1 className="mt-5 max-w-[650px] font-display text-[2.75rem] font-bold leading-[1.05] tracking-[-0.04em] text-ink sm:text-[3.6rem] lg:text-[3.65rem]">
+              How much battery<br />do you{" "}
               <span className="relative inline-block text-brand-600">
-                Power Station
+                actually
                 <span
                   aria-hidden="true"
                   className="absolute inset-x-0 -bottom-1 h-[3px] rounded-full bg-brand-300/70"
                 />
               </span>{" "}
-              Do I Need?
+              need?
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              How much battery do you actually need? Right-size a portable power station for camping,
-              outages, RVs, CPAP, Starlink, and everyday power needs.
+              Right-size your portable power station for camping, outages, RVs, CPAP, Starlink, and everyday power needs.
             </p>
             <div className="mt-8">
               <Link href="#calculator" className="btn-primary btn-lg">
-                Calculate my size
+                Calculate My Size
                 <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
-            <ul className="mt-10 grid gap-5 sm:grid-cols-3">
+            <ul className="mt-9 grid gap-5 sm:grid-cols-3">
               {TRUST_POINTS.map((point) => (
                 <li key={point.label} className="flex items-start gap-2.5">
                   <span
@@ -131,9 +129,7 @@ export default function HomePage() {
             </ul>
           </div>
 
-          <div className="mx-auto w-full max-w-sm lg:max-w-none">
-            <HeroExampleReadout />
-          </div>
+          <div className="hero-visual -mx-4 min-h-[300px] rounded-xl sm:-mx-6 lg:absolute lg:inset-y-0 lg:left-[42%] lg:right-0 lg:z-0 lg:min-h-0 lg:rounded-none" aria-hidden="true" />
         </div>
       </section>
 

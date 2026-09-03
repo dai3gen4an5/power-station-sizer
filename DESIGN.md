@@ -9,8 +9,8 @@ A **polished consumer product-selection tool** — a confident, spacious sizing
 calculator that leads into a product comparison, not a generic SaaS marketing
 site and not an engineering/admin form.
 
-The current visual source of truth is the approved homepage mockup: a large
-light hero, a light two-column calculator (a **"Your power needs summary"**
+The current visual source of truth is `mock1.png`: a compact photographic
+consumer-electronics hero followed by a light two-column calculator (a **"Your power needs summary"**
 metric-tile card + a clean **"Your devices"** table), a **"Popular calculators"**
 shortcut strip, then the product comparison. Match its composition, whitespace,
 proportions, typography scale, card sizing, radii, borders, input styling, and
@@ -80,9 +80,8 @@ Hardware: `.panel-hardware` (bezel), `.panel-screen` (LCD screen).
    ~`text-6xl`, one accent-coloured word with an underline swoosh) → a `text-lg`
    grey lede → one solid `.btn-primary .btn-lg` CTA → a three-up trust row (small
    round outline icon + bold label + grey sub). Two-column on the homepage with a
-   light `HeroExampleReadout` card (deterministic real calculator output,
-   `aria-hidden`). A photographic hero image is out (see Don't); the example card
-   fills that slot.
+   original, unbranded outdoor product photograph. A white fade protects copy
+   contrast while the product-use context remains visible.
 2. **Calculator** — light two-column: the **`ResultsPanel`** "Your power needs
    summary" card (a 2×2 grid of `rounded-xl` metric tiles — Daily usage,
    Recommended capacity in green, Estimated runtime, Solar recharge time — plus a
@@ -113,7 +112,7 @@ Hardware: `.panel-hardware` (bezel), `.panel-screen` (LCD screen).
 ## Don't
 
 - Add a second accent colour, neon, cyberpunk, or a full-page gradient.
-- Use stock or AI photography, emoji, or an icon-only control that has no
+- Use unlicensed stock photography, emoji, or an icon-only control that has no
   accessible label.
 - Show the recommended-capacity figure large in two places at once.
 - Pull in an animation / carousel / chart / icon-font library.

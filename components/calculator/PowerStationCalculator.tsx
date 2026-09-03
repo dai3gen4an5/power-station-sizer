@@ -79,10 +79,10 @@ export function PowerStationCalculator({
 
   return (
     <>
-      <section id="calculator" className="container-wide scroll-mt-20 pb-12 pt-10 sm:pb-16 sm:pt-14">
-        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start lg:gap-8">
+      <section id="calculator" className="container-wide scroll-mt-20 pb-8 pt-8 sm:pt-10">
+        <div className="grid gap-4 lg:grid-cols-[1.03fr_0.97fr] lg:items-start">
           {/* LEFT — live result summary */}
-          <div className="lg:sticky lg:top-24">
+          <div>
             <ResultsPanel
               results={results}
               inverterEfficiency={inverterEfficiency}
