@@ -128,7 +128,7 @@ export function DeviceRow({ device, index, canRemove, onChange, onRemove }: Devi
             />
           </label>
           <label className="block text-sm">
-            <span className="field-label">Usage (h)</span>
+            <span className="field-label">Hours/day</span>
             <NumberField
               value={device.hoursPerDay}
               min={0}

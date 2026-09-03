@@ -15,7 +15,7 @@ interface DeviceListProps {
 /**
  * Explicit desktop grid tracks, shared verbatim by the header here and every
  * DeviceRow so columns line up exactly. Widths are sized for realistic values:
- * "1500" (Power), "12.5" (Usage), "10" (Qty), "12,000 Wh" on one line (Daily Wh).
+ * "1500" (Power), "12.5" (Hours/day), "10" (Qty), "12,000 Wh" on one line (Daily Wh).
  */
 export const DEVICE_GRID =
   "grid-cols-[minmax(140px,1fr)_80px_80px_50px_104px_30px] gap-x-2";
@@ -30,7 +30,7 @@ export function DeviceList({ devices, allowEmpty = false, totalDailyWh, onChange
       >
         <span className="pl-1">Device</span>
         <span className="text-right">Power</span>
-        <span className="text-right">Usage</span>
+        <span className="text-right">Hours/day</span>
         <span className="text-right">Qty</span>
         <span className="text-right">Daily Wh</span>
         <span />

@@ -316,10 +316,10 @@ export function ProductRecommendations({
                   )}
                 </div>
                 <div className="relative my-4 flex h-40 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-surface-muted to-white">
-                  {product.imagePath ? (
+                  {product.imageSrc ? (
                     <Image
-                      src={product.imagePath}
-                      alt={product.productName}
+                      src={product.imageSrc}
+                      alt={product.imageAlt ?? product.productName}
                       fill
                       sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
                       className="object-contain p-2"
