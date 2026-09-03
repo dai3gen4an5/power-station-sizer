@@ -43,8 +43,9 @@ export function PowerStationCalculator({
   showRecommendations = true,
   showPopularCalculators = false,
 }: PowerStationCalculatorProps) {
+  const allowEmpty = initialDevices !== undefined && initialDevices.length === 0;
   const [devices, setDevices] = useState<Device[]>(() =>
-    initialDevices && initialDevices.length > 0 ? initialDevices : [{ ...DEFAULT_DEVICE }]
+    initialDevices !== undefined ? initialDevices : [{ ...DEFAULT_DEVICE }]
   );
   const [days, setDays] = useState(initialSettings?.days ?? DEFAULT_SETTINGS.days);
   const [inverterEfficiency, setInverterEfficiency] = useState(
@@ -68,7 +69,9 @@ export function PowerStationCalculator({
     setDevices((prev) => prev.map((device) => (device.id === id ? { ...device, ...patch } : device)));
   }
   function removeDevice(id: string) {
-    setDevices((prev) => (prev.length > 1 ? prev.filter((device) => device.id !== id) : prev));
+    setDevices((prev) =>
+      prev.length > 1 || allowEmpty ? prev.filter((device) => device.id !== id) : prev
+    );
   }
   function addBlankDevice() {
     setDevices((prev) => [...prev, { id: createDeviceId(), ...BLANK_DEVICE_DEFAULTS }]);
@@ -101,6 +104,7 @@ export function PowerStationCalculator({
               <div className="mt-4">
                 <DeviceList
                   devices={devices}
+                  allowEmpty={allowEmpty}
                   totalDailyWh={results.totalDailyWh}
                   onChange={updateDevice}
                   onRemove={removeDevice}
@@ -135,7 +139,7 @@ export function PowerStationCalculator({
 
       {showPopularCalculators && <PopularCalculators />}
 
-      {showRecommendations && (
+      {showRecommendations && devices.length > 0 && (
         <ProductRecommendations
           recommendedCapacityWh={results.recommendedCapacityWh}
           recommendedSizeClass={results.recommendedSizeClass}

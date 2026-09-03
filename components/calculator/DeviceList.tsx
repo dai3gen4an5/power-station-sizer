@@ -6,6 +6,7 @@ import { DeviceRow } from "./DeviceRow";
 
 interface DeviceListProps {
   devices: Device[];
+  allowEmpty?: boolean;
   totalDailyWh: number;
   onChange: (id: string, patch: Partial<Device>) => void;
   onRemove: (id: string) => void;
@@ -19,7 +20,7 @@ interface DeviceListProps {
 export const DEVICE_GRID =
   "grid-cols-[minmax(140px,1fr)_80px_80px_50px_104px_30px] gap-x-2";
 
-export function DeviceList({ devices, totalDailyWh, onChange, onRemove }: DeviceListProps) {
+export function DeviceList({ devices, allowEmpty = false, totalDailyWh, onChange, onRemove }: DeviceListProps) {
   return (
     <div className="overflow-hidden rounded-xl border border-line bg-surface">
       {/* Column header — desktop only. */}
@@ -36,12 +37,18 @@ export function DeviceList({ devices, totalDailyWh, onChange, onRemove }: Device
       </div>
 
       <div className="divide-y divide-hairline">
+        {devices.length === 0 && (
+          <div className="px-4 py-8 text-center">
+            <p className="text-sm font-semibold text-ink">Add your first device to start calculating.</p>
+            <p className="mt-1 text-xs text-muted">Use a quick-add option below or add a custom device.</p>
+          </div>
+        )}
         {devices.map((device, index) => (
           <DeviceRow
             key={device.id}
             device={device}
             index={index}
-            canRemove={devices.length > 1}
+            canRemove={devices.length > 1 || allowEmpty}
             onChange={onChange}
             onRemove={onRemove}
           />

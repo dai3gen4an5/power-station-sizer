@@ -46,6 +46,8 @@ export interface ProductEntry {
   /** Product line name shown on the card, e.g. "Jackery Explorer 1000 v2". Never a
    *  superlative ("Best", "#1", "top pick"). */
   productName: string;
+  /** Local, manufacturer-supplied product image used by recommendation cards. */
+  imagePath?: string;
   /** Exact model designation used to verify identity against the affiliate
    *  destination and the manufacturer spec sheet. Usually equal to `productName`. */
   modelName: string;
@@ -162,6 +164,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "jackery",
         brandName: "Jackery",
         productName: "Jackery Explorer 500 v2",
+        imagePath: "/products/jackery-explorer-500-v2.webp",
         modelName: "Jackery Explorer 500 v2",
         affiliateUrl: "https://amzn.to/3ULg6T7",
         capacityWh: 512,
@@ -179,6 +182,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "ecoflow",
         brandName: "EcoFlow",
         productName: "EcoFlow RIVER 2 Max 500",
+        imagePath: "/products/ecoflow-river-2-max-500.webp",
         modelName: "EcoFlow RIVER 2 Max 500",
         affiliateUrl: "https://amzn.to/4gK4pnj",
         capacityWh: 499,
@@ -205,6 +209,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "jackery",
         brandName: "Jackery",
         productName: "Jackery Explorer 1000 v2",
+        imagePath: "/products/jackery-explorer-1000-v2.webp",
         modelName: "Jackery Explorer 1000 v2",
         affiliateUrl: "https://amzn.to/4wWx2Ue",
         capacityWh: 1070,
@@ -221,6 +226,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "ecoflow",
         brandName: "EcoFlow",
         productName: "EcoFlow DELTA 3 Classic",
+        imagePath: "/products/ecoflow-delta-3-classic.webp",
         modelName: "EcoFlow DELTA 3 Classic",
         affiliateUrl: "https://amzn.to/4zM42RC",
         capacityWh: 1024,
@@ -238,6 +244,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "bluetti",
         brandName: "BLUETTI",
         productName: "BLUETTI Elite 100 V2",
+        imagePath: "/products/bluetti-elite-100-v2.webp",
         modelName: "BLUETTI Elite 100 V2",
         affiliateUrl: "https://amzn.to/4gECyVw",
         capacityWh: 1024,
@@ -263,6 +270,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "jackery",
         brandName: "Jackery",
         productName: "Jackery Explorer 2000 v2",
+        imagePath: "/products/jackery-explorer-2000-v2.webp",
         modelName: "Jackery Explorer 2000 v2",
         affiliateUrl: "https://amzn.to/4d7s3c4",
         capacityWh: 2042,
@@ -280,6 +288,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "ecoflow",
         brandName: "EcoFlow",
         productName: "EcoFlow DELTA 3 Max",
+        imagePath: "/products/ecoflow-delta-3-max.webp",
         modelName: "EcoFlow DELTA 3 Max",
         affiliateUrl: "https://amzn.to/46wIOty",
         capacityWh: 2048,
@@ -296,6 +305,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "bluetti",
         brandName: "BLUETTI",
         productName: "BLUETTI AC200L",
+        imagePath: "/products/bluetti-ac200l.webp",
         modelName: "BLUETTI AC200L",
         affiliateUrl: "https://amzn.to/4ck9AJf",
         capacityWh: 2048,
@@ -321,6 +331,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "jackery",
         brandName: "Jackery",
         productName: "Jackery HomePower 3000",
+        imagePath: "/products/jackery-homepower-3000.webp",
         modelName: "Jackery HomePower 3000",
         affiliateUrl: "https://amzn.to/3UulYA8",
         capacityWh: 3072,
@@ -337,6 +348,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "ecoflow",
         brandName: "EcoFlow",
         productName: "EcoFlow DELTA 3 Ultra",
+        imagePath: "/products/ecoflow-delta-3-ultra.webp",
         modelName: "EcoFlow DELTA 3 Ultra",
         affiliateUrl: "https://amzn.to/3SCc7Yk",
         capacityWh: 3072,
@@ -354,6 +366,7 @@ export const CAPACITY_CLASSES: readonly CapacityClass[] = [
         brand: "bluetti",
         brandName: "BLUETTI",
         productName: "BLUETTI Elite 300",
+        imagePath: "/products/bluetti-elite-300.webp",
         modelName: "BLUETTI Elite 300",
         affiliateUrl: "https://amzn.to/4cONKh0",
         capacityWh: 3014,

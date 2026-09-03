@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AffiliateDisclosure } from "./AffiliateDisclosure";
 import {
@@ -314,8 +315,21 @@ export function ProductRecommendations({
                     </span>
                   )}
                 </div>
-                <div className="my-4 flex h-36 items-center justify-center rounded-xl bg-gradient-to-br from-surface-muted to-white" aria-label="Product image unavailable">
-                  <svg viewBox="0 0 160 110" className="h-24 w-36 text-slate-700" fill="none" stroke="currentColor" strokeWidth="2"><rect x="23" y="28" width="114" height="68" rx="12" fill="currentColor" opacity=".08"/><path d="M49 28v-7c0-6 5-10 11-10h40c6 0 11 4 11 10v7"/><rect x="42" y="45" width="45" height="24" rx="4"/><circle cx="106" cy="57" r="10"/><path d="M43 81h74"/></svg>
+                <div className="relative my-4 flex h-40 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-surface-muted to-white">
+                  {product.imagePath ? (
+                    <Image
+                      src={product.imagePath}
+                      alt={product.productName}
+                      fill
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                      className="object-contain p-2"
+                    />
+                  ) : (
+                    <span className="flex flex-col items-center gap-2 text-xs text-muted" aria-label="Product image unavailable">
+                      <svg viewBox="0 0 160 110" className="h-24 w-36 text-slate-700" fill="none" stroke="currentColor" strokeWidth="2"><rect x="23" y="28" width="114" height="68" rx="12" fill="currentColor" opacity=".08"/><path d="M49 28v-7c0-6 5-10 11-10h40c6 0 11 4 11 10v7"/><rect x="42" y="45" width="45" height="24" rx="4"/><circle cx="106" cy="57" r="10"/><path d="M43 81h74"/></svg>
+                      Image coming soon
+                    </span>
+                  )}
                 </div>
                 <h3 className="text-lg font-semibold text-ink">{product.productName}</h3>
 

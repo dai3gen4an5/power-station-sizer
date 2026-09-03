@@ -81,7 +81,7 @@ export default function HomePage() {
       <meta {...impactSiteVerificationMeta} />
 
       <section className="hero-shell relative overflow-hidden border-b border-line/70 bg-white">
-        <div className="container-wide relative z-10 grid min-h-[500px] items-center gap-8 py-12 sm:py-16 lg:grid-cols-[0.96fr_1.04fr] lg:py-14">
+        <div className="container-wide relative z-10 grid items-center gap-4 py-7 sm:gap-8 sm:py-16 lg:min-h-[500px] lg:grid-cols-[0.96fr_1.04fr] lg:py-14">
           <div className="relative z-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted shadow-card">
               <span aria-hidden="true" className="text-brand-600">
@@ -91,7 +91,7 @@ export default function HomePage() {
               </span>
               Smart sizing. Smarter adventures.
             </span>
-            <h1 className="mt-5 max-w-[630px] font-display text-[2.75rem] font-bold leading-[1.05] tracking-[-0.045em] text-ink sm:text-[3.6rem] lg:text-[3.65rem]">
+            <h1 className="mt-4 max-w-[630px] font-display text-[2.3rem] font-bold leading-[1.02] tracking-[-0.045em] text-ink sm:mt-5 sm:text-[3.6rem] sm:leading-[1.05] lg:text-[3.65rem]">
               <span className="lg:whitespace-nowrap">How much battery</span><br /><span className="lg:whitespace-nowrap">do you{" "}
               <span className="relative inline-block text-brand-600">
                 actually
@@ -102,38 +102,38 @@ export default function HomePage() {
               </span>{" "}
               need?</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            <p className="mt-4 max-w-xl text-[15px] leading-6 text-muted sm:mt-6 sm:text-lg sm:leading-relaxed">
               Right-size your portable power station for camping, outages, RVs, CPAP, Starlink, and everyday power needs.
             </p>
-            <div className="mt-8">
+            <div className="mt-6 sm:mt-8">
               <Link href="#calculator" className="btn-primary btn-lg">
                 Calculate My Size
                 <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
-            <ul className="mt-9 grid gap-5 sm:grid-cols-3">
+            <ul className="mt-6 grid grid-cols-3 gap-2 sm:mt-9 sm:gap-5">
               {TRUST_POINTS.map((point) => (
-                <li key={point.label} className="flex items-start gap-2.5">
+                <li key={point.label} className="flex min-w-0 items-center gap-1.5 sm:items-start sm:gap-2.5">
                   <span
                     aria-hidden="true"
-                    className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-brand-600"
+                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-line text-brand-600 sm:mt-0.5 sm:h-7 sm:w-7"
                   >
                     {point.icon}
                   </span>
                   <span>
-                    <span className="block text-sm font-semibold text-ink">{point.label}</span>
-                    <span className="block text-xs text-muted">{point.sub}</span>
+                    <span className="block text-[10px] font-semibold leading-tight text-ink sm:text-sm">{point.label}</span>
+                    <span className="hidden text-xs text-muted sm:block">{point.sub}</span>
                   </span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="hero-visual -mx-4 min-h-[300px] rounded-xl sm:-mx-6 lg:absolute lg:inset-y-0 lg:left-[46%] lg:right-0 lg:z-0 lg:min-h-0 lg:rounded-none" aria-hidden="true" />
+          <div className="hero-visual -mx-4 mt-1 min-h-[165px] rounded-xl sm:-mx-6 sm:mt-0 sm:min-h-[300px] lg:absolute lg:inset-y-0 lg:left-[46%] lg:right-0 lg:z-0 lg:min-h-0 lg:rounded-none" aria-hidden="true" />
         </div>
       </section>
 
-      <PowerStationCalculator showPopularCalculators />
+      <PowerStationCalculator initialDevices={[]} showPopularCalculators />
 
       <div className="border-y border-line bg-surface-muted/60">
         <div className="container-prose section-tight">

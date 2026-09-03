@@ -99,8 +99,8 @@ export function ResultsPanel({ results, inverterEfficiency, batteryReserve }: Re
         <Tile
           accent="brand"
           label="Daily usage"
-          value={formatWh(totalDailyWh)}
-          caption="Total energy per day"
+          value={hasLoad ? formatWh(totalDailyWh) : "—"}
+          caption={hasLoad ? "Total energy per day" : "Add a device to begin"}
           icon={
             <svg viewBox="0 0 24 24" className={iconClass} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 12h4l3 8 4-16 3 8h4" />
