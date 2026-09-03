@@ -81,7 +81,7 @@ export default function HomePage() {
       <meta {...impactSiteVerificationMeta} />
 
       <section className="hero-shell relative overflow-hidden border-b border-line/70 bg-white">
-        <div className="container-wide relative z-10 grid min-h-[500px] items-center gap-8 py-12 sm:py-16 lg:grid-cols-[0.87fr_1.13fr] lg:py-14">
+        <div className="container-wide relative z-10 grid min-h-[500px] items-center gap-8 py-12 sm:py-16 lg:grid-cols-[0.96fr_1.04fr] lg:py-14">
           <div className="relative z-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted shadow-card">
               <span aria-hidden="true" className="text-brand-600">
@@ -91,8 +91,8 @@ export default function HomePage() {
               </span>
               Smart sizing. Smarter adventures.
             </span>
-            <h1 className="mt-5 max-w-[650px] font-display text-[2.75rem] font-bold leading-[1.05] tracking-[-0.04em] text-ink sm:text-[3.6rem] lg:text-[3.65rem]">
-              How much battery<br />do you{" "}
+            <h1 className="mt-5 max-w-[630px] font-display text-[2.75rem] font-bold leading-[1.05] tracking-[-0.045em] text-ink sm:text-[3.6rem] lg:text-[3.65rem]">
+              <span className="lg:whitespace-nowrap">How much battery</span><br /><span className="lg:whitespace-nowrap">do you{" "}
               <span className="relative inline-block text-brand-600">
                 actually
                 <span
@@ -100,7 +100,7 @@ export default function HomePage() {
                   className="absolute inset-x-0 -bottom-1 h-[3px] rounded-full bg-brand-300/70"
                 />
               </span>{" "}
-              need?
+              need?</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
               Right-size your portable power station for camping, outages, RVs, CPAP, Starlink, and everyday power needs.
@@ -129,7 +129,7 @@ export default function HomePage() {
             </ul>
           </div>
 
-          <div className="hero-visual -mx-4 min-h-[300px] rounded-xl sm:-mx-6 lg:absolute lg:inset-y-0 lg:left-[42%] lg:right-0 lg:z-0 lg:min-h-0 lg:rounded-none" aria-hidden="true" />
+          <div className="hero-visual -mx-4 min-h-[300px] rounded-xl sm:-mx-6 lg:absolute lg:inset-y-0 lg:left-[46%] lg:right-0 lg:z-0 lg:min-h-0 lg:rounded-none" aria-hidden="true" />
         </div>
       </section>
 
