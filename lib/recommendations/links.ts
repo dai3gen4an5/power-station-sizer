@@ -37,7 +37,7 @@ export function isAmazonAffiliateUrl(url: string): boolean {
   }
 }
 
-function firstNonEmpty(...values: Array<string | undefined>): string | null {
+function firstNonEmpty(...values: Array<string | null | undefined>): string | null {
   for (const value of values) {
     const trimmed = value?.trim();
     if (trimmed) return trimmed;
@@ -65,11 +65,6 @@ export function resolveProductLink(product: ProductEntry): ResolvedProductLink {
       rel: "sponsored noopener noreferrer",
       network: isAmazonAffiliateUrl(affiliateHref) ? "amazon" : "other",
     };
-  }
-
-  const plainHref = firstNonEmpty(product.url);
-  if (plainHref) {
-    return { href: plainHref, type: "plain", rel: "noopener noreferrer", network: null };
   }
 
   return { href: null, type: "disabled", rel: "", network: null };
@@ -109,6 +104,9 @@ export interface RecommendationClickContext {
   capacityClass: CapacityClassId;
   brand: BrandId;
   linkType: RecommendationLinkType;
+  productId?: string;
+  rankPosition?: number;
+  requiredCapacityWh?: number;
 }
 
 /**
@@ -123,6 +121,8 @@ export function recommendationDataAttributes(ctx: RecommendationClickContext) {
     "data-rec-class": ctx.capacityClass,
     "data-rec-brand": ctx.brand,
     "data-rec-link-type": ctx.linkType,
+    "data-rec-product-id": ctx.productId,
+    "data-rec-rank-position": ctx.rankPosition,
   } as const;
 }
 

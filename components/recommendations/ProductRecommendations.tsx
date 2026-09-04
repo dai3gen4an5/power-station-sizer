@@ -36,12 +36,12 @@ interface ProductRecommendationsProps {
   className?: string;
 }
 
-function formatW(value: number | undefined): string {
+function formatW(value: number | null | undefined): string {
   if (typeof value !== "number" || !Number.isFinite(value) || value <= 0) return "Not listed";
   return `${Math.round(value).toLocaleString("en-US")} W`;
 }
 
-function formatVoltage(volts: readonly number[] | undefined): string {
+function formatVoltage(volts: readonly number[] | null | undefined): string {
   if (!volts || volts.length === 0) return "Not listed";
   return volts.map((v) => `${v}V`).join(" / ");
 }
@@ -62,7 +62,7 @@ function factualTags(products: ProductEntry[]): Record<string, string> {
   if (caps.length === products.length) {
     const minCap = Math.min(...caps);
     const atMin = products.filter((p) => p.capacityWh === minCap);
-    if (atMin.length === 1) tags[atMin[0].brand] = "Smallest that fits";
+    if (atMin.length === 1) tags[atMin[0].id] = "Smallest that fits";
   }
 
   const outs = products
@@ -71,8 +71,8 @@ function factualTags(products: ProductEntry[]): Record<string, string> {
   if (outs.length >= 2) {
     const maxOut = Math.max(...outs);
     const atMax = products.filter((p) => p.continuousOutputW === maxOut);
-    if (atMax.length === 1 && !tags[atMax[0].brand]) {
-      tags[atMax[0].brand] = "Highest continuous output";
+    if (atMax.length === 1 && !tags[atMax[0].id]) {
+      tags[atMax[0].id] = "Highest continuous output";
     }
   }
 
@@ -289,20 +289,24 @@ export function ProductRecommendations({
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {visibleProducts.map((product) => {
+            const rankPosition = products.findIndex((item) => item.id === product.id) + 1;
             const link = resolveProductLink(product);
             const dataAttrs = recommendationDataAttributes({
               page: pathname,
               capacityClass: capacityClass.id,
               brand: product.brand,
               linkType: link.type,
+              productId: product.id,
+              rankPosition,
+              requiredCapacityWh: state.recommendedWh,
             });
-            const tag = tags[product.brand];
+            const tag = tags[product.id];
             const ctaLabel =
               link.network === "amazon" ? "View on Amazon" : "View product";
 
             return (
               <article
-                key={product.brand}
+                key={product.id}
                 className="flex flex-col rounded-card border border-line bg-surface p-4 shadow-card"
               >
                 <div className="flex items-start justify-between gap-2">
@@ -372,6 +376,9 @@ export function ProductRecommendations({
                         capacityClass: capacityClass.id,
                         brand: product.brand,
                         linkType: link.type,
+                        productId: product.id,
+                        rankPosition,
+                        requiredCapacityWh: state.recommendedWh,
                       });
                       // Named analytics conversion event. Does not preventDefault,
                       // so the affiliate navigation is untouched. Single call
@@ -381,6 +388,9 @@ export function ProductRecommendations({
                         capacity_class: capacityClass.id,
                         brand: product.brand,
                         link_type: link.type,
+                        product_id: product.id,
+                        rank_position: rankPosition,
+                        required_capacity_wh: state.recommendedWh,
                       });
                     }}
                     {...dataAttrs}
